@@ -3996,7 +3996,14 @@
             c.addEventListener('click', () => go(i, i > current ? 'fwd' : 'back'));
           });
           prevBtn.addEventListener('click', () => { if (current > 0) go(current - 1, 'back'); });
-          nextBtn.addEventListener('click', () => { if (current < totalSteps - 1) go(current + 1, 'fwd'); });
+          nextBtn.addEventListener('click', () => {
+            if (current < totalSteps - 1) {
+              go(current + 1, 'fwd');
+            } else {
+              /* Complete — reset to step 1 after short delay */
+              setTimeout(() => { stepper.classList.remove('dir-fwd','dir-back'); go(0, null); }, 900);
+            }
+          });
 
           stepperObjs.push({ stepper, reset: () => { stepper.classList.remove('dir-fwd','dir-back'); go(0, null); } });
         });
@@ -4019,6 +4026,27 @@
             }
           });
         });
+
+        /* Common Mistakes Panel */
+        const mkToggle = document.querySelector('.h-mistakes-toggle');
+        const mkBody   = document.querySelector('.h-mistakes-body');
+        const mkCards  = document.querySelectorAll('.h-mk-card');
+
+        if (mkToggle && mkBody) {
+          mkToggle.addEventListener('click', () => {
+            const isOpen = mkBody.classList.toggle('is-open');
+            mkToggle.textContent = isOpen ? 'Hide' : 'Show';
+            mkToggle.setAttribute('aria-expanded', isOpen);
+
+            if (isOpen) {
+              mkCards.forEach((card, i) => {
+                setTimeout(() => card.classList.add('is-visible'), 60 + i * 45);
+              });
+            } else {
+              mkCards.forEach(card => card.classList.remove('is-visible'));
+            }
+          });
+        }
       })();
 
     })();
