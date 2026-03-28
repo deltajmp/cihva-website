@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EMS SafeGuard — Protecting Those Who Protect Us</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Source+Sans+3:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" />
+
+  <style>
+    /* ============================================================
+       DESIGN TOKENS
+    ============================================================ */
+    :root {
+      /* Colors */
+      --color-bg:        #0a1628;
+      --color-surface:   #111f36;
+      --color-footer:    #060e1a;
+      --color-accent:    #f97316;
+      --color-accent-hover: #ea6a0a;
+      --color-secondary: #94a3b8;
+      --color-text:      #f1f5f9;
+      --color-muted:     #64748b;
+      --color-border:    #1e3a5f;
+
+      /* Typography */
+      --font-heading: 'Barlow Condensed', sans-serif;
+      --font-body:    'Source Sans 3', sans-serif;
+
+      /* Spacing scale (base-8) */
+      --sp-1:  8px;
+      --sp-2:  16px;
+      --sp-3:  24px;
+      --sp-4:  32px;
+      --sp-6:  48px;
+      --sp-8:  64px;
+      --sp-12: 96px;
+      --sp-16: 128px;
+
+      /* Nav */
+      --nav-height: 64px;
+
+      /* Transitions */
+      --ease: 0.25s ease;
+    }
+
+    /* ============================================================
+       RESET & BASE
+    ============================================================ */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    /* ============================================================
+       UTILITY
+    ============================================================ */
+    .container {
+      width: 100%;
+      max-width: 1160px;
+      margin-inline: auto;
+      padding-inline: var(--sp-3);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-family: var(--font-heading);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: var(--sp-2);
+    }
+
+    /* ============================================================
+       NAVIGATION
+    ============================================================ */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      height: var(--nav-height);
+      display: flex;
+      align-items: center;
+      background: rgba(10, 22, 40, 0.82);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 2px solid var(--color-accent);
+      transition: background var(--ease);
+    }
+
+    .nav__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1160px;
+      margin-inline: auto;
+      padding-inline: var(--sp-3);
+    }
+
+    /* Logo */
+    .nav__logo {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-1);
+      font-family: var(--font-heading);
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--color-text);
+      white-space: nowrap;
+      transition: color var(--ease);
+    }
+
+    .nav__logo:hover {
+      color: var(--color-accent);
+    }
+
+    .nav__logo i {
+      font-size: 1.25rem;
+      color: var(--color-accent);
+    }
+
+    /* Nav links */
+    .nav__links {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-1);
+    }
+
+    .nav__links a {
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      color: var(--color-secondary);
+      padding: var(--sp-1) var(--sp-2);
+      border-radius: 4px;
+      position: relative;
+      transition: color var(--ease);
+    }
+
+    .nav__links a::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      left: var(--sp-2);
+      right: var(--sp-2);
+      height: 2px;
+      background: var(--color-accent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--ease);
+    }
+
+    .nav__links a:hover {
+      color: var(--color-text);
+    }
+
+    .nav__links a:hover::after,
+    .nav__links a.active::after {
+      transform: scaleX(1);
+    }
+
+    .nav__links a.active {
+      color: var(--color-text);
+    }
+
+    /* Hamburger */
+    .nav__hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      width: 40px;
+      height: 40px;
+      background: none;
+      border: 1px solid var(--color-border);
+      border-radius: 6px;
+      cursor: pointer;
+      padding: var(--sp-1);
+      transition: border-color var(--ease);
+    }
+
+    .nav__hamburger:hover {
+      border-color: var(--color-accent);
+    }
+
+    .nav__hamburger span {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background: var(--color-text);
+      border-radius: 2px;
+      transition: transform var(--ease), opacity var(--ease);
+    }
+
+    /* Hamburger → X animation */
+    .nav__hamburger.is-open span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    .nav__hamburger.is-open span:nth-child(2) {
+      opacity: 0;
+    }
+    .nav__hamburger.is-open span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* ============================================================
+       HERO
+    ============================================================ */
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background-color: var(--color-bg);
+      overflow: hidden;
+      padding-top: var(--nav-height);
+    }
+
+    /* CSS-only grid texture */
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(30, 58, 95, 0.35) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(30, 58, 95, 0.35) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+    }
+
+    /* Subtle radial vignette to focus center */
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        ellipse 70% 60% at 50% 50%,
+        transparent 40%,
+        var(--color-bg) 100%
+      );
+      pointer-events: none;
+    }
+
+    .hero__content {
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
+      padding: var(--sp-4) var(--sp-3);
+    }
+
+    .hero__tag {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--sp-1);
+      font-family: var(--font-heading);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      border: 1px solid rgba(249, 115, 22, 0.35);
+      border-radius: 100px;
+      padding: 6px var(--sp-2);
+      margin-bottom: var(--sp-4);
+    }
+
+    .hero__headline {
+      font-family: var(--font-heading);
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--color-text);
+      margin-bottom: var(--sp-3);
+    }
+
+    .hero__headline span {
+      color: var(--color-accent);
+    }
+
+    .hero__subtitle {
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      font-weight: 300;
+      color: var(--color-secondary);
+      max-width: 540px;
+      margin-inline: auto;
+      margin-bottom: var(--sp-6);
+      line-height: 1.7;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--sp-1);
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 14px var(--sp-4);
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      transition: background var(--ease), transform var(--ease), box-shadow var(--ease);
+    }
+
+    .btn--primary {
+      background: var(--color-accent);
+      color: #fff;
+      box-shadow: 0 0 0 0 rgba(249, 115, 22, 0);
+    }
+
+    .btn--primary:hover {
+      background: var(--color-accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(249, 115, 22, 0.35);
+    }
+
+    .btn--primary:active {
+      transform: translateY(0);
+    }
+
+    /* Scroll indicator */
+    .hero__scroll {
+      position: absolute;
+      bottom: var(--sp-4);
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--sp-1);
+      font-family: var(--font-heading);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+    }
+
+    .hero__scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--color-accent), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; transform: scaleY(1); }
+      50%       { opacity: 1;   transform: scaleY(1.15); }
+    }
+
+    /* ============================================================
+       CONTENT SECTIONS
+    ============================================================ */
+    .section {
+      padding: var(--sp-16) var(--sp-3);
+    }
+
+    .section--alt {
+      background-color: var(--color-surface);
+    }
+
+    .section--base {
+      background-color: var(--color-bg);
+    }
+
+    .section__inner {
+      max-width: 760px;
+    }
+
+    .section__number {
+      display: block;
+      font-family: var(--font-heading);
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      margin-bottom: var(--sp-1);
+    }
+
+    .section__heading {
+      font-family: var(--font-heading);
+      font-size: clamp(2rem, 5vw, 3.25rem);
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--color-text);
+      margin-bottom: var(--sp-3);
+    }
+
+    .section__body {
+      font-size: 1.05rem;
+      color: var(--color-secondary);
+      max-width: 580px;
+      line-height: 1.75;
+    }
+
+    /* Divider rule */
+    .section__divider {
+      width: 48px;
+      height: 3px;
+      background: var(--color-accent);
+      border: none;
+      border-radius: 2px;
+      margin: var(--sp-3) 0;
+    }
+
+    /* Placeholder card grid — visual skeleton for future content */
+    .section__placeholder-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: var(--sp-2);
+      margin-top: var(--sp-6);
+    }
+
+    .placeholder-card {
+      height: 120px;
+      border-radius: 8px;
+      border: 1px dashed var(--color-border);
+      background: rgba(30, 58, 95, 0.12);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-muted);
+      font-family: var(--font-heading);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: border-color var(--ease), background var(--ease);
+    }
+
+    .placeholder-card:hover {
+      border-color: rgba(249, 115, 22, 0.4);
+      background: rgba(249, 115, 22, 0.04);
+    }
+
+    /* Section icon badge */
+    .section__icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      background: rgba(249, 115, 22, 0.12);
+      border: 1px solid rgba(249, 115, 22, 0.25);
+      color: var(--color-accent);
+      font-size: 1.25rem;
+      margin-bottom: var(--sp-3);
+    }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    .footer {
+      background-color: var(--color-footer);
+      border-top: 1px solid var(--color-border);
+      padding: var(--sp-8) var(--sp-3) 0;
+    }
+
+    .footer__grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: var(--sp-8);
+      max-width: 1160px;
+      margin-inline: auto;
+      padding-bottom: var(--sp-8);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .footer__logo {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-1);
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--color-text);
+      margin-bottom: var(--sp-2);
+    }
+
+    .footer__logo i {
+      color: var(--color-accent);
+      font-size: 1.2rem;
+    }
+
+    .footer__tagline {
+      font-size: 0.9rem;
+      color: var(--color-muted);
+      line-height: 1.6;
+      max-width: 260px;
+    }
+
+    .footer__heading {
+      font-family: var(--font-heading);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-secondary);
+      margin-bottom: var(--sp-3);
+    }
+
+    .footer__nav {
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-1);
+    }
+
+    .footer__nav a {
+      font-size: 0.9rem;
+      color: var(--color-muted);
+      transition: color var(--ease), padding-left var(--ease);
+    }
+
+    .footer__nav a:hover {
+      color: var(--color-accent);
+      padding-left: 6px;
+    }
+
+    .footer__contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--sp-1);
+      font-size: 0.9rem;
+      color: var(--color-muted);
+      margin-bottom: var(--sp-2);
+    }
+
+    .footer__contact-item i {
+      color: var(--color-accent);
+      margin-top: 3px;
+      flex-shrink: 0;
+    }
+
+    .footer__bottom {
+      max-width: 1160px;
+      margin-inline: auto;
+      padding: var(--sp-3) 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--sp-2);
+      flex-wrap: wrap;
+    }
+
+    .footer__copy {
+      font-size: 0.8rem;
+      color: var(--color-muted);
+    }
+
+    .footer__badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      color: var(--color-muted);
+    }
+
+    .footer__badge i {
+      color: var(--color-accent);
+    }
+
+    /* ============================================================
+       RESPONSIVE — TABLET
+    ============================================================ */
+    @media (max-width: 900px) {
+      .footer__grid {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--sp-6);
+      }
+
+      .footer__col--brand {
+        grid-column: 1 / -1;
+      }
+    }
+
+    /* ============================================================
+       RESPONSIVE — MOBILE
+    ============================================================ */
+    @media (max-width: 640px) {
+      .nav__links {
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+        position: absolute;
+        top: var(--nav-height);
+        left: 0;
+        right: 0;
+        background: rgba(6, 14, 26, 0.97);
+        border-bottom: 2px solid var(--color-accent);
+        padding: var(--sp-2) 0;
+      }
+
+      .nav__links.is-open {
+        display: flex;
+      }
+
+      .nav__links a {
+        width: 100%;
+        padding: 12px var(--sp-3);
+        border-radius: 0;
+        font-size: 1rem;
+        border-bottom: 1px solid var(--color-border);
+      }
+
+      .nav__links a::after {
+        display: none;
+      }
+
+      .nav__links a.active,
+      .nav__links a:hover {
+        background: rgba(249, 115, 22, 0.08);
+        color: var(--color-accent);
+      }
+
+      .nav__hamburger {
+        display: flex;
+      }
+
+      .section {
+        padding: var(--sp-12) var(--sp-3);
+      }
+
+      .section__placeholder-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer__grid {
+        grid-template-columns: 1fr;
+        gap: var(--sp-6);
+      }
+
+      .footer__col--brand {
+        grid-column: auto;
+      }
+
+      .footer__bottom {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================================
+       NAVIGATION
+  ============================================================ -->
+  <nav class="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav__inner">
+
+      <a href="#home" class="nav__logo" aria-label="EMS SafeGuard home">
+        <i class="fa-solid fa-truck-medical" aria-hidden="true"></i>
+        EMS SafeGuard
+      </a>
+
+      <ul class="nav__links" id="navLinks" role="list">
+        <li><a href="#home"       class="active">Home</a></li>
+        <li><a href="#injuries"  >Injuries</a></li>
+        <li><a href="#body-guide">Body Guide</a></li>
+        <li><a href="#prevention">Prevention</a></li>
+        <li><a href="#stretching">Stretching</a></li>
+        <li><a href="#resources" >Resources</a></li>
+      </ul>
+
+      <button
+        class="nav__hamburger"
+        id="hamburger"
+        aria-label="Toggle mobile menu"
+        aria-expanded="false"
+        aria-controls="navLinks"
+      >
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+    </div>
+  </nav>
+
+
+  <!-- ============================================================
+       HERO
+  ============================================================ -->
+  <section class="hero" id="home" aria-label="Hero">
+
+    <div class="hero__content">
+
+      <div class="hero__tag">
+        <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+        EMS Injury Education
+      </div>
+
+      <h1 class="hero__headline">
+        Protect the<br /><span>Protectors</span>
+      </h1>
+
+      <p class="hero__subtitle">
+        Evidence-based injury prevention resources built specifically for EMS
+        professionals — because the people saving lives deserve to stay healthy
+        doing it.
+      </p>
+
+      <a href="#injuries" class="btn btn--primary">
+        Start Learning
+        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+      </a>
+
+    </div>
+
+    <div class="hero__scroll" aria-hidden="true">
+      <div class="hero__scroll-line"></div>
+      Scroll
+    </div>
+
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 01 — INJURIES
+  ============================================================ -->
+  <section class="section section--alt" id="injuries">
+    <div class="container">
+      <div class="section__inner">
+
+        <div class="section__icon" aria-hidden="true">
+          <i class="fa-solid fa-chart-line"></i>
+        </div>
+
+        <span class="eyebrow">Section 01</span>
+        <span class="section__number">The Numbers Behind the Risk</span>
+
+        <h2 class="section__heading">The EMS Injury Landscape</h2>
+        <hr class="section__divider" />
+        <p class="section__body">
+          EMS workers face some of the highest occupational injury rates of any
+          profession. This section will map the scope of the problem — the most
+          common injury types, how they happen, and why they're largely
+          preventable.
+        </p>
+
+        <div class="section__placeholder-grid" aria-hidden="true">
+          <div class="placeholder-card">Stat Card</div>
+          <div class="placeholder-card">Stat Card</div>
+          <div class="placeholder-card">Stat Card</div>
+          <div class="placeholder-card">Stat Card</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 02 — BODY GUIDE
+  ============================================================ -->
+  <section class="section section--base" id="body-guide">
+    <div class="container">
+      <div class="section__inner">
+
+        <div class="section__icon" aria-hidden="true">
+          <i class="fa-solid fa-person"></i>
+        </div>
+
+        <span class="eyebrow">Section 02</span>
+        <span class="section__number">Interactive Anatomy Reference</span>
+
+        <h2 class="section__heading">Orthopedic Body Guide</h2>
+        <hr class="section__divider" />
+        <p class="section__body">
+          An interactive, region-by-region breakdown of the musculoskeletal
+          injuries most common in EMS work — from lumbar sprains to rotator
+          cuff tears — with anatomy context and field relevance.
+        </p>
+
+        <div class="section__placeholder-grid" aria-hidden="true">
+          <div class="placeholder-card">Body Region</div>
+          <div class="placeholder-card">Body Region</div>
+          <div class="placeholder-card">Body Region</div>
+          <div class="placeholder-card">Body Region</div>
+          <div class="placeholder-card">Body Region</div>
+          <div class="placeholder-card">Body Region</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 03 — LIFTING & HANDLING
+  ============================================================ -->
+  <section class="section section--alt" id="handling">
+    <div class="container">
+      <div class="section__inner">
+
+        <div class="section__icon" aria-hidden="true">
+          <i class="fa-solid fa-hands-holding"></i>
+        </div>
+
+        <span class="eyebrow">Section 03</span>
+        <span class="section__number">Technique & Ergonomics</span>
+
+        <h2 class="section__heading">Lifting &amp; Patient Handling</h2>
+        <hr class="section__divider" />
+        <p class="section__body">
+          Proper body mechanics save careers. This section covers evidence-based
+          lifting protocols, team lift coordination, stair chair and cot
+          operation, and ergonomic positioning in confined spaces.
+        </p>
+
+        <div class="section__placeholder-grid" aria-hidden="true">
+          <div class="placeholder-card">Technique Card</div>
+          <div class="placeholder-card">Technique Card</div>
+          <div class="placeholder-card">Technique Card</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 04 — PREVENTION
+  ============================================================ -->
+  <section class="section section--base" id="prevention">
+    <div class="container">
+      <div class="section__inner">
+
+        <div class="section__icon" aria-hidden="true">
+          <i class="fa-solid fa-shield-heart"></i>
+        </div>
+
+        <span class="eyebrow">Section 04</span>
+        <span class="section__number">Staying Ahead of Injury</span>
+
+        <h2 class="section__heading">Injury Prevention Protocols</h2>
+        <hr class="section__divider" />
+        <p class="section__body">
+          Prevention is more than warm-ups. This section outlines shift-start
+          routines, fatigue management, PPE fit, and the behavioral and
+          systemic factors that determine whether injuries happen.
+        </p>
+
+        <div class="section__placeholder-grid" aria-hidden="true">
+          <div class="placeholder-card">Protocol Card</div>
+          <div class="placeholder-card">Protocol Card</div>
+          <div class="placeholder-card">Protocol Card</div>
+          <div class="placeholder-card">Protocol Card</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 05 — STRETCHING
+  ============================================================ -->
+  <section class="section section--alt" id="stretching">
+    <div class="container">
+      <div class="section__inner">
+
+        <div class="section__icon" aria-hidden="true">
+          <i class="fa-solid fa-dumbbell"></i>
+        </div>
+
+        <span class="eyebrow">Section 05</span>
+        <span class="section__number">Mobility & Recovery</span>
+
+        <h2 class="section__heading">Stretching &amp; Recovery</h2>
+        <hr class="section__divider" />
+        <p class="section__body">
+          Targeted stretching routines designed around the demands of EMS work —
+          pre-shift activation, post-shift recovery, and on-station mobility
+          exercises that take 10 minutes or less.
+        </p>
+
+        <div class="section__placeholder-grid" aria-hidden="true">
+          <div class="placeholder-card">Routine Card</div>
+          <div class="placeholder-card">Routine Card</div>
+          <div class="placeholder-card">Routine Card</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       SECTION 06 — RESOURCES
+  ============================================================ -->
+  <section class="section section--base" id="resources">
+    <div class="container">
+      <div class="section__inner">
+
+        <div class="section__icon" aria-hidden="true">
+          <i class="fa-solid fa-folder-open"></i>
+        </div>
+
+        <span class="eyebrow">Section 06</span>
+        <span class="section__number">Tools, Forms & References</span>
+
+        <h2 class="section__heading">Resources &amp; Reporting</h2>
+        <hr class="section__divider" />
+        <p class="section__body">
+          Everything in one place — injury reporting forms, OSHA guidelines,
+          corps safety contacts, external research links, and downloadable
+          reference cards for the field.
+        </p>
+
+        <div class="section__placeholder-grid" aria-hidden="true">
+          <div class="placeholder-card">Resource Link</div>
+          <div class="placeholder-card">Resource Link</div>
+          <div class="placeholder-card">Resource Link</div>
+          <div class="placeholder-card">Resource Link</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ============================================================
+       FOOTER
+  ============================================================ -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer__grid">
+
+      <!-- Brand -->
+      <div class="footer__col--brand">
+        <div class="footer__logo">
+          <i class="fa-solid fa-truck-medical" aria-hidden="true"></i>
+          EMS SafeGuard
+        </div>
+        <p class="footer__tagline">
+          Evidence-based injury prevention and orthopedic education for EMS
+          professionals. Built by the corps, for the corps.
+        </p>
+      </div>
+
+      <!-- Quick Nav -->
+      <div>
+        <p class="footer__heading">Quick Links</p>
+        <nav class="footer__nav" aria-label="Footer navigation">
+          <a href="#home">Home</a>
+          <a href="#injuries">Injury Landscape</a>
+          <a href="#body-guide">Body Guide</a>
+          <a href="#handling">Lifting & Handling</a>
+          <a href="#prevention">Prevention</a>
+          <a href="#stretching">Stretching</a>
+          <a href="#resources">Resources</a>
+        </nav>
+      </div>
+
+      <!-- Contact -->
+      <div>
+        <p class="footer__heading">Safety Officer</p>
+        <div class="footer__contact-item">
+          <i class="fa-solid fa-user-shield" aria-hidden="true"></i>
+          <span>Corps Safety Officer<br /><em style="color: var(--color-muted); font-style: normal;">Name Placeholder</em></span>
+        </div>
+        <div class="footer__contact-item">
+          <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+          <span>safety@yourcorps.org</span>
+        </div>
+        <div class="footer__contact-item">
+          <i class="fa-solid fa-phone" aria-hidden="true"></i>
+          <span>(555) 000-0000</span>
+        </div>
+        <div class="footer__contact-item">
+          <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
+          <span>Report an injury: use the<br />form in Resources &rarr;</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footer__bottom">
+      <p class="footer__copy">
+        &copy; <span id="year"></span> EMS SafeGuard. All rights reserved.
+      </p>
+      <span class="footer__badge">
+        <i class="fa-solid fa-heart-pulse" aria-hidden="true"></i>
+        Built for those who run toward the call
+      </span>
+    </div>
+  </footer>
+
+
+  <!-- ============================================================
+       JAVASCRIPT
+  ============================================================ -->
+  <script>
+    (function () {
+      'use strict';
+
+      /* ── Copyright year ──────────────────────────────────────── */
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+
+      /* ── Hamburger menu ──────────────────────────────────────── */
+      const hamburger = document.getElementById('hamburger');
+      const navLinks  = document.getElementById('navLinks');
+
+      hamburger.addEventListener('click', () => {
+        const isOpen = hamburger.classList.toggle('is-open');
+        navLinks.classList.toggle('is-open', isOpen);
+        hamburger.setAttribute('aria-expanded', String(isOpen));
+      });
+
+      // Close mobile menu when a link is clicked
+      navLinks.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          hamburger.classList.remove('is-open');
+          navLinks.classList.remove('is-open');
+          hamburger.setAttribute('aria-expanded', 'false');
+        });
+      });
+
+
+      /* ── Active nav link via Intersection Observer ───────────── */
+      const sections  = document.querySelectorAll('section[id]');
+      const allLinks  = navLinks.querySelectorAll('a');
+
+      function setActiveLink(id) {
+        allLinks.forEach(link => {
+          const href = link.getAttribute('href').replace('#', '');
+          link.classList.toggle('active', href === id);
+        });
+      }
+
+      const observerOptions = {
+        root:       null,
+        rootMargin: `-${getComputedStyle(document.documentElement)
+                          .getPropertyValue('--nav-height').trim()} 0px -55% 0px`,
+        threshold:  0
+      };
+
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            setActiveLink(entry.target.id);
+          }
+        });
+      }, observerOptions);
+
+      sections.forEach(section => observer.observe(section));
+
+    })();
+  </script>
+
+</body>
+</html>
