@@ -670,6 +670,299 @@
     }
 
     /* ============================================================
+       INJURIES SECTION
+    ============================================================ */
+
+    .injuries-header {
+      text-align: center;
+      max-width: 700px;
+      margin-inline: auto;
+      margin-bottom: var(--sp-8);
+    }
+
+    .injuries-subhead {
+      font-size: 1.05rem;
+      color: var(--color-secondary);
+      line-height: 1.75;
+      margin-top: var(--sp-2);
+    }
+
+    /* — Horizontal bar chart — */
+    .injury-chart {
+      max-width: 860px;
+      margin-inline: auto;
+    }
+
+    .chart-row {
+      display: grid;
+      grid-template-columns: 210px 1fr 52px;
+      align-items: center;
+      gap: var(--sp-2);
+      padding: 11px var(--sp-2);
+      border-radius: 6px;
+      cursor: pointer;
+      border-left: 3px solid transparent;
+      transition: background 0.25s ease, border-color 0.25s ease;
+      margin-bottom: 3px;
+      user-select: none;
+    }
+
+    .chart-row:hover {
+      background: rgba(249, 115, 22, 0.06);
+    }
+
+    .chart-row.is-active {
+      background: rgba(249, 115, 22, 0.09);
+      border-left-color: var(--color-accent);
+    }
+
+    .chart-row:focus-visible {
+      outline: 2px solid var(--color-accent);
+      outline-offset: 2px;
+    }
+
+    .chart-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--color-text);
+      white-space: nowrap;
+    }
+
+    .chart-label i {
+      color: var(--color-accent);
+      font-size: 0.9rem;
+      width: 16px;
+      flex-shrink: 0;
+    }
+
+    .chart-track {
+      height: 13px;
+      background: var(--color-border);
+      border-radius: 0 100px 100px 0;
+      overflow: hidden;
+    }
+
+    .chart-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--color-accent) 0%, #c2500a 100%);
+      border-radius: 0 100px 100px 0;
+      transition: width 1s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .chart-pct {
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--color-accent);
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    /* — Detail panel — */
+    .detail-panel {
+      max-width: 860px;
+      margin-inline: auto;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+
+    .detail-panel.is-open {
+      max-height: 600px;
+    }
+
+    .detail-panel__inner {
+      background: rgba(15, 32, 64, 0.6);
+      border: 1px solid var(--color-border);
+      border-left: 3px solid var(--color-accent);
+      border-radius: 0 8px 8px 8px;
+      padding: var(--sp-4) var(--sp-6);
+      margin-top: var(--sp-1);
+      margin-bottom: var(--sp-4);
+    }
+
+    .detail-content {
+      display: block;
+    }
+
+    .detail-panel__title {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--color-text);
+      margin-bottom: var(--sp-3);
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-2) var(--sp-6);
+      margin-bottom: var(--sp-3);
+    }
+
+    .detail-item__label {
+      font-family: var(--font-heading);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 4px;
+    }
+
+    .detail-item__body {
+      font-size: 0.88rem;
+      color: var(--color-secondary);
+      line-height: 1.65;
+    }
+
+    .detail-stat {
+      background: rgba(249, 115, 22, 0.07);
+      border: 1px solid rgba(249, 115, 22, 0.18);
+      border-radius: 6px;
+      padding: 10px var(--sp-3);
+      margin-bottom: var(--sp-2);
+      font-size: 0.88rem;
+      color: var(--color-secondary);
+      line-height: 1.6;
+    }
+
+    .detail-stat strong {
+      color: var(--color-accent);
+    }
+
+    .detail-tip {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.88rem;
+      color: var(--color-secondary);
+      line-height: 1.65;
+    }
+
+    .detail-tip i {
+      color: var(--color-accent);
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    /* — Risk factor cards — */
+    .risk-cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--sp-3);
+      max-width: 1160px;
+      margin-inline: auto;
+      margin-top: var(--sp-8);
+    }
+
+    .risk-card {
+      background: var(--color-surface);
+      border-top: 3px solid var(--color-accent);
+      border-radius: 0 0 8px 8px;
+      padding: var(--sp-4);
+      text-align: center;
+      opacity: 0;
+      transform: translateY(16px);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+      transition: box-shadow 0.25s ease, transform 0.25s ease;
+    }
+
+    .risk-card.is-visible {
+      animation: riskFadeUp 0.5s ease forwards;
+    }
+
+    .risk-card.is-visible:nth-child(1) { animation-delay: 0s; }
+    .risk-card.is-visible:nth-child(2) { animation-delay: 0.1s; }
+    .risk-card.is-visible:nth-child(3) { animation-delay: 0.2s; }
+    .risk-card.is-visible:nth-child(4) { animation-delay: 0.3s; }
+
+    .risk-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+    }
+
+    .risk-card__icon {
+      font-size: 2rem;
+      color: var(--color-accent);
+      margin-bottom: var(--sp-2);
+    }
+
+    .risk-card__title {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--color-text);
+      margin-bottom: var(--sp-1);
+    }
+
+    .risk-card__body {
+      font-size: 0.875rem;
+      color: var(--color-muted);
+      line-height: 1.7;
+    }
+
+    @keyframes riskFadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Injuries responsive */
+    @media (max-width: 900px) {
+      .chart-row {
+        grid-template-columns: 160px 1fr 44px;
+        gap: var(--sp-1);
+      }
+
+      .detail-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .risk-cards {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .chart-row {
+        grid-template-columns: 1fr auto;
+        grid-template-rows: auto auto;
+      }
+
+      .chart-label {
+        grid-column: 1;
+        white-space: normal;
+        font-size: 0.82rem;
+      }
+
+      .chart-pct {
+        grid-column: 2;
+        grid-row: 1;
+        font-size: 0.95rem;
+      }
+
+      .chart-track {
+        grid-column: 1 / -1;
+        grid-row: 2;
+      }
+
+      .detail-panel__inner {
+        padding: var(--sp-3);
+      }
+
+      .risk-cards {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ============================================================
        FOOTER
     ============================================================ */
     .footer {
@@ -981,32 +1274,239 @@
   ============================================================ -->
   <section class="section section--alt" id="injuries">
     <div class="container">
-      <div class="section__inner">
 
-        <div class="section__icon" aria-hidden="true">
-          <i class="fa-solid fa-chart-line"></i>
-        </div>
-
+      <!-- Section header -->
+      <div class="injuries-header">
         <span class="eyebrow">Section 01</span>
-        <span class="section__number">The Numbers Behind the Risk</span>
-
         <h2 class="section__heading">The EMS Injury Landscape</h2>
-        <hr class="section__divider" />
-        <p class="section__body">
-          EMS workers face some of the highest occupational injury rates of any
-          profession. This section will map the scope of the problem — the most
-          common injury types, how they happen, and why they're largely
-          preventable.
+        <p class="injuries-subhead">
+          Understanding where and how injuries happen is the first step to
+          preventing them. Explore the data below — then click any category
+          to learn more.
         </p>
+      </div>
 
-        <div class="section__placeholder-grid" aria-hidden="true">
-          <div class="placeholder-card">Stat Card</div>
-          <div class="placeholder-card">Stat Card</div>
-          <div class="placeholder-card">Stat Card</div>
-          <div class="placeholder-card">Stat Card</div>
+      <!-- Part 1: Horizontal bar chart -->
+      <div class="injury-chart" role="list" aria-label="EMS injury categories by frequency">
+
+        <div class="chart-row" role="listitem button" tabindex="0" data-category="overexertion" aria-expanded="false">
+          <div class="chart-label">
+            <i class="fa-solid fa-weight-hanging" aria-hidden="true"></i>
+            Overexertion &amp; Lifting
+          </div>
+          <div class="chart-track">
+            <div class="chart-bar" data-width="35"></div>
+          </div>
+          <div class="chart-pct" data-value="35">0%</div>
         </div>
 
-      </div>
+        <div class="chart-row" role="listitem button" tabindex="0" data-category="falls" aria-expanded="false">
+          <div class="chart-label">
+            <i class="fa-solid fa-person-falling" aria-hidden="true"></i>
+            Slips, Trips &amp; Falls
+          </div>
+          <div class="chart-track">
+            <div class="chart-bar" data-width="22"></div>
+          </div>
+          <div class="chart-pct" data-value="22">0%</div>
+        </div>
+
+        <div class="chart-row" role="listitem button" tabindex="0" data-category="vehicle" aria-expanded="false">
+          <div class="chart-label">
+            <i class="fa-solid fa-truck-medical" aria-hidden="true"></i>
+            Vehicle Incidents
+          </div>
+          <div class="chart-track">
+            <div class="chart-bar" data-width="18"></div>
+          </div>
+          <div class="chart-pct" data-value="18">0%</div>
+        </div>
+
+        <div class="chart-row" role="listitem button" tabindex="0" data-category="struck" aria-expanded="false">
+          <div class="chart-label">
+            <i class="fa-solid fa-hand-fist" aria-hidden="true"></i>
+            Struck by Object
+          </div>
+          <div class="chart-track">
+            <div class="chart-bar" data-width="12"></div>
+          </div>
+          <div class="chart-pct" data-value="12">0%</div>
+        </div>
+
+        <div class="chart-row" role="listitem button" tabindex="0" data-category="assault" aria-expanded="false">
+          <div class="chart-label">
+            <i class="fa-solid fa-shield-virus" aria-hidden="true"></i>
+            Assault &amp; Violence
+          </div>
+          <div class="chart-track">
+            <div class="chart-bar" data-width="8"></div>
+          </div>
+          <div class="chart-pct" data-value="8">0%</div>
+        </div>
+
+        <div class="chart-row" role="listitem button" tabindex="0" data-category="other" aria-expanded="false">
+          <div class="chart-label">
+            <i class="fa-solid fa-circle-question" aria-hidden="true"></i>
+            Other / Miscellaneous
+          </div>
+          <div class="chart-track">
+            <div class="chart-bar" data-width="5"></div>
+          </div>
+          <div class="chart-pct" data-value="5">0%</div>
+        </div>
+
+      </div><!-- /injury-chart -->
+
+      <!-- Shared detail panel (one at a time) -->
+      <div class="detail-panel" id="injuryDetail" aria-live="polite">
+        <div class="detail-panel__inner">
+
+          <!-- Overexertion -->
+          <div class="detail-content" data-panel="overexertion" hidden>
+            <p class="detail-panel__title">Overexertion &amp; Lifting</p>
+            <div class="detail-grid">
+              <div>
+                <p class="detail-item__label">Overview</p>
+                <p class="detail-item__body">The leading cause of EMS injury. Repeated heavy lifts in awkward positions — stairwells, tight hallways, unstable surfaces — place extreme load on the spine and shoulders.</p>
+              </div>
+              <div>
+                <p class="detail-item__label">Who's at Risk</p>
+                <p class="detail-item__body">All providers, but especially those with 5+ years on the job due to cumulative wear.</p>
+                <p class="detail-item__label" style="margin-top:var(--sp-2)">Common Injuries</p>
+                <p class="detail-item__body">Lumbar disc herniation, muscle strains, rotator cuff tears.</p>
+              </div>
+            </div>
+            <div class="detail-stat"><strong>Key Stat:</strong> A loaded stretcher can weigh 300–700+ lbs. EMS workers may perform 5–10 significant lifts per shift.</div>
+            <div class="detail-tip"><i class="fa-solid fa-lightbulb"></i><span><strong style="color:var(--color-text)">Prevention:</strong> Always adjust stretcher height before loading. Request lift assist when needed. Never rush a lift.</span></div>
+          </div>
+
+          <!-- Falls -->
+          <div class="detail-content" data-panel="falls" hidden>
+            <p class="detail-panel__title">Slips, Trips &amp; Falls</p>
+            <div class="detail-grid">
+              <div>
+                <p class="detail-item__label">Overview</p>
+                <p class="detail-item__body">Scene environments are unpredictable — wet floors, uneven terrain, dark stairwells, ice, and debris all create fall hazards.</p>
+              </div>
+              <div>
+                <p class="detail-item__label">Who's at Risk</p>
+                <p class="detail-item__body">Providers responding at night or in adverse weather.</p>
+                <p class="detail-item__label" style="margin-top:var(--sp-2)">Common Injuries</p>
+                <p class="detail-item__body">Ankle sprains, knee ligament tears, wrist fractures, head injuries.</p>
+              </div>
+            </div>
+            <div class="detail-stat"><strong>Key Stat:</strong> Falls account for a disproportionate share of lost work days compared to their overall frequency.</div>
+            <div class="detail-tip"><i class="fa-solid fa-lightbulb"></i><span><strong style="color:var(--color-text)">Prevention:</strong> Slow down on approach. Use a flashlight. Plant your feet before lifting. Wear slip-resistant footwear.</span></div>
+          </div>
+
+          <!-- Vehicle -->
+          <div class="detail-content" data-panel="vehicle" hidden>
+            <p class="detail-panel__title">Vehicle Incidents</p>
+            <div class="detail-grid">
+              <div>
+                <p class="detail-item__label">Overview</p>
+                <p class="detail-item__body">Both ambulance crashes and being struck while working near roadways. Intersection collisions are the #1 cause of EMS fatalities.</p>
+              </div>
+              <div>
+                <p class="detail-item__label">Who's at Risk</p>
+                <p class="detail-item__body">Drivers and providers working highway or MVC scenes.</p>
+                <p class="detail-item__label" style="margin-top:var(--sp-2)">Common Injuries</p>
+                <p class="detail-item__body">Whiplash, traumatic brain injury, fractures, fatalities.</p>
+              </div>
+            </div>
+            <div class="detail-stat"><strong>Key Stat:</strong> EMS workers are 2.5× more likely to die in a vehicle incident than the average worker.</div>
+            <div class="detail-tip"><i class="fa-solid fa-lightbulb"></i><span><strong style="color:var(--color-text)">Prevention:</strong> Always wear your seatbelt in the ambulance — even in the back. At roadway scenes, position the unit as a barrier and wear high-visibility gear.</span></div>
+          </div>
+
+          <!-- Struck -->
+          <div class="detail-content" data-panel="struck" hidden>
+            <p class="detail-panel__title">Struck by Object</p>
+            <div class="detail-grid">
+              <div>
+                <p class="detail-item__label">Overview</p>
+                <p class="detail-item__body">Equipment falling from overhead storage, stretcher components releasing unexpectedly, or objects at chaotic scenes.</p>
+              </div>
+              <div>
+                <p class="detail-item__label">Who's at Risk</p>
+                <p class="detail-item__body">Providers working in tight quarters or with aging equipment.</p>
+                <p class="detail-item__label" style="margin-top:var(--sp-2)">Common Injuries</p>
+                <p class="detail-item__body">Hand and wrist fractures, eye injuries, lacerations, head trauma.</p>
+              </div>
+            </div>
+            <div class="detail-stat"><strong>Key Stat:</strong> Ambulance interior equipment is responsible for a significant portion of struck-by incidents.</div>
+            <div class="detail-tip"><i class="fa-solid fa-lightbulb"></i><span><strong style="color:var(--color-text)">Prevention:</strong> Inspect all latches and locks at the start of every shift. Keep cabinets closed when the unit is in motion.</span></div>
+          </div>
+
+          <!-- Assault -->
+          <div class="detail-content" data-panel="assault" hidden>
+            <p class="detail-panel__title">Assault &amp; Violence</p>
+            <div class="detail-grid">
+              <div>
+                <p class="detail-item__label">Overview</p>
+                <p class="detail-item__body">EMS providers are frequently exposed to patients or bystanders who are combative due to psychiatric crisis, intoxication, or conditions like hypoglycemia or hypoxia.</p>
+              </div>
+              <div>
+                <p class="detail-item__label">Who's at Risk</p>
+                <p class="detail-item__body">All providers — violence is the #1 underreported EMS injury.</p>
+                <p class="detail-item__label" style="margin-top:var(--sp-2)">Common Injuries</p>
+                <p class="detail-item__body">Soft tissue injuries, bites, eye injuries, psychological trauma.</p>
+              </div>
+            </div>
+            <div class="detail-stat"><strong>Key Stat:</strong> Studies suggest up to 90% of EMS violence incidents go unreported.</div>
+            <div class="detail-tip"><i class="fa-solid fa-lightbulb"></i><span><strong style="color:var(--color-text)">Prevention:</strong> Position yourself near exits. Trust your instincts. Report every incident — data drives policy change.</span></div>
+          </div>
+
+          <!-- Other -->
+          <div class="detail-content" data-panel="other" hidden>
+            <p class="detail-panel__title">Other / Miscellaneous</p>
+            <div class="detail-grid">
+              <div>
+                <p class="detail-item__label">Overview</p>
+                <p class="detail-item__body">Includes needle sticks, chemical exposures, repetitive strain from documentation and driving posture, and hearing loss from siren exposure.</p>
+              </div>
+              <div>
+                <p class="detail-item__label">Who's at Risk</p>
+                <p class="detail-item__body">Providers across all roles and experience levels.</p>
+                <p class="detail-item__label" style="margin-top:var(--sp-2)">Common Injuries</p>
+                <p class="detail-item__body">Bloodborne pathogen exposure, carpal tunnel, chronic hearing loss, skin conditions.</p>
+              </div>
+            </div>
+            <div class="detail-stat"><strong>Key Stat:</strong> Hearing loss is one of the most overlooked long-term occupational hazards in EMS.</div>
+            <div class="detail-tip"><i class="fa-solid fa-lightbulb"></i><span><strong style="color:var(--color-text)">Prevention:</strong> Wear PPE consistently. Use ergonomic positioning while driving. Get regular hearing checks.</span></div>
+          </div>
+
+        </div>
+      </div><!-- /detail-panel -->
+
+      <!-- Part 2: Risk factor cards -->
+      <div class="risk-cards" aria-label="Why EMS workers are at high risk">
+
+        <div class="risk-card">
+          <div class="risk-card__icon" aria-hidden="true"><i class="fa-solid fa-clock"></i></div>
+          <h3 class="risk-card__title">Shift Fatigue</h3>
+          <p class="risk-card__body">12–24 hour shifts impair reaction time, judgment, and physical coordination — dramatically increasing injury risk toward the end of shift.</p>
+        </div>
+
+        <div class="risk-card">
+          <div class="risk-card__icon" aria-hidden="true"><i class="fa-solid fa-dumbbell"></i></div>
+          <h3 class="risk-card__title">Unpredictable Lifts</h3>
+          <p class="risk-card__body">Unlike warehouse workers, EMS providers can't control lift conditions. Every scene is different — floors, angles, patient size, and bystander help all vary.</p>
+        </div>
+
+        <div class="risk-card">
+          <div class="risk-card__icon" aria-hidden="true"><i class="fa-solid fa-triangle-exclamation"></i></div>
+          <h3 class="risk-card__title">Scene Hazards</h3>
+          <p class="risk-card__body">Homes, roadsides, and public spaces present hazards that can't be engineered away. Awareness and preparation are the only defenses.</p>
+        </div>
+
+        <div class="risk-card">
+          <div class="risk-card__icon" aria-hidden="true"><i class="fa-solid fa-brain"></i></div>
+          <h3 class="risk-card__title">Chronic Stress Load</h3>
+          <p class="risk-card__body">Psychological stress tightens muscles, impairs posture, and reduces body awareness — all of which contribute to physical injury over time.</p>
+        </div>
+
+      </div><!-- /risk-cards -->
+
     </div>
   </section>
 
@@ -1339,6 +1839,89 @@
         window.addEventListener('scroll', () => {
           heroScroll.classList.toggle('is-hidden', window.scrollY > window.innerHeight * 0.45);
         }, { passive: true });
+      }
+
+
+      /* ── Injuries: bar chart animation on scroll ─────────────── */
+      const injuriesSection = document.getElementById('injuries');
+      let chartFired = false;
+
+      function animateBars() {
+        if (chartFired) return;
+        chartFired = true;
+
+        document.querySelectorAll('.chart-bar').forEach(bar => {
+          bar.style.width = bar.dataset.width + '%';
+        });
+
+        document.querySelectorAll('.chart-pct').forEach(el => {
+          const target   = parseInt(el.dataset.value, 10);
+          const duration = 1000;
+          const start    = performance.now();
+          function tick(now) {
+            const progress = Math.min((now - start) / duration, 1);
+            const eased    = 1 - Math.pow(1 - progress, 3);
+            el.textContent = Math.round(eased * target) + '%';
+            if (progress < 1) requestAnimationFrame(tick);
+          }
+          requestAnimationFrame(tick);
+        });
+      }
+
+      if (injuriesSection) {
+        new IntersectionObserver(([e]) => {
+          if (e.isIntersecting) animateBars();
+        }, { threshold: 0.15 }).observe(injuriesSection);
+      }
+
+
+      /* ── Injuries: clickable row → detail panel ──────────────── */
+      const detailPanel  = document.getElementById('injuryDetail');
+      const chartRows    = document.querySelectorAll('.chart-row');
+      let   activeRow    = null;
+
+      chartRows.forEach(row => {
+        // keyboard support
+        row.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); row.click(); }
+        });
+
+        row.addEventListener('click', () => {
+          const key = row.dataset.category;
+
+          if (activeRow === row) {
+            row.classList.remove('is-active');
+            row.setAttribute('aria-expanded', 'false');
+            detailPanel.classList.remove('is-open');
+            activeRow = null;
+            return;
+          }
+
+          if (activeRow) {
+            activeRow.classList.remove('is-active');
+            activeRow.setAttribute('aria-expanded', 'false');
+          }
+
+          row.classList.add('is-active');
+          row.setAttribute('aria-expanded', 'true');
+          activeRow = row;
+
+          detailPanel.querySelectorAll('.detail-content').forEach(p => {
+            p.hidden = (p.dataset.panel !== key);
+          });
+          detailPanel.classList.add('is-open');
+        });
+      });
+
+
+      /* ── Injuries: risk cards scroll reveal ──────────────────── */
+      const riskContainer = document.querySelector('.risk-cards');
+      if (riskContainer) {
+        new IntersectionObserver(([e]) => {
+          if (e.isIntersecting) {
+            riskContainer.querySelectorAll('.risk-card').forEach(c => c.classList.add('is-visible'));
+          }
+        }, { threshold: 0.1 }).observe(riskContainer);
       }
 
     })();
