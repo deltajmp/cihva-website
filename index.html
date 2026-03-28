@@ -963,6 +963,343 @@
     }
 
     /* ============================================================
+       BODY GUIDE SECTION
+    ============================================================ */
+
+    .bodyguide-header {
+      text-align: center;
+      max-width: 700px;
+      margin-inline: auto;
+      margin-bottom: var(--sp-8);
+    }
+
+    .bodyguide-subhead {
+      font-size: 1.05rem;
+      color: var(--color-secondary);
+      line-height: 1.75;
+      margin-top: var(--sp-2);
+    }
+
+    .bodyguide-layout {
+      display: grid;
+      grid-template-columns: 40fr 60fr;
+      gap: var(--sp-8);
+      align-items: start;
+      max-width: 1160px;
+      margin-inline: auto;
+    }
+
+    /* — Figure column — */
+    .bodyguide-figure-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .bodyguide-svg-wrap {
+      width: 100%;
+      max-width: 340px;
+    }
+
+    .bodyguide-svg-wrap svg {
+      width: 100%;
+      height: auto;
+      overflow: visible;
+    }
+
+    .bodyguide-legend {
+      margin-top: var(--sp-2);
+      font-size: 0.78rem;
+      color: var(--color-muted);
+      text-align: center;
+    }
+
+    .bodyguide-legend i { color: var(--color-accent); }
+
+    /* SVG hotspots */
+    .bg-body-part {
+      fill: #1a2f4e;
+      stroke: #2d5a8e;
+      stroke-width: 2;
+    }
+
+    .bg-hotspot {
+      fill: rgba(249, 115, 22, 0.22);
+      stroke: rgba(249, 115, 22, 0.55);
+      stroke-width: 1.5;
+      cursor: pointer;
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: bgPulse 2s ease-in-out 3;
+      transition: fill 0.2s ease, stroke 0.2s ease, stroke-width 0.2s ease;
+    }
+
+    .bg-hotspot:hover {
+      fill: rgba(249, 115, 22, 0.48);
+      stroke: rgba(249, 115, 22, 1);
+    }
+
+    .bg-hotspot.is-active {
+      fill: rgba(249, 115, 22, 0.68);
+      stroke: #ffffff;
+      stroke-width: 2;
+      animation: none;
+    }
+
+    @keyframes bgPulse {
+      0%, 100% { transform: scale(1); }
+      50%       { transform: scale(1.07); }
+    }
+
+    .bg-hotspot-group { cursor: pointer; }
+    .bg-hotspot-group .bg-hotspot { pointer-events: all; }
+
+    .bg-callout-line { stroke: #2d5a8e; stroke-width: 1; fill: none; }
+    .bg-callout-dot  { fill: var(--color-accent); }
+    .bg-callout-text {
+      fill: var(--color-secondary);
+      font-size: 11px;
+      font-weight: 600;
+      font-family: var(--font-body);
+    }
+
+    /* — Panel column — */
+    .bodyguide-panel-col {
+      position: sticky;
+      top: calc(var(--nav-height) + var(--sp-3));
+      max-height: calc(100vh - var(--nav-height) - var(--sp-6));
+      overflow-y: auto;
+      scrollbar-width: thin;
+      scrollbar-color: var(--color-border) transparent;
+    }
+
+    /* Pill tabs */
+    .bg-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: var(--sp-3);
+    }
+
+    .bg-pill {
+      font-family: var(--font-heading);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 6px 12px;
+      border-radius: 100px;
+      background: var(--color-border);
+      color: var(--color-muted);
+      cursor: pointer;
+      border: none;
+      white-space: nowrap;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .bg-pill:hover   { background: rgba(249,115,22,0.2); color: var(--color-secondary); }
+    .bg-pill.is-active { background: var(--color-accent); color: #0a1628; }
+
+    /* Detail container */
+    .bg-detail {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      overflow: hidden;
+      min-height: 280px;
+    }
+
+    /* Prompt (default state) */
+    .bg-prompt {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: var(--sp-8) var(--sp-6);
+      min-height: 280px;
+      border: 2px dashed var(--color-border);
+      border-radius: 8px;
+    }
+
+    .bg-prompt i {
+      font-size: 2.5rem;
+      color: var(--color-accent);
+      opacity: 0.65;
+      margin-bottom: var(--sp-3);
+    }
+
+    .bg-prompt p {
+      font-size: 0.95rem;
+      color: var(--color-muted);
+      max-width: 280px;
+      line-height: 1.7;
+    }
+
+    /* Region panels */
+    .bg-region-panel {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+      padding: var(--sp-4);
+    }
+
+    .bg-region-panel.is-visible  { display: block; }
+    .bg-region-panel.is-faded-in { opacity: 1; }
+
+    .bg-region-header {
+      margin-bottom: var(--sp-3);
+      padding-bottom: var(--sp-2);
+      border-bottom: 3px solid var(--color-accent);
+    }
+
+    .bg-region-name {
+      font-family: var(--font-heading);
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--color-text);
+      line-height: 1;
+    }
+
+    .bg-region-subtitle {
+      font-size: 0.82rem;
+      color: var(--color-muted);
+      margin-top: 4px;
+      letter-spacing: 0.02em;
+    }
+
+    /* Accordion */
+    .bg-accordion { display: flex; flex-direction: column; gap: 4px; }
+
+    .bg-acc-item { border-radius: 6px; overflow: hidden; }
+
+    .bg-acc-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px var(--sp-3);
+      background: var(--color-border);
+      border-left: 3px solid var(--color-accent);
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.2s ease;
+    }
+
+    .bg-acc-header:hover { background: rgba(30,58,95,0.85); }
+
+    .bg-acc-title {
+      font-family: var(--font-heading);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--color-text);
+    }
+
+    .bg-acc-icon {
+      color: var(--color-accent);
+      font-size: 0.75rem;
+      transition: transform 0.25s ease;
+      flex-shrink: 0;
+    }
+
+    .bg-acc-item.is-open .bg-acc-icon { transform: rotate(180deg); }
+
+    .bg-acc-body {
+      max-height: 0;
+      overflow: hidden;
+      background: rgba(10, 22, 40, 0.7);
+      transition: max-height 0.35s ease;
+    }
+
+    .bg-acc-item.is-open .bg-acc-body { max-height: 600px; }
+
+    .bg-acc-content {
+      padding: var(--sp-3);
+      font-size: 0.875rem;
+      color: var(--color-secondary);
+      line-height: 1.75;
+    }
+
+    .bg-acc-content ul { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+
+    .bg-acc-content ul li::before {
+      content: '—';
+      color: var(--color-accent);
+      margin-right: 8px;
+      font-weight: 700;
+    }
+
+    .bg-acc-content p + p { margin-top: var(--sp-1); }
+
+    .bg-warning {
+      margin-top: var(--sp-2);
+      padding: 10px var(--sp-2);
+      background: rgba(249, 115, 22, 0.07);
+      border-left: 2px solid var(--color-accent);
+      border-radius: 0 4px 4px 0;
+      font-size: 0.83rem;
+      color: var(--color-secondary);
+      font-style: italic;
+      line-height: 1.6;
+    }
+
+    /* Prev / Next */
+    .bg-nav-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: var(--sp-3);
+      gap: var(--sp-2);
+    }
+
+    .bg-nav-btn {
+      font-family: var(--font-heading);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 10px var(--sp-3);
+      background: transparent;
+      border: 1px solid var(--color-accent);
+      color: var(--color-accent);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .bg-nav-btn:hover     { background: var(--color-accent); color: #0a1628; }
+    .bg-nav-btn:disabled  { opacity: 0.25; cursor: not-allowed; }
+    .bg-nav-btn:disabled:hover { background: transparent; color: var(--color-accent); }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .bodyguide-layout {
+        grid-template-columns: 1fr;
+        gap: var(--sp-6);
+      }
+
+      .bodyguide-figure-col { order: 1; }
+
+      .bodyguide-panel-col {
+        order: 2;
+        position: static;
+        max-height: none;
+        overflow-y: visible;
+      }
+
+      .bodyguide-svg-wrap { max-width: 300px; }
+    }
+
+    @media (max-width: 540px) {
+      .bg-pills { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; }
+      .bg-callout-text,
+      .bg-callout-line,
+      .bg-callout-dot { display: none; }
+    }
+
+    /* ============================================================
        FOOTER
     ============================================================ */
     .footer {
@@ -1516,33 +1853,567 @@
   ============================================================ -->
   <section class="section section--base" id="body-guide">
     <div class="container">
-      <div class="section__inner">
 
-        <div class="section__icon" aria-hidden="true">
-          <i class="fa-solid fa-person"></i>
-        </div>
-
+      <!-- Header -->
+      <div class="bodyguide-header">
         <span class="eyebrow">Section 02</span>
-        <span class="section__number">Interactive Anatomy Reference</span>
-
         <h2 class="section__heading">Orthopedic Body Guide</h2>
-        <hr class="section__divider" />
-        <p class="section__body">
-          An interactive, region-by-region breakdown of the musculoskeletal
-          injuries most common in EMS work — from lumbar sprains to rotator
-          cuff tears — with anatomy context and field relevance.
+        <p class="bodyguide-subhead">
+          EMS work puts extraordinary stress on specific parts of your body.
+          Click any highlighted region on the figure below to learn about
+          common injuries, warning signs, and how to protect yourself.
         </p>
-
-        <div class="section__placeholder-grid" aria-hidden="true">
-          <div class="placeholder-card">Body Region</div>
-          <div class="placeholder-card">Body Region</div>
-          <div class="placeholder-card">Body Region</div>
-          <div class="placeholder-card">Body Region</div>
-          <div class="placeholder-card">Body Region</div>
-          <div class="placeholder-card">Body Region</div>
-        </div>
-
       </div>
+
+      <!-- Two-column layout -->
+      <div class="bodyguide-layout">
+
+        <!-- LEFT: SVG Figure -->
+        <div class="bodyguide-figure-col">
+          <div class="bodyguide-svg-wrap">
+            <svg viewBox="0 0 520 570" xmlns="http://www.w3.org/2000/svg"
+                 role="img" aria-label="Human body diagram — click a highlighted region to explore injuries">
+
+              <!-- ── Body silhouette ── -->
+              <ellipse class="bg-body-part" cx="260" cy="45" rx="32" ry="36"/>
+              <rect    class="bg-body-part" x="248" y="79" width="24" height="22" rx="5"/>
+              <polygon class="bg-body-part" points="180,98 340,98 328,138 320,278 308,320 212,320 200,278 192,138"/>
+              <polygon class="bg-body-part" points="180,98 155,98 136,254 162,254 192,138"/>
+              <polygon class="bg-body-part" points="340,98 365,98 384,254 358,254 328,138"/>
+              <polygon class="bg-body-part" points="200,320 320,320 328,362 192,362"/>
+              <rect    class="bg-body-part" x="194" y="362" width="52" height="100" rx="5"/>
+              <rect    class="bg-body-part" x="274" y="362" width="52" height="100" rx="5"/>
+              <rect    class="bg-body-part" x="197" y="460" width="46" height="82" rx="5"/>
+              <rect    class="bg-body-part" x="277" y="460" width="46" height="82" rx="5"/>
+              <ellipse class="bg-body-part" cx="220" cy="541" rx="28" ry="11"/>
+              <ellipse class="bg-body-part" cx="300" cy="541" rx="28" ry="11"/>
+
+              <!-- ── Hotspots ── -->
+
+              <!-- 1. Cervical spine -->
+              <ellipse class="bg-hotspot" data-region="cervical"
+                       cx="260" cy="89" rx="20" ry="16"
+                       role="button" tabindex="0" aria-label="Cervical Spine"/>
+
+              <!-- 2. Shoulders -->
+              <rect class="bg-hotspot" data-region="shoulders"
+                    x="168" y="93" width="184" height="48" rx="22"
+                    role="button" tabindex="0" aria-label="Shoulders"/>
+
+              <!-- 3. Lumbar spine -->
+              <ellipse class="bg-hotspot" data-region="lumbar"
+                       cx="260" cy="268" rx="42" ry="28"
+                       role="button" tabindex="0" aria-label="Lumbar Spine"/>
+
+              <!-- 4. Knees (paired) -->
+              <g class="bg-hotspot-group" data-region="knees"
+                 role="button" tabindex="0" aria-label="Knees">
+                <ellipse class="bg-hotspot" cx="220" cy="440" rx="26" ry="22"/>
+                <ellipse class="bg-hotspot" cx="300" cy="440" rx="26" ry="22"/>
+              </g>
+
+              <!-- 5. Wrists & Hands (paired) -->
+              <g class="bg-hotspot-group" data-region="wrists"
+                 role="button" tabindex="0" aria-label="Wrists and Hands">
+                <ellipse class="bg-hotspot" cx="144" cy="252" rx="22" ry="20"/>
+                <ellipse class="bg-hotspot" cx="376" cy="252" rx="22" ry="20"/>
+              </g>
+
+              <!-- 6. Ankles & Feet (paired) -->
+              <g class="bg-hotspot-group" data-region="ankles"
+                 role="button" tabindex="0" aria-label="Ankles and Feet">
+                <ellipse class="bg-hotspot" cx="220" cy="524" rx="28" ry="18"/>
+                <ellipse class="bg-hotspot" cx="300" cy="524" rx="28" ry="18"/>
+              </g>
+
+              <!-- ── Callout labels ── -->
+
+              <!-- Cervical → right -->
+              <line class="bg-callout-line" x1="279" y1="82" x2="400" y2="64"/>
+              <circle class="bg-callout-dot" cx="279" cy="82" r="3"/>
+              <text class="bg-callout-text" x="404" y="68" text-anchor="start">Cervical Spine</text>
+
+              <!-- Shoulders → left -->
+              <line class="bg-callout-line" x1="168" y1="113" x2="68" y2="113"/>
+              <circle class="bg-callout-dot" cx="168" cy="113" r="3"/>
+              <text class="bg-callout-text" x="64" y="117" text-anchor="end">Shoulders</text>
+
+              <!-- Lumbar → right -->
+              <line class="bg-callout-line" x1="302" y1="262" x2="400" y2="248"/>
+              <circle class="bg-callout-dot" cx="302" cy="262" r="3"/>
+              <text class="bg-callout-text" x="404" y="252" text-anchor="start">Lumbar Spine</text>
+
+              <!-- Knees → left -->
+              <line class="bg-callout-line" x1="195" y1="440" x2="68" y2="440"/>
+              <circle class="bg-callout-dot" cx="195" cy="440" r="3"/>
+              <text class="bg-callout-text" x="64" y="444" text-anchor="end">Knees</text>
+
+              <!-- Wrists → right (right wrist) -->
+              <line class="bg-callout-line" x1="397" y1="249" x2="430" y2="234"/>
+              <circle class="bg-callout-dot" cx="397" cy="249" r="3"/>
+              <text class="bg-callout-text" x="434" y="238" text-anchor="start">Wrists &amp; Hands</text>
+
+              <!-- Ankles → left -->
+              <line class="bg-callout-line" x1="193" y1="518" x2="68" y2="506"/>
+              <circle class="bg-callout-dot" cx="193" cy="518" r="3"/>
+              <text class="bg-callout-text" x="64" y="510" text-anchor="end">Ankles &amp; Feet</text>
+
+            </svg>
+          </div>
+          <p class="bodyguide-legend">
+            <i class="fa-solid fa-circle-dot"></i>
+            Tap a highlighted region to explore injuries
+          </p>
+        </div><!-- /figure col -->
+
+        <!-- RIGHT: Detail panel -->
+        <div class="bodyguide-panel-col">
+
+          <!-- Pill tabs -->
+          <div class="bg-pills" role="tablist" aria-label="Body regions">
+            <button class="bg-pill" data-region="cervical">Cervical</button>
+            <button class="bg-pill" data-region="shoulders">Shoulders</button>
+            <button class="bg-pill" data-region="lumbar">Lumbar</button>
+            <button class="bg-pill" data-region="knees">Knees</button>
+            <button class="bg-pill" data-region="wrists">Wrists</button>
+            <button class="bg-pill" data-region="ankles">Ankles</button>
+          </div>
+
+          <!-- Detail panel container -->
+          <div class="bg-detail" id="bgDetail">
+
+            <!-- Default prompt -->
+            <div class="bg-prompt" id="bgPrompt">
+              <i class="fa-regular fa-hand-pointer" aria-hidden="true"></i>
+              <p>Select a body region from the figure to view injury details, warning signs, and prevention strategies.</p>
+            </div>
+
+            <!-- ── CERVICAL SPINE ── -->
+            <div class="bg-region-panel" data-panel="cervical">
+              <div class="bg-region-header">
+                <div class="bg-region-name">Cervical Spine</div>
+                <div class="bg-region-subtitle">Common EMS Injuries &amp; Prevention</div>
+              </div>
+              <div class="bg-accordion">
+
+                <div class="bg-acc-item is-open">
+                  <div class="bg-acc-header">
+                    <span class="bg-acc-title">Common Injuries</span>
+                    <i class="fa-solid fa-chevron-down bg-acc-icon"></i>
+                  </div>
+                  <div class="bg-acc-body"><div class="bg-acc-content">
+                    <ul>
+                      <li>Cervical muscle strain from sudden patient movements</li>
+                      <li>Cervical disc herniation from repetitive awkward positioning</li>
+                      <li>Facet joint irritation</li>
+                      <li>Tension headaches from sustained neck flexion during patient care</li>
+                    </ul>
+                  </div></div>
+                </div>
+
+                <div class="bg-acc-item">
+                  <div class="bg-acc-header">
+                    <span class="bg-acc-title">Why EMS Workers Are Vulnerable</span>
+                    <i class="fa-solid fa-chevron-down bg-acc-icon"></i>
+                  </div>
+                  <div class="bg-acc-body"><div class="bg-acc-content">
+                    <p>EMS providers frequently work in cramped spaces — leaning over patients in back seats, kneeling in hallways, or looking down during prolonged airway management. Sustained neck flexion compresses cervical discs and strains posterior muscles. Heavy helmet and radio equipment add compressive load.</p>
+                  </div></div>
+                </div>
+
+                <div class="bg-acc-item">
+                  <div class="bg-acc-header">
+                    <span class="bg-acc-title">Warning Signs — When to Seek Care</span>
+                    <i class="fa-solid fa-chevron-down bg-acc-icon"></i>
+                  </div>
+                  <div class="bg-acc-body"><div class="bg-acc-content">
+                    <ul>
+                      <li>Pain or stiffness not resolving after 48–72 hours of rest</li>
+                      <li>Numbness, tingling, or weakness radiating into the arm or hand</li>
+                      <li>Headaches originating at the base of the skull</li>
+                      <li>Clicking or grinding with neck movement</li>
+                    </ul>
+                    <div class="bg-warning">These symptoms may indicate disc or nerve involvement. See a provider — do not push through.</div>
+                  </div></div>
+                </div>
+
+                <div class="bg-acc-item">
+                  <div class="bg-acc-header">
+                    <span class="bg-acc-title">Prevention Strategies</span>
+                    <i class="fa-solid fa-chevron-down bg-acc-icon"></i>
+                  </div>
+                  <div class="bg-acc-body"><div class="bg-acc-content">
+                    <ul>
+                      <li>Keep your chin tucked — not jutted forward — during patient care</li>
+                      <li>Reposition yourself rather than twisting your neck to see</li>
+                      <li>Strengthen deep cervical flexors: chin tucks, neck isometrics</li>
+                      <li>Take micro-breaks to roll and decompress the neck during long calls</li>
+                      <li>Adjust stretcher height so you're not constantly looking down</li>
+                    </ul>
+                  </div></div>
+                </div>
+
+              </div>
+            </div><!-- /cervical -->
+
+            <!-- ── SHOULDERS ── -->
+            <div class="bg-region-panel" data-panel="shoulders">
+              <div class="bg-region-header">
+                <div class="bg-region-name">Shoulders</div>
+                <div class="bg-region-subtitle">Common EMS Injuries &amp; Prevention</div>
+              </div>
+              <div class="bg-accordion">
+
+                <div class="bg-acc-item is-open">
+                  <div class="bg-acc-header">
+                    <span class="bg-acc-title">Common Injuries</span>
+                    <i class="fa-solid fa-chevron-down bg-acc-icon"></i>
+                  </div>
+                  <div class="bg-acc-body"><div class="bg-acc-content">
+                    <ul>
+                      <li>Rotator cuff strain or tear — supraspinatus most common</li>
+                      <li>Shoulder impingement syndrome</li>
+                      <li>AC joint sprain from falls or carrying heavy equipment</li>
+                      <li>Bicep tendinopathy</li>
+                      <li>SLAP tears from repetitive overhead or loading motions</li>
+                    </ul>
+                  </div></div>
+                </div>
+
+                <div class="bg-acc-item">
+                  <div class="bg-acc-header">
+                    <span class="bg-acc-title">Why EMS Workers Are Vulnerable</span>
+                    <i class="fa-solid fa-chevron-down bg-acc-icon"></i>
+                  </div>
+                  <div class="bg-acc-body"><div class="bg-acc-content">
+                    <p>Loading patients overhead into high ambulances, reaching across stretchers, carrying equipment bags, and CPR compressions all place repetitive high-load demand on the rotator cuff. The shoulder is the most mobile joint in the body — and mobility comes at the cost of stability.</p>
+                  </div></div>
+                </div>
+
+                <div class="bg-acc-item">
+                  <div class="bg-acc-header">
+                    <span class="bg-acc-title">Warning Signs — When to Seek Care</span>
+                    <i class="fa-solid fa-chevron-down bg-acc-icon"></i>
+                  </div>
+                  <div class="bg-acc-body"><div class="bg-acc-content">
+                    <ul>
+                      <li>Pain when reaching overhead or behind your back</li>
+                      <li>Weakness when lifting — unable to hold arm at shoulder height</li>
+                      <li>Painful arc between 60–120 degrees of arm raise</li>
+                      <li>Night pain that wakes you from sleep</li>
+                    </ul>
+                    <div class="bg-warning">Rotator cuff injuries worsen significantly if ignored. Early intervention prevents surgical outcomes.</div>
+                  </div></div>
+                </div>
+
+                <div class="bg-acc-item">
+                  <div class="bg-acc-header">
+                    <span class="bg-acc-title">Prevention Strategies</span>
+                    <i class="fa-solid fa-chevron-down bg-acc-icon"></i>
+                  </div>
+                  <div class="bg-acc-body"><div class="bg-acc-content">
+                    <ul>
+                      <li>Strengthen rotator cuff: external rotation exercises with resistance bands</li>
+                      <li>Never load a cot or equipment overhead solo — use proper technique or request help</li>
+                      <li>Keep elbows close to the body during lifts</li>
+                      <li>Stretch pecs and anterior shoulder to prevent forward shoulder posture</li>
+                      <li>Avoid reaching across your body with a loaded arm</li>
+                    </ul>
+                  </div></div>
+                </div>
+
+              </div>
+            </div><!-- /shoulders -->
+
+            <!-- ── LUMBAR SPINE ── -->
+            <div class="bg-region-panel" data-panel="lumbar">
+              <div class="bg-region-header">
+                <div class="bg-region-name">Lumbar Spine</div>
+                <div class="bg-region-subtitle">Common EMS Injuries &amp; Prevention</div>
+              </div>
+              <div class="bg-accordion">
+
+                <div class="bg-acc-item is-open">
+                  <div class="bg-acc-header">
+                    <span class="bg-acc-title">Common Injuries</span>
+                    <i class="fa-solid fa-chevron-down bg-acc-icon"></i>
+                  </div>
+                  <div class="bg-acc-body"><div class="bg-acc-content">
+                    <ul>
+                      <li>Lumbar disc herniation — L4-L5 and L5-S1 most common in EMS</li>
+                      <li>Lumbar muscle and ligament sprain</li>
+                      <li>Sacroiliac joint dysfunction</li>
+                      <li>Lumbar facet syndrome</li>
+                      <li>Degenerative disc disease accelerated by cumulative loading</li>
+                    </ul>
+                  </div></div>
+                </div>
+
+                <div class="bg-acc-item">
+                  <div class="bg-acc-header">
+                    <span class="bg-acc-title">Why EMS Workers Are Vulnerable</span>
+                    <i class="fa-solid fa-chevron-down bg-acc-icon"></i>
+                  </div>
+                  <div class="bg-acc-body"><div class="bg-acc-content">
+                    <p>The lumbar spine is the most injured region in EMS. Heavy, unpredictable lifts from flexed or rotated positions — especially with a loaded stretcher — create compressive and shear forces that exceed safe spinal load thresholds. Fatigue, poor lift mechanics, and time pressure multiply the risk.</p>
+                  </div></div>
+                </div>
+
+                <div class="bg-acc-item">
+                  <div class="bg-acc-header">
+                    <span class="bg-acc-title">Warning Signs — When to Seek Care</span>
+                    <i class="fa-solid fa-chevron-down bg-acc-icon"></i>
+                  </div>
+                  <div class="bg-acc-body"><div class="bg-acc-content">
+                    <ul>
+                      <li>Sharp pain during or after a lift that doesn't resolve within a shift</li>
+                      <li>Pain radiating down one or both legs (sciatica)</li>
+                      <li>Numbness or tingling in legs, feet, or groin</li>
+                      <li>Inability to stand fully upright after bending</li>
+                    </ul>
+                    <div class="bg-warning">Loss of bladder or bowel control is a medical emergency — seek care immediately. Disc herniations and nerve compression require prompt evaluation.</div>
+                  </div></div>
+                </div>
+
+                <div class="bg-acc-item">
+                  <div class="bg-acc-header">
+                    <span class="bg-acc-title">Prevention Strategies</span>
+                    <i class="fa-solid fa-chevron-down bg-acc-icon"></i>
+                  </div>
+                  <div class="bg-acc-body"><div class="bg-acc-content">
+                    <ul>
+                      <li>Hinge at the hips — not the waist — on every lift</li>
+                      <li>Keep load close to your body at all times</li>
+                      <li>Adjust stretcher height before lifting — never lift from ground level when avoidable</li>
+                      <li>Strengthen the posterior chain: glutes, hamstrings, and erectors</li>
+                      <li>Core stability: dead bugs, planks, bird dogs — not sit-ups</li>
+                      <li>Use mechanical lift assist or additional crew for bariatric patients</li>
+                    </ul>
+                  </div></div>
+                </div>
+
+              </div>
+            </div><!-- /lumbar -->
+
+            <!-- ── KNEES ── -->
+            <div class="bg-region-panel" data-panel="knees">
+              <div class="bg-region-header">
+                <div class="bg-region-name">Knees</div>
+                <div class="bg-region-subtitle">Common EMS Injuries &amp; Prevention</div>
+              </div>
+              <div class="bg-accordion">
+
+                <div class="bg-acc-item is-open">
+                  <div class="bg-acc-header">
+                    <span class="bg-acc-title">Common Injuries</span>
+                    <i class="fa-solid fa-chevron-down bg-acc-icon"></i>
+                  </div>
+                  <div class="bg-acc-body"><div class="bg-acc-content">
+                    <ul>
+                      <li>Patellar tendinopathy from repetitive kneeling on hard surfaces</li>
+                      <li>Meniscus tears from twisting while supporting a loaded patient</li>
+                      <li>MCL/LCL sprains from falls or lateral forces at uneven scenes</li>
+                      <li>IT band syndrome from repetitive stair climbing</li>
+                      <li>Prepatellar bursitis from prolonged kneeling</li>
+                    </ul>
+                  </div></div>
+                </div>
+
+                <div class="bg-acc-item">
+                  <div class="bg-acc-header">
+                    <span class="bg-acc-title">Why EMS Workers Are Vulnerable</span>
+                    <i class="fa-solid fa-chevron-down bg-acc-icon"></i>
+                  </div>
+                  <div class="bg-acc-body"><div class="bg-acc-content">
+                    <p>EMS providers kneel on hard floors, concrete, and asphalt regularly during patient care. Stair climbing with loaded stair chairs places significant eccentric load on the patellar tendon and quadriceps. Pivoting while supporting a patient creates dangerous rotational forces on the knee joint.</p>
+                  </div></div>
+                </div>
+
+                <div class="bg-acc-item">
+                  <div class="bg-acc-header">
+                    <span class="bg-acc-title">Warning Signs — When to Seek Care</span>
+                    <i class="fa-solid fa-chevron-down bg-acc-icon"></i>
+                  </div>
+                  <div class="bg-acc-body"><div class="bg-acc-content">
+                    <ul>
+                      <li>Swelling around the kneecap or joint line</li>
+                      <li>Locking or catching sensation in the knee</li>
+                      <li>Inability to fully straighten or bend the knee</li>
+                      <li>Pain descending stairs more than ascending</li>
+                      <li>Instability or "giving way" feeling</li>
+                    </ul>
+                    <div class="bg-warning">Locking and instability suggest meniscal or ligament involvement — do not delay evaluation.</div>
+                  </div></div>
+                </div>
+
+                <div class="bg-acc-item">
+                  <div class="bg-acc-header">
+                    <span class="bg-acc-title">Prevention Strategies</span>
+                    <i class="fa-solid fa-chevron-down bg-acc-icon"></i>
+                  </div>
+                  <div class="bg-acc-body"><div class="bg-acc-content">
+                    <ul>
+                      <li>Use a kneeling pad or kneel on one knee rather than both when working on the floor</li>
+                      <li>Strengthen quads and glutes to protect the joint</li>
+                      <li>Avoid twisting your knee while bearing weight</li>
+                      <li>Communicate steps clearly with your partner during stair chair operations</li>
+                      <li>Stretch hip flexors and calves — tightness above and below affects knee tracking</li>
+                    </ul>
+                  </div></div>
+                </div>
+
+              </div>
+            </div><!-- /knees -->
+
+            <!-- ── WRISTS & HANDS ── -->
+            <div class="bg-region-panel" data-panel="wrists">
+              <div class="bg-region-header">
+                <div class="bg-region-name">Wrists &amp; Hands</div>
+                <div class="bg-region-subtitle">Common EMS Injuries &amp; Prevention</div>
+              </div>
+              <div class="bg-accordion">
+
+                <div class="bg-acc-item is-open">
+                  <div class="bg-acc-header">
+                    <span class="bg-acc-title">Common Injuries</span>
+                    <i class="fa-solid fa-chevron-down bg-acc-icon"></i>
+                  </div>
+                  <div class="bg-acc-body"><div class="bg-acc-content">
+                    <ul>
+                      <li>Carpal tunnel syndrome from repetitive documentation and steering</li>
+                      <li>De Quervain's tenosynovitis — thumb-side wrist pain from gripping</li>
+                      <li>Scaphoid fracture from catching a fall with an outstretched hand</li>
+                      <li>Trigger finger from repetitive gripping of equipment and bags</li>
+                      <li>Hand lacerations and crush injuries at chaotic scenes</li>
+                    </ul>
+                  </div></div>
+                </div>
+
+                <div class="bg-acc-item">
+                  <div class="bg-acc-header">
+                    <span class="bg-acc-title">Why EMS Workers Are Vulnerable</span>
+                    <i class="fa-solid fa-chevron-down bg-acc-icon"></i>
+                  </div>
+                  <div class="bg-acc-body"><div class="bg-acc-content">
+                    <p>Sustained gripping of stretcher handles, stair chairs, and equipment bags — combined with hours of documentation on tablets or keyboards — creates repetitive strain on wrist tendons and the median nerve. Falls frequently result in wrist fractures as providers instinctively reach out to catch themselves.</p>
+                  </div></div>
+                </div>
+
+                <div class="bg-acc-item">
+                  <div class="bg-acc-header">
+                    <span class="bg-acc-title">Warning Signs — When to Seek Care</span>
+                    <i class="fa-solid fa-chevron-down bg-acc-icon"></i>
+                  </div>
+                  <div class="bg-acc-body"><div class="bg-acc-content">
+                    <ul>
+                      <li>Numbness or tingling in the thumb, index, or middle fingers — especially at night</li>
+                      <li>Pain with wrist extension or gripping</li>
+                      <li>Swelling or bruising after a fall — always rule out scaphoid fracture</li>
+                      <li>Weakness in grip strength</li>
+                    </ul>
+                    <div class="bg-warning">Scaphoid fractures can appear normal on initial X-ray. Always follow up persistent wrist pain after a fall.</div>
+                  </div></div>
+                </div>
+
+                <div class="bg-acc-item">
+                  <div class="bg-acc-header">
+                    <span class="bg-acc-title">Prevention Strategies</span>
+                    <i class="fa-solid fa-chevron-down bg-acc-icon"></i>
+                  </div>
+                  <div class="bg-acc-body"><div class="bg-acc-content">
+                    <ul>
+                      <li>Use ergonomic grips or gloves for equipment handling</li>
+                      <li>Take wrist stretch breaks during documentation-heavy periods</li>
+                      <li>Wrist flexor and extensor stretches — hold 30 seconds each direction</li>
+                      <li>Strengthen grip and wrist extensors with resistance exercises</li>
+                      <li>When falling, try to tuck and roll rather than reaching out</li>
+                    </ul>
+                  </div></div>
+                </div>
+
+              </div>
+            </div><!-- /wrists -->
+
+            <!-- ── ANKLES & FEET ── -->
+            <div class="bg-region-panel" data-panel="ankles">
+              <div class="bg-region-header">
+                <div class="bg-region-name">Ankles &amp; Feet</div>
+                <div class="bg-region-subtitle">Common EMS Injuries &amp; Prevention</div>
+              </div>
+              <div class="bg-accordion">
+
+                <div class="bg-acc-item is-open">
+                  <div class="bg-acc-header">
+                    <span class="bg-acc-title">Common Injuries</span>
+                    <i class="fa-solid fa-chevron-down bg-acc-icon"></i>
+                  </div>
+                  <div class="bg-acc-body"><div class="bg-acc-content">
+                    <ul>
+                      <li>Lateral ankle sprain — most common EMS lower extremity injury</li>
+                      <li>Plantar fasciitis from prolonged standing on hard surfaces</li>
+                      <li>Achilles tendinopathy</li>
+                      <li>Stress fractures from high-volume calls on hard surfaces</li>
+                      <li>Metatarsalgia from poorly fitting boots</li>
+                    </ul>
+                  </div></div>
+                </div>
+
+                <div class="bg-acc-item">
+                  <div class="bg-acc-header">
+                    <span class="bg-acc-title">Why EMS Workers Are Vulnerable</span>
+                    <i class="fa-solid fa-chevron-down bg-acc-icon"></i>
+                  </div>
+                  <div class="bg-acc-body"><div class="bg-acc-content">
+                    <p>EMS providers navigate uneven terrain, stairs, wet surfaces, and debris — often while carrying equipment or supporting patients. Long shifts on hard floors accelerate plantar fascia fatigue. Heavy, ill-fitting boots impair proprioception and ankle stability.</p>
+                  </div></div>
+                </div>
+
+                <div class="bg-acc-item">
+                  <div class="bg-acc-header">
+                    <span class="bg-acc-title">Warning Signs — When to Seek Care</span>
+                    <i class="fa-solid fa-chevron-down bg-acc-icon"></i>
+                  </div>
+                  <div class="bg-acc-body"><div class="bg-acc-content">
+                    <ul>
+                      <li>Ankle pain and swelling immediately after a misstep or fall</li>
+                      <li>Heel pain worst with the first steps in the morning — plantar fasciitis hallmark</li>
+                      <li>Achilles pain or tightness that worsens with activity</li>
+                      <li>Localized bone pain that increases with activity</li>
+                    </ul>
+                    <div class="bg-warning">Ottawa Ankle Rules: if you can't bear weight or have bony point tenderness, get imaging.</div>
+                  </div></div>
+                </div>
+
+                <div class="bg-acc-item">
+                  <div class="bg-acc-header">
+                    <span class="bg-acc-title">Prevention Strategies</span>
+                    <i class="fa-solid fa-chevron-down bg-acc-icon"></i>
+                  </div>
+                  <div class="bg-acc-body"><div class="bg-acc-content">
+                    <ul>
+                      <li>Wear properly fitted, supportive boots with ankle coverage</li>
+                      <li>Replace boots every 12 months — outsole wear affects joint protection</li>
+                      <li>Stretch calves and plantar fascia daily</li>
+                      <li>Ankle stability exercises: single-leg balance, resistance band work</li>
+                      <li>Use high-quality insoles if standing for prolonged periods</li>
+                      <li>Slow down on approach to scenes — never rush across unknown terrain</li>
+                    </ul>
+                  </div></div>
+                </div>
+
+              </div>
+            </div><!-- /ankles -->
+
+          </div><!-- /bg-detail -->
+
+          <!-- Prev / Next navigation -->
+          <div class="bg-nav-buttons">
+            <button class="bg-nav-btn" id="bgPrevBtn">&#8592; Previous Region</button>
+            <button class="bg-nav-btn" id="bgNextBtn">Next Region &#8594;</button>
+          </div>
+
+        </div><!-- /panel col -->
+      </div><!-- /layout -->
     </div>
   </section>
 
@@ -1923,6 +2794,121 @@
           }
         }, { threshold: 0.1 }).observe(riskContainer);
       }
+
+
+      /* ══════════════════════════════════════════════════════════
+         BODY GUIDE
+      ══════════════════════════════════════════════════════════ */
+
+      const BG_REGIONS = ['cervical', 'shoulders', 'lumbar', 'knees', 'wrists', 'ankles'];
+      let bgCurrentIndex = -1;
+
+      function bgActivateRegion(regionKey) {
+        const idx = BG_REGIONS.indexOf(regionKey);
+        if (idx === -1) return;
+        bgCurrentIndex = idx;
+
+        /* — Clear all hotspot active states — */
+        document.querySelectorAll('.bg-hotspot').forEach(h => h.classList.remove('is-active'));
+
+        /* — Activate hotspot(s) for this region — */
+        const singleHs = document.querySelector(`.bg-hotspot[data-region="${regionKey}"]`);
+        if (singleHs) singleHs.classList.add('is-active');
+
+        const groupHs = document.querySelector(`.bg-hotspot-group[data-region="${regionKey}"]`);
+        if (groupHs) groupHs.querySelectorAll('.bg-hotspot').forEach(h => h.classList.add('is-active'));
+
+        /* — Update pills — */
+        document.querySelectorAll('.bg-pill').forEach(p =>
+          p.classList.toggle('is-active', p.dataset.region === regionKey)
+        );
+
+        /* — Swap panel content with fade — */
+        const prompt = document.getElementById('bgPrompt');
+        if (prompt) prompt.style.display = 'none';
+
+        const allPanels = document.querySelectorAll('.bg-region-panel');
+
+        // Fade out current visible panel
+        allPanels.forEach(p => {
+          if (p.classList.contains('is-visible') && p.dataset.panel !== regionKey) {
+            p.classList.remove('is-faded-in');
+            setTimeout(() => p.classList.remove('is-visible'), 250);
+          }
+        });
+
+        // Fade in new panel
+        setTimeout(() => {
+          const newPanel = document.querySelector(`.bg-region-panel[data-panel="${regionKey}"]`);
+          if (newPanel && !newPanel.classList.contains('is-visible')) {
+            newPanel.classList.add('is-visible');
+            requestAnimationFrame(() =>
+              requestAnimationFrame(() => newPanel.classList.add('is-faded-in'))
+            );
+          } else if (newPanel) {
+            newPanel.classList.add('is-faded-in');
+          }
+        }, 260);
+
+        /* — Mobile: scroll to panel — */
+        if (window.innerWidth <= 900) {
+          setTimeout(() => {
+            const col = document.querySelector('.bodyguide-panel-col');
+            if (col) col.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 120);
+        }
+      }
+
+      /* Hotspot clicks — single elements */
+      document.querySelectorAll('.bg-hotspot[data-region]').forEach(el => {
+        el.addEventListener('click', () => bgActivateRegion(el.dataset.region));
+        el.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); bgActivateRegion(el.dataset.region); }
+        });
+      });
+
+      /* Hotspot clicks — group elements */
+      document.querySelectorAll('.bg-hotspot-group[data-region]').forEach(grp => {
+        grp.addEventListener('click', () => bgActivateRegion(grp.dataset.region));
+        grp.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); bgActivateRegion(grp.dataset.region); }
+        });
+      });
+
+      /* Pill clicks */
+      document.querySelectorAll('.bg-pill').forEach(pill =>
+        pill.addEventListener('click', () => bgActivateRegion(pill.dataset.region))
+      );
+
+      /* Prev / Next */
+      const bgPrevBtn = document.getElementById('bgPrevBtn');
+      const bgNextBtn = document.getElementById('bgNextBtn');
+
+      if (bgPrevBtn) {
+        bgPrevBtn.addEventListener('click', () => {
+          const next = bgCurrentIndex <= 0 ? BG_REGIONS.length - 1 : bgCurrentIndex - 1;
+          bgActivateRegion(BG_REGIONS[next]);
+        });
+      }
+
+      if (bgNextBtn) {
+        bgNextBtn.addEventListener('click', () => {
+          const next = bgCurrentIndex >= BG_REGIONS.length - 1 ? 0 : bgCurrentIndex + 1;
+          bgActivateRegion(BG_REGIONS[next]);
+        });
+      }
+
+      /* Accordion (one open per panel) */
+      document.querySelectorAll('.bg-acc-header').forEach(header => {
+        header.addEventListener('click', () => {
+          const item  = header.closest('.bg-acc-item');
+          const panel = header.closest('.bg-region-panel');
+          panel.querySelectorAll('.bg-acc-item.is-open').forEach(open => {
+            if (open !== item) open.classList.remove('is-open');
+          });
+          item.classList.toggle('is-open');
+        });
+      });
 
     })();
   </script>
