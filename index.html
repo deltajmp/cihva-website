@@ -1300,6 +1300,331 @@
     }
 
     /* ============================================================
+       HANDLING SECTION
+    ============================================================ */
+
+    .handling-header {
+      text-align: center;
+      max-width: 700px;
+      margin-inline: auto;
+      margin-bottom: var(--sp-6);
+    }
+
+    .handling-subhead {
+      font-size: 1.05rem;
+      color: var(--color-secondary);
+      line-height: 1.75;
+      margin-top: var(--sp-2);
+    }
+
+    /* — Technique tabs — */
+    .h-tabs {
+      display: flex;
+      gap: 3px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 1px;
+    }
+
+    .h-tabs::-webkit-scrollbar { display: none; }
+
+    .h-tab {
+      font-family: var(--font-heading);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 10px var(--sp-3);
+      border-radius: 6px 6px 0 0;
+      border: 1px solid var(--color-border);
+      border-bottom: none;
+      cursor: pointer;
+      white-space: nowrap;
+      flex-shrink: 0;
+      background: var(--color-bg);
+      color: var(--color-muted);
+      transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+      position: relative;
+    }
+
+    .h-tab::after {
+      content: '';
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: transparent;
+      transition: background 0.2s ease;
+    }
+
+    .h-tab:hover         { color: var(--color-secondary); }
+    .h-tab:hover::after  { background: var(--color-accent); }
+
+    .h-tab.is-active {
+      background: var(--color-accent);
+      color: #0a1628;
+      border-color: var(--color-accent);
+    }
+
+    /* — Content area — */
+    .h-content {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 0 8px 8px 8px;
+      padding: var(--sp-6);
+    }
+
+    .h-technique         { display: none; }
+    .h-technique.is-active { display: block; }
+
+    /* — Stepper — */
+    .h-stepper {
+      display: flex;
+      align-items: center;
+      margin-bottom: var(--sp-2);
+    }
+
+    .h-step-circle {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      cursor: pointer;
+      user-select: none;
+      background: var(--color-bg);
+      border: 2px solid var(--color-border);
+      color: var(--color-muted);
+      font-family: var(--font-heading);
+      font-size: 0.88rem;
+      font-weight: 700;
+      transition: background 0.25s ease, border-color 0.25s ease,
+                  color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .h-step-circle:hover {
+      border-color: var(--color-accent);
+      color: var(--color-accent);
+    }
+
+    .h-step-circle .h-num { line-height: 1; }
+
+    .h-step-circle.is-active {
+      background: var(--color-accent);
+      border-color: var(--color-accent);
+      color: #0a1628;
+      box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.2);
+    }
+
+    .h-step-circle.is-completed {
+      background: var(--color-accent);
+      border-color: var(--color-accent);
+      color: #0a1628;
+    }
+
+    .h-step-circle.is-completed .h-num { display: none; }
+
+    .h-step-circle.is-completed::before {
+      content: '✓';
+      font-size: 0.95rem;
+      font-weight: 900;
+    }
+
+    .h-step-line {
+      flex: 1;
+      height: 2px;
+      background: var(--color-border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .h-step-line-fill {
+      position: absolute;
+      inset: 0;
+      background: var(--color-accent);
+      width: 0%;
+      transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* Progress bar */
+    .h-progress-track {
+      height: 3px;
+      background: var(--color-border);
+      border-radius: 100px;
+      overflow: hidden;
+      margin-bottom: var(--sp-4);
+    }
+
+    .h-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--color-accent), #c2500a);
+      border-radius: 100px;
+      width: 0%;
+      transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* — Step cards — */
+    .h-step-card {
+      display: none;
+    }
+
+    .h-step-card.is-active {
+      display: grid;
+      grid-template-columns: 35fr 65fr;
+      gap: var(--sp-6);
+      align-items: center;
+      animation: hCardIn 0.3s ease both;
+    }
+
+    @keyframes hCardIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .h-step-icon-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: var(--sp-6) var(--sp-4);
+      background: rgba(249, 115, 22, 0.05);
+      border: 1px solid rgba(249, 115, 22, 0.18);
+      border-radius: 12px;
+      min-height: 190px;
+      text-align: center;
+    }
+
+    .h-step-icon-col i {
+      font-size: 3rem;
+      color: var(--color-accent);
+      margin-bottom: var(--sp-2);
+    }
+
+    .h-step-badge {
+      font-family: var(--font-heading);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+    }
+
+    .h-step-title {
+      font-family: var(--font-heading);
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: var(--color-text);
+      line-height: 1.05;
+      margin-bottom: var(--sp-2);
+    }
+
+    .h-step-desc {
+      font-size: 0.95rem;
+      color: var(--color-secondary);
+      line-height: 1.75;
+      margin-bottom: var(--sp-3);
+    }
+
+    .h-step-cues {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .h-cue {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 0.875rem;
+      color: var(--color-muted);
+      line-height: 1.5;
+    }
+
+    .h-cue::before {
+      content: '';
+      display: block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--color-accent);
+      flex-shrink: 0;
+      margin-top: 5px;
+    }
+
+    /* Step nav */
+    .h-step-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: var(--sp-6);
+      padding-top: var(--sp-4);
+      border-top: 1px solid var(--color-border);
+      gap: var(--sp-2);
+    }
+
+    .h-step-counter {
+      font-family: var(--font-heading);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      white-space: nowrap;
+    }
+
+    .h-step-counter em { color: var(--color-accent); font-style: normal; }
+
+    .h-nav-btn {
+      font-family: var(--font-heading);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 9px var(--sp-3);
+      border-radius: 6px;
+      border: 1px solid var(--color-accent);
+      color: var(--color-accent);
+      background: transparent;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+
+    .h-nav-btn:hover    { background: var(--color-accent); color: #0a1628; }
+    .h-nav-btn:disabled { opacity: 0.25; cursor: not-allowed; }
+    .h-nav-btn:disabled:hover { background: transparent; color: var(--color-accent); }
+
+    /* Handling responsive */
+    @media (max-width: 900px) {
+      .h-content { padding: var(--sp-3); }
+
+      .h-step-card.is-active {
+        grid-template-columns: 1fr;
+        gap: var(--sp-3);
+      }
+
+      .h-step-icon-col {
+        flex-direction: row;
+        min-height: auto;
+        padding: var(--sp-2) var(--sp-3);
+        gap: var(--sp-2);
+        justify-content: flex-start;
+      }
+
+      .h-step-icon-col i { font-size: 2rem; margin-bottom: 0; }
+    }
+
+    @media (max-width: 540px) {
+      .h-step-circle { width: 30px; height: 30px; font-size: 0.78rem; }
+    }
+
+    /* ============================================================
        FOOTER
     ============================================================ */
     .footer {
