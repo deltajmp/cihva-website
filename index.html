@@ -244,75 +244,99 @@
     /* ============================================================
        HERO
     ============================================================ */
+
+    /* 3px orange top accent bar */
+    .hero__topbar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--color-accent);
+      z-index: 2;
+    }
+
     .hero {
       position: relative;
       min-height: 100svh;
       display: flex;
       align-items: center;
-      justify-content: center;
-      text-align: center;
       background-color: var(--color-bg);
       overflow: hidden;
       padding-top: var(--nav-height);
     }
 
-    /* CSS-only grid texture */
+    /* Radial center glow */
     .hero::before {
       content: '';
       position: absolute;
       inset: 0;
-      background-image:
-        linear-gradient(rgba(30, 58, 95, 0.35) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(30, 58, 95, 0.35) 1px, transparent 1px);
-      background-size: 48px 48px;
-      pointer-events: none;
-    }
-
-    /* Subtle radial vignette to focus center */
-    .hero::after {
-      content: '';
-      position: absolute;
-      inset: 0;
       background: radial-gradient(
-        ellipse 70% 60% at 50% 50%,
-        transparent 40%,
-        var(--color-bg) 100%
+        ellipse 80% 70% at 50% 50%,
+        #0f2040 0%,
+        var(--color-bg) 68%
       );
       pointer-events: none;
     }
 
-    .hero__content {
-      position: relative;
-      z-index: 1;
-      max-width: 760px;
-      padding: var(--sp-4) var(--sp-3);
+    /* Diagonal line texture */
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: repeating-linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.04) 0px,
+        rgba(255, 255, 255, 0.04) 1px,
+        transparent 1px,
+        transparent 14px
+      );
+      pointer-events: none;
     }
 
-    .hero__tag {
-      display: inline-flex;
+    /* Two-column inner wrapper */
+    .hero__inner {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 1160px;
+      margin-inline: auto;
+      padding: var(--sp-8) var(--sp-3);
+      display: grid;
+      grid-template-columns: 60fr 40fr;
+      gap: var(--sp-8);
       align-items: center;
-      gap: var(--sp-1);
+    }
+
+    /* ---- LEFT: Text content ---- */
+    .hero__text {
+      text-align: left;
+    }
+
+    .hero__eyebrow {
+      display: inline-block;
       font-family: var(--font-heading);
-      font-size: 0.8rem;
+      font-size: 0.72rem;
       font-weight: 700;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--color-accent);
-      border: 1px solid rgba(249, 115, 22, 0.35);
-      border-radius: 100px;
-      padding: 6px var(--sp-2);
-      margin-bottom: var(--sp-4);
+      margin-bottom: var(--sp-3);
+      animation: heroFadeIn 0.5s ease both;
+      animation-delay: 0s;
     }
 
     .hero__headline {
       font-family: var(--font-heading);
-      font-size: clamp(3rem, 8vw, 6rem);
+      font-size: clamp(3.5rem, 7vw, 6rem);
       font-weight: 800;
-      line-height: 1;
+      line-height: 0.95;
       letter-spacing: 0.02em;
       text-transform: uppercase;
       color: var(--color-text);
       margin-bottom: var(--sp-3);
+      animation: heroFadeUp 0.6s ease both;
+      animation-delay: 0.2s;
     }
 
     .hero__headline span {
@@ -320,15 +344,83 @@
     }
 
     .hero__subtitle {
-      font-size: clamp(1rem, 2.5vw, 1.2rem);
-      font-weight: 300;
+      font-size: 1.1rem;
+      font-weight: 400;
       color: var(--color-secondary);
-      max-width: 540px;
-      margin-inline: auto;
+      max-width: 500px;
+      line-height: 1.75;
       margin-bottom: var(--sp-6);
-      line-height: 1.7;
+      animation: heroFadeUp 0.6s ease both;
+      animation-delay: 0.4s;
     }
 
+    .hero__actions {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-3);
+      flex-wrap: wrap;
+      animation: heroFadeUp 0.6s ease both;
+      animation-delay: 0.6s;
+    }
+
+    .hero__link {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--color-muted);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: color var(--ease);
+    }
+
+    .hero__link:hover {
+      color: var(--color-secondary);
+    }
+
+    /* ---- RIGHT: Stat counter cards ---- */
+    .hero__stats {
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-2);
+    }
+
+    .stat-card {
+      background: var(--color-surface);
+      border-left: 3px solid var(--color-accent);
+      border-radius: 0 8px 8px 0;
+      padding: var(--sp-3) var(--sp-4);
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+      opacity: 0;
+      transform: translateX(24px);
+      animation: heroSlideRight 0.5s ease forwards;
+    }
+
+    .stat-card:nth-child(1) { animation-delay: 0.3s; }
+    .stat-card:nth-child(2) { animation-delay: 0.6s; }
+    .stat-card:nth-child(3) { animation-delay: 0.9s; }
+
+    .stat-card__icon {
+      color: var(--color-accent);
+      font-size: 1.1rem;
+      margin-bottom: 6px;
+    }
+
+    .stat-card__number {
+      font-family: var(--font-heading);
+      font-size: 2.75rem;
+      font-weight: 800;
+      line-height: 1;
+      color: var(--color-text);
+      letter-spacing: -0.01em;
+    }
+
+    .stat-card__label {
+      font-size: 0.85rem;
+      color: var(--color-muted);
+      line-height: 1.5;
+      margin-top: 6px;
+    }
+
+    /* ---- Shared btn styles ---- */
     .btn {
       display: inline-flex;
       align-items: center;
@@ -347,7 +439,7 @@
 
     .btn--primary {
       background: var(--color-accent);
-      color: #fff;
+      color: #0a1628;
       box-shadow: 0 0 0 0 rgba(249, 115, 22, 0);
     }
 
@@ -355,41 +447,124 @@
       background: var(--color-accent-hover);
       transform: translateY(-2px);
       box-shadow: 0 8px 32px rgba(249, 115, 22, 0.35);
+      filter: brightness(1.06);
     }
 
     .btn--primary:active {
       transform: translateY(0);
     }
 
-    /* Scroll indicator */
+    /* ---- Scroll indicator ---- */
     .hero__scroll {
       position: absolute;
       bottom: var(--sp-4);
       left: 50%;
       transform: translateX(-50%);
-      z-index: 1;
+      z-index: 2;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: var(--sp-1);
+      gap: 6px;
+      transition: opacity 0.4s ease;
+    }
+
+    .hero__scroll.is-hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .hero__scroll-chevron {
+      animation: heroChevron 1.8s ease-in-out infinite;
+      color: var(--color-accent);
+      opacity: 0.7;
+      font-size: 1.1rem;
+    }
+
+    .hero__scroll-label {
       font-family: var(--font-heading);
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       font-weight: 700;
-      letter-spacing: 0.15em;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--color-muted);
     }
 
-    .hero__scroll-line {
-      width: 1px;
-      height: 40px;
-      background: linear-gradient(to bottom, var(--color-accent), transparent);
-      animation: scrollPulse 2s ease-in-out infinite;
+    /* ---- Hero keyframes ---- */
+    @keyframes heroFadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
     }
 
-    @keyframes scrollPulse {
-      0%, 100% { opacity: 0.4; transform: scaleY(1); }
-      50%       { opacity: 1;   transform: scaleY(1.15); }
+    @keyframes heroFadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes heroSlideRight {
+      to { opacity: 1; transform: translateX(0); }
+    }
+
+    @keyframes heroChevron {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(6px); }
+    }
+
+    /* ---- Hero responsive — tablet ---- */
+    @media (max-width: 900px) {
+      .hero__inner {
+        grid-template-columns: 1fr;
+        gap: var(--sp-6);
+        padding-top: var(--sp-6);
+        padding-bottom: var(--sp-8);
+      }
+
+      .hero__text {
+        text-align: center;
+      }
+
+      .hero__subtitle {
+        margin-inline: auto;
+      }
+
+      .hero__actions {
+        justify-content: center;
+      }
+
+      .hero__stats {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .stat-card {
+        flex: 1 1 calc(50% - var(--sp-1));
+        min-width: 180px;
+      }
+    }
+
+    /* ---- Hero responsive — mobile ---- */
+    @media (max-width: 540px) {
+      .hero__stats {
+        flex-direction: column;
+      }
+
+      .stat-card {
+        flex: none;
+      }
+
+      .hero__actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn--primary {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .hero__link {
+        text-align: center;
+      }
     }
 
     /* ============================================================
@@ -733,33 +908,69 @@
   ============================================================ -->
   <section class="hero" id="home" aria-label="Hero">
 
-    <div class="hero__content">
+    <div class="hero__topbar" aria-hidden="true"></div>
 
-      <div class="hero__tag">
-        <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
-        EMS Injury Education
+    <div class="hero__inner">
+
+      <!-- Left: text content -->
+      <div class="hero__text">
+
+        <p class="hero__eyebrow">Hudson Valley EMS Training Initiative</p>
+
+        <h1 class="hero__headline">
+          Protect the<br /><span>Protectors.</span>
+        </h1>
+
+        <p class="hero__subtitle">
+          EMS workers suffer one of the highest injury rates of any profession.
+          This training resource exists to change that — one crew at a time.
+        </p>
+
+        <div class="hero__actions">
+          <a href="#injuries" class="btn btn--primary">
+            Begin Training
+            <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+          </a>
+          <a href="#body-guide" class="hero__link">Jump to Body Guide</a>
+        </div>
+
       </div>
 
-      <h1 class="hero__headline">
-        Protect the<br /><span>Protectors</span>
-      </h1>
+      <!-- Right: animated stat cards -->
+      <div class="hero__stats" aria-label="EMS injury statistics">
 
-      <p class="hero__subtitle">
-        Evidence-based injury prevention resources built specifically for EMS
-        professionals — because the people saving lives deserve to stay healthy
-        doing it.
-      </p>
+        <div class="stat-card">
+          <div class="stat-card__icon" aria-hidden="true">
+            <i class="fa-solid fa-person-falling"></i>
+          </div>
+          <div class="stat-card__number" data-count="30" data-suffix=" per 100">0</div>
+          <p class="stat-card__label">EMS workers injured annually — 6x the national average</p>
+        </div>
 
-      <a href="#injuries" class="btn btn--primary">
-        Start Learning
-        <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
-      </a>
+        <div class="stat-card">
+          <div class="stat-card__icon" aria-hidden="true">
+            <i class="fa-solid fa-bone"></i>
+          </div>
+          <div class="stat-card__number" data-count="35" data-suffix="%">0</div>
+          <p class="stat-card__label">Of all EMS injuries involve the back or spine</p>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-card__icon" aria-hidden="true">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <div class="stat-card__number" data-count="50" data-suffix="%+">0</div>
+          <p class="stat-card__label">Of career-ending EMS injuries are preventable</p>
+        </div>
+
+      </div>
 
     </div>
 
-    <div class="hero__scroll" aria-hidden="true">
-      <div class="hero__scroll-line"></div>
-      Scroll
+    <!-- Scroll indicator -->
+    <div class="hero__scroll" id="heroScroll" aria-hidden="true">
+      <i class="fa-solid fa-chevron-down hero__scroll-chevron"></i>
+      <span class="hero__scroll-label">Scroll</span>
     </div>
 
   </section>
@@ -1095,6 +1306,40 @@
       }, observerOptions);
 
       sections.forEach(section => observer.observe(section));
+
+
+      /* ── Stat counter animation ──────────────────────────────── */
+      function animateCount(el) {
+        const target   = parseInt(el.dataset.count, 10);
+        const suffix   = el.dataset.suffix || '';
+        const duration = 2000;
+        const start    = performance.now();
+
+        function tick(now) {
+          const elapsed  = now - start;
+          const progress = Math.min(elapsed / duration, 1);
+          // ease-out cubic
+          const eased = 1 - Math.pow(1 - progress, 3);
+          el.textContent = Math.round(eased * target) + suffix;
+          if (progress < 1) requestAnimationFrame(tick);
+        }
+
+        requestAnimationFrame(tick);
+      }
+
+      document.querySelectorAll('.stat-card__number[data-count]').forEach((el, i) => {
+        const delays = [300, 600, 900];
+        setTimeout(() => animateCount(el), delays[i] || 300);
+      });
+
+
+      /* ── Scroll indicator fade-out ───────────────────────────── */
+      const heroScroll = document.getElementById('heroScroll');
+      if (heroScroll) {
+        window.addEventListener('scroll', () => {
+          heroScroll.classList.toggle('is-hidden', window.scrollY > window.innerHeight * 0.45);
+        }, { passive: true });
+      }
 
     })();
   </script>
