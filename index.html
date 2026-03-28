@@ -3781,6 +3781,76 @@
         });
       });
 
+      /* ── HANDLING SECTION ── */
+      (function() {
+        /* Tab switching */
+        const hTabs = document.querySelectorAll('.h-tab');
+        const hTechniques = document.querySelectorAll('.h-technique');
+
+        hTabs.forEach(tab => {
+          tab.addEventListener('click', () => {
+            const target = tab.dataset.technique;
+            hTabs.forEach(t => { t.classList.remove('is-active'); t.setAttribute('aria-selected','false'); });
+            hTechniques.forEach(t => t.classList.remove('is-active'));
+            tab.classList.add('is-active');
+            tab.setAttribute('aria-selected','true');
+            const panel = document.querySelector(`.h-technique[data-technique="${target}"]`);
+            if (panel) panel.classList.add('is-active');
+          });
+        });
+
+        /* Stepper logic — one per technique */
+        document.querySelectorAll('.h-stepper').forEach(stepper => {
+          const totalSteps = parseInt(stepper.dataset.steps, 10);
+          let current = 0;
+
+          const circles   = stepper.querySelectorAll('.h-step-circle');
+          const lineFills = stepper.querySelectorAll('.h-step-line-fill');
+          const cards     = stepper.querySelectorAll('.h-step-card');
+          const progFill  = stepper.querySelector('.h-progress-fill');
+          const prevBtn   = stepper.querySelector('.h-prev');
+          const nextBtn   = stepper.querySelector('.h-next');
+
+          function updateStepper(idx) {
+            current = idx;
+
+            /* circles */
+            circles.forEach((c, i) => {
+              c.classList.remove('is-active','is-completed');
+              if (i < idx)      c.classList.add('is-completed');
+              else if (i === idx) c.classList.add('is-active');
+            });
+
+            /* connector lines */
+            lineFills.forEach((lf, i) => {
+              lf.style.width = i < idx ? '100%' : '0%';
+            });
+
+            /* progress bar — step 0 = 10%, last step = 100% */
+            const pct = totalSteps === 1 ? 100 : Math.round(10 + (idx / (totalSteps - 1)) * 90);
+            progFill.style.width = pct + '%';
+
+            /* cards */
+            cards.forEach((card, i) => {
+              card.classList.toggle('is-active', i === idx);
+            });
+
+            /* nav buttons */
+            prevBtn.disabled = idx === 0;
+            nextBtn.disabled = idx === totalSteps - 1;
+          }
+
+          /* circle click */
+          circles.forEach((c, i) => {
+            c.addEventListener('click', () => updateStepper(i));
+          });
+
+          /* prev / next */
+          prevBtn.addEventListener('click', () => { if (current > 0) updateStepper(current - 1); });
+          nextBtn.addEventListener('click', () => { if (current < totalSteps - 1) updateStepper(current + 1); });
+        });
+      })();
+
     })();
   </script>
 
