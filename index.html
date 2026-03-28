@@ -3543,23 +3543,8 @@
 
       /* ── HANDLING SECTION ── */
       (function() {
-        /* Tab switching */
-        const hTabs = document.querySelectorAll('.h-tab');
-        const hTechniques = document.querySelectorAll('.h-technique');
+        const stepperObjs = [];
 
-        hTabs.forEach(tab => {
-          tab.addEventListener('click', () => {
-            const target = tab.dataset.technique;
-            hTabs.forEach(t => { t.classList.remove('is-active'); t.setAttribute('aria-selected','false'); });
-            hTechniques.forEach(t => t.classList.remove('is-active'));
-            tab.classList.add('is-active');
-            tab.setAttribute('aria-selected','true');
-            const panel = document.querySelector(`.h-technique[data-technique="${target}"]`);
-            if (panel) panel.classList.add('is-active');
-          });
-        });
-
-        /* Stepper logic — one per technique */
         document.querySelectorAll('.h-stepper').forEach(stepper => {
           const totalSteps = parseInt(stepper.dataset.steps, 10);
           let current = 0;
@@ -3570,44 +3555,64 @@
           const progFill  = stepper.querySelector('.h-progress-fill');
           const prevBtn   = stepper.querySelector('.h-prev');
           const nextBtn   = stepper.querySelector('.h-next');
+          const curLabel  = stepper.querySelector('.h-cur');
 
-          function updateStepper(idx) {
+          function go(idx, dir) {
+            stepper.classList.remove('dir-fwd', 'dir-back');
+            if (dir === 'fwd')  stepper.classList.add('dir-fwd');
+            if (dir === 'back') stepper.classList.add('dir-back');
+
             current = idx;
 
-            /* circles */
             circles.forEach((c, i) => {
-              c.classList.remove('is-active','is-completed');
-              if (i < idx)      c.classList.add('is-completed');
+              c.classList.remove('is-active', 'is-completed');
+              if (i < idx)        c.classList.add('is-completed');
               else if (i === idx) c.classList.add('is-active');
             });
 
-            /* connector lines */
-            lineFills.forEach((lf, i) => {
-              lf.style.width = i < idx ? '100%' : '0%';
-            });
+            lineFills.forEach((lf, i) => { lf.style.width = i < idx ? '100%' : '0%'; });
 
-            /* progress bar — step 0 = 10%, last step = 100% */
-            const pct = totalSteps === 1 ? 100 : Math.round(10 + (idx / (totalSteps - 1)) * 90);
-            progFill.style.width = pct + '%';
+            const pct = totalSteps === 1 ? 100 : Math.round((idx / (totalSteps - 1)) * 100);
+            progFill.style.width = Math.max(pct, 5) + '%';
 
-            /* cards */
-            cards.forEach((card, i) => {
-              card.classList.toggle('is-active', i === idx);
-            });
+            cards.forEach((card, i) => { card.classList.toggle('is-active', i === idx); });
 
-            /* nav buttons */
+            if (curLabel) curLabel.textContent = idx + 1;
             prevBtn.disabled = idx === 0;
-            nextBtn.disabled = idx === totalSteps - 1;
+
+            const isLast = idx === totalSteps - 1;
+            nextBtn.classList.toggle('is-complete', isLast);
+            nextBtn.innerHTML = isLast
+              ? 'Complete <i class="fa-solid fa-check"></i>'
+              : 'Next Step <i class="fa-solid fa-arrow-right"></i>';
           }
 
-          /* circle click */
           circles.forEach((c, i) => {
-            c.addEventListener('click', () => updateStepper(i));
+            c.addEventListener('click', () => go(i, i > current ? 'fwd' : 'back'));
           });
+          prevBtn.addEventListener('click', () => { if (current > 0) go(current - 1, 'back'); });
+          nextBtn.addEventListener('click', () => { if (current < totalSteps - 1) go(current + 1, 'fwd'); });
 
-          /* prev / next */
-          prevBtn.addEventListener('click', () => { if (current > 0) updateStepper(current - 1); });
-          nextBtn.addEventListener('click', () => { if (current < totalSteps - 1) updateStepper(current + 1); });
+          stepperObjs.push({ stepper, reset: () => { stepper.classList.remove('dir-fwd','dir-back'); go(0, null); } });
+        });
+
+        /* Tab switching — resets stepper on the newly active panel */
+        document.querySelectorAll('.h-tab').forEach(tab => {
+          tab.addEventListener('click', () => {
+            const target = tab.dataset.technique;
+            document.querySelectorAll('.h-tab').forEach(t => {
+              t.classList.remove('is-active'); t.setAttribute('aria-selected', 'false');
+            });
+            document.querySelectorAll('.h-technique').forEach(t => t.classList.remove('is-active'));
+            tab.classList.add('is-active');
+            tab.setAttribute('aria-selected', 'true');
+            const panel = document.querySelector(`.h-technique[data-technique="${target}"]`);
+            if (panel) {
+              panel.classList.add('is-active');
+              const s = panel.querySelector('.h-stepper');
+              if (s) { const obj = stepperObjs.find(o => o.stepper === s); if (obj) obj.reset(); }
+            }
+          });
         });
       })();
 
