@@ -3650,8 +3650,7 @@
       }
 
       .rpt-line-fill {
-        width: 100% !important;
-        height: 0%;
+        width: 100%;
         transition: height 0.4s cubic-bezier(0.22, 1, 0.36, 1);
       }
 
@@ -8201,7 +8200,9 @@
         });
 
         rptLines.forEach((lf, i) => {
-          lf.style.width = i < idx ? '100%' : '0%';
+          const filled = i < idx ? '100%' : '0%';
+          lf.style.width = filled;
+          lf.style.height = filled;
         });
 
         rptCards.forEach((card, i) => {
