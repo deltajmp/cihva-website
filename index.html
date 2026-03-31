@@ -2634,6 +2634,285 @@
     }
 
     /* ============================================================
+       STRETCHING SECTION
+    ============================================================ */
+
+    .stretch-header {
+      text-align: center;
+      max-width: 700px;
+      margin-inline: auto;
+      margin-bottom: var(--sp-8);
+    }
+
+    .stretch-subhead {
+      font-size: 1.05rem;
+      color: var(--color-secondary);
+      line-height: 1.75;
+      margin-top: var(--sp-2);
+    }
+
+    /* ── Stretch Tab Row ── */
+    .stretch-tabs {
+      display: flex;
+      gap: 4px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 2px;
+      margin-bottom: var(--sp-4);
+      max-width: 1160px;
+      margin-inline: auto;
+    }
+
+    .stretch-tabs::-webkit-scrollbar { display: none; }
+
+    .stretch-tab {
+      font-family: var(--font-heading);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 10px var(--sp-3);
+      border-radius: 100px;
+      border: 1px solid var(--color-border);
+      background: var(--color-surface);
+      color: var(--color-muted);
+      cursor: pointer;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .stretch-tab:hover {
+      border-color: var(--color-accent);
+      color: var(--color-secondary);
+    }
+
+    .stretch-tab.is-active {
+      background: var(--color-accent);
+      color: var(--color-bg);
+      border-color: var(--color-accent);
+    }
+
+    /* ── Stretch Content Area ── */
+    .stretch-content {
+      max-width: 1160px;
+      margin-inline: auto;
+    }
+
+    .stretch-region { display: none; }
+    .stretch-region.is-active { display: block; }
+
+    /* ── Card Grid ── */
+    .stretch-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--sp-3);
+    }
+
+    /* ── Stretch Card ── */
+    .stretch-card {
+      background: var(--color-bg);
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.35s ease, transform 0.35s ease, box-shadow 0.2s ease;
+    }
+
+    .stretch-card.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .stretch-card:hover {
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    }
+
+    .stretch-card__header {
+      background: var(--color-accent);
+      padding: var(--sp-2) var(--sp-3);
+    }
+
+    .stretch-card__name {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--color-bg);
+      line-height: 1.2;
+    }
+
+    .stretch-card__region {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: rgba(10, 22, 40, 0.65);
+      letter-spacing: 0.04em;
+      margin-top: 2px;
+    }
+
+    .stretch-card__body {
+      padding: var(--sp-3);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .stretch-card__target {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--color-accent);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: var(--sp-2);
+    }
+
+    .stretch-card__steps {
+      list-style: none;
+      counter-reset: steps;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: var(--sp-2);
+    }
+
+    .stretch-card__steps li {
+      counter-increment: steps;
+      font-size: 0.84rem;
+      color: var(--color-secondary);
+      line-height: 1.55;
+      padding-left: 22px;
+      position: relative;
+    }
+
+    .stretch-card__steps li::before {
+      content: counter(steps) '.';
+      position: absolute;
+      left: 0;
+      color: var(--color-accent);
+      font-weight: 700;
+      font-size: 0.78rem;
+    }
+
+    .stretch-card__hold {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-bottom: var(--sp-2);
+    }
+
+    .stretch-card__hold-tag {
+      font-family: var(--font-heading);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 4px;
+      background: rgba(249, 115, 22, 0.1);
+      border: 1px solid rgba(249, 115, 22, 0.2);
+      color: var(--color-accent);
+    }
+
+    .stretch-card__mod {
+      font-size: 0.8rem;
+      font-style: italic;
+      color: var(--color-muted);
+      line-height: 1.55;
+      margin-bottom: var(--sp-2);
+    }
+
+    .stretch-card__footer {
+      padding: 0 var(--sp-3) var(--sp-3);
+      margin-top: auto;
+    }
+
+    /* ── Timer Button ── */
+    .stretch-timer-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--sp-1);
+      width: 100%;
+      font-family: var(--font-heading);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 10px var(--sp-3);
+      border-radius: 6px;
+      border: 1px solid var(--color-border);
+      background: transparent;
+      color: var(--color-muted);
+      cursor: pointer;
+      min-height: 44px;
+      transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .stretch-timer-btn:hover {
+      border-color: var(--color-accent);
+      color: var(--color-accent);
+    }
+
+    .stretch-timer-btn.is-running {
+      background: var(--color-accent);
+      border-color: var(--color-accent);
+      color: var(--color-bg);
+    }
+
+    .stretch-timer-btn.is-done {
+      background: #22c55e;
+      border-color: #22c55e;
+      color: #fff;
+    }
+
+    /* ── Coming Soon Placeholder ── */
+    .stretch-coming-soon {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: var(--sp-12) var(--sp-4);
+      text-align: center;
+      gap: var(--sp-2);
+    }
+
+    .stretch-coming-soon i {
+      font-size: 2.5rem;
+      color: var(--color-muted);
+      opacity: 0.3;
+    }
+
+    .stretch-coming-soon-text {
+      font-size: 0.9rem;
+      color: var(--color-muted);
+      max-width: 280px;
+      line-height: 1.6;
+    }
+
+    /* ── Stretching Responsive — Tablet ── */
+    @media (max-width: 900px) {
+      .stretch-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    /* ── Stretching Responsive — Mobile ── */
+    @media (max-width: 640px) {
+      .stretch-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stretch-tabs {
+        padding-bottom: 4px;
+      }
+    }
+
+    /* ============================================================
        FOOTER
     ============================================================ */
     .footer {
@@ -5172,31 +5451,501 @@
   ============================================================ -->
   <section class="section section--alt" id="stretching">
     <div class="container">
-      <div class="section__inner">
 
-        <div class="section__icon" aria-hidden="true">
-          <i class="fa-solid fa-dumbbell"></i>
-        </div>
-
+      <!-- Section Header -->
+      <div class="stretch-header">
         <span class="eyebrow">Section 05</span>
-        <span class="section__number">Mobility & Recovery</span>
-
-        <h2 class="section__heading">Stretching &amp; Recovery</h2>
-        <hr class="section__divider" />
-        <p class="section__body">
-          Targeted stretching routines designed around the demands of EMS work —
-          pre-shift activation, post-shift recovery, and on-station mobility
-          exercises that take 10 minutes or less.
+        <h2 class="section__heading" style="margin-top:var(--sp-2)">Stretching &amp; Recovery</h2>
+        <hr class="section__divider" style="margin-inline:auto" />
+        <p class="stretch-subhead">
+          Recovery is not optional — it is part of the job.
+          Providers who stretch consistently report fewer injuries,
+          faster recovery from soreness, and longer careers.
+          Use this library between calls and after every shift.
         </p>
+      </div>
 
-        <div class="section__placeholder-grid" aria-hidden="true">
-          <div class="placeholder-card">Routine Card</div>
-          <div class="placeholder-card">Routine Card</div>
-          <div class="placeholder-card">Routine Card</div>
+      <!-- Tab Navigation -->
+      <div class="stretch-tabs" id="stretchTabs" role="tablist" aria-label="Stretch regions">
+        <button class="stretch-tab is-active" role="tab" aria-selected="true" data-region="lower-back">Lower Back</button>
+        <button class="stretch-tab" role="tab" aria-selected="false" data-region="shoulders">Shoulders</button>
+        <button class="stretch-tab" role="tab" aria-selected="false" data-region="hips-legs">Hips &amp; Legs</button>
+        <button class="stretch-tab" role="tab" aria-selected="false" data-region="neck">Neck</button>
+        <button class="stretch-tab" role="tab" aria-selected="false" data-region="wrists">Wrists &amp; Forearms</button>
+        <button class="stretch-tab" role="tab" aria-selected="false" data-region="full-body">Full Body Cooldown</button>
+      </div>
+
+      <!-- Stretch Content -->
+      <div class="stretch-content" id="stretchContent">
+
+        <!-- ═══ TAB 1 — LOWER BACK ═══ -->
+        <div class="stretch-region is-active" data-region="lower-back">
+          <div class="stretch-grid">
+
+            <div class="stretch-card">
+              <div class="stretch-card__header">
+                <div class="stretch-card__name">Knees to Chest</div>
+                <div class="stretch-card__region">Lower Back</div>
+              </div>
+              <div class="stretch-card__body">
+                <div class="stretch-card__target">Lumbar extensors, sacroiliac joint</div>
+                <ol class="stretch-card__steps">
+                  <li>Lie on your back on a firm surface</li>
+                  <li>Draw both knees toward your chest</li>
+                  <li>Wrap your hands around your shins or behind your knees</li>
+                  <li>Gently pull knees closer until you feel a comfortable stretch in your lower back</li>
+                  <li>Hold, breathing slowly and deeply</li>
+                </ol>
+                <div class="stretch-card__hold">
+                  <span class="stretch-card__hold-tag">Hold: 30s</span>
+                  <span class="stretch-card__hold-tag">Reps: 3</span>
+                </div>
+                <p class="stretch-card__mod">Modification: Do one leg at a time if both together causes discomfort</p>
+              </div>
+              <div class="stretch-card__footer">
+                <button class="stretch-timer-btn" data-seconds="30">
+                  <i class="fa-solid fa-stopwatch"></i>
+                  Start Timer — 30s
+                </button>
+              </div>
+            </div>
+
+            <div class="stretch-card">
+              <div class="stretch-card__header">
+                <div class="stretch-card__name">Supine Spinal Twist</div>
+                <div class="stretch-card__region">Lower Back</div>
+              </div>
+              <div class="stretch-card__body">
+                <div class="stretch-card__target">Lumbar rotators, piriformis, thoracic spine</div>
+                <ol class="stretch-card__steps">
+                  <li>Lie on your back, arms out to sides at shoulder height</li>
+                  <li>Bend your right knee, foot flat on the floor</li>
+                  <li>Use your left hand to guide your right knee across your body toward the floor on the left side</li>
+                  <li>Keep your right shoulder pressed down — do not let it lift</li>
+                  <li>Hold, then switch sides</li>
+                </ol>
+                <div class="stretch-card__hold">
+                  <span class="stretch-card__hold-tag">Hold: 30s each side</span>
+                  <span class="stretch-card__hold-tag">Reps: 2 each side</span>
+                </div>
+                <p class="stretch-card__mod">Modification: Place a folded towel under the dropped knee if it does not reach the floor</p>
+              </div>
+              <div class="stretch-card__footer">
+                <button class="stretch-timer-btn" data-seconds="30">
+                  <i class="fa-solid fa-stopwatch"></i>
+                  Start Timer — 30s
+                </button>
+              </div>
+            </div>
+
+            <div class="stretch-card">
+              <div class="stretch-card__header">
+                <div class="stretch-card__name">Cat-Cow Mobility</div>
+                <div class="stretch-card__region">Lower Back</div>
+              </div>
+              <div class="stretch-card__body">
+                <div class="stretch-card__target">Full lumbar and thoracic spine</div>
+                <ol class="stretch-card__steps">
+                  <li>Start on hands and knees — wrists under shoulders, knees under hips</li>
+                  <li>Inhale: drop belly toward floor, lift chest and tailbone (cow)</li>
+                  <li>Exhale: round spine toward ceiling, tuck chin and tailbone (cat)</li>
+                  <li>Move slowly and rhythmically — let your breath lead</li>
+                  <li>Never force the range — move within comfort</li>
+                </ol>
+                <div class="stretch-card__hold">
+                  <span class="stretch-card__hold-tag">Flow: 5s each position</span>
+                  <span class="stretch-card__hold-tag">Reps: 10 cycles</span>
+                </div>
+                <p class="stretch-card__mod">Modification: Can be done seated in a chair — arch and round the lower back only</p>
+              </div>
+              <div class="stretch-card__footer">
+                <button class="stretch-timer-btn" data-seconds="5">
+                  <i class="fa-solid fa-stopwatch"></i>
+                  Start Timer — 5s
+                </button>
+              </div>
+            </div>
+
+            <div class="stretch-card">
+              <div class="stretch-card__header">
+                <div class="stretch-card__name">Child's Pose</div>
+                <div class="stretch-card__region">Lower Back</div>
+              </div>
+              <div class="stretch-card__body">
+                <div class="stretch-card__target">Lumbar spine, hips, thoracic extensors</div>
+                <ol class="stretch-card__steps">
+                  <li>Start on hands and knees</li>
+                  <li>Sit your hips back toward your heels as far as comfortable</li>
+                  <li>Walk your hands forward and lower your chest toward the floor</li>
+                  <li>Let your forehead rest on the surface if comfortable</li>
+                  <li>Breathe deeply — let gravity do the work</li>
+                </ol>
+                <div class="stretch-card__hold">
+                  <span class="stretch-card__hold-tag">Hold: 45s</span>
+                  <span class="stretch-card__hold-tag">Reps: 2</span>
+                </div>
+                <p class="stretch-card__mod">Modification: Place a rolled blanket between thighs and calves if hips do not reach heels</p>
+              </div>
+              <div class="stretch-card__footer">
+                <button class="stretch-timer-btn" data-seconds="45">
+                  <i class="fa-solid fa-stopwatch"></i>
+                  Start Timer — 45s
+                </button>
+              </div>
+            </div>
+
+            <div class="stretch-card">
+              <div class="stretch-card__header">
+                <div class="stretch-card__name">Standing Lumbar Extension</div>
+                <div class="stretch-card__region">Lower Back</div>
+              </div>
+              <div class="stretch-card__body">
+                <div class="stretch-card__target">Lumbar discs, lumbar extensors (decompression)</div>
+                <ol class="stretch-card__steps">
+                  <li>Stand feet shoulder-width apart, hands on your lower back</li>
+                  <li>Gently arch backward, supporting your lower back with your hands</li>
+                  <li>Look upward — do not crank your neck</li>
+                  <li>Hold briefly, return to neutral</li>
+                  <li>Do this after any prolonged flexed-forward position</li>
+                </ol>
+                <div class="stretch-card__hold">
+                  <span class="stretch-card__hold-tag">Hold: 10s</span>
+                  <span class="stretch-card__hold-tag">Reps: 5–8</span>
+                </div>
+                <p class="stretch-card__mod">Modification: Do not perform if you have active lumbar stenosis — use knees-to-chest instead</p>
+              </div>
+              <div class="stretch-card__footer">
+                <button class="stretch-timer-btn" data-seconds="10">
+                  <i class="fa-solid fa-stopwatch"></i>
+                  Start Timer — 10s
+                </button>
+              </div>
+            </div>
+
+          </div>
         </div>
 
-      </div>
-    </div>
+        <!-- ═══ TAB 2 — SHOULDERS ═══ -->
+        <div class="stretch-region" data-region="shoulders">
+          <div class="stretch-grid">
+
+            <div class="stretch-card">
+              <div class="stretch-card__header">
+                <div class="stretch-card__name">Cross-Body Shoulder Stretch</div>
+                <div class="stretch-card__region">Shoulders</div>
+              </div>
+              <div class="stretch-card__body">
+                <div class="stretch-card__target">Posterior rotator cuff, posterior deltoid</div>
+                <ol class="stretch-card__steps">
+                  <li>Stand tall or sit upright</li>
+                  <li>Bring your right arm across your chest at shoulder height</li>
+                  <li>Use your left hand or forearm to gently press the right arm closer to your chest</li>
+                  <li>Keep your right shoulder down — do not let it rise toward your ear</li>
+                  <li>Hold, then switch sides</li>
+                </ol>
+                <div class="stretch-card__hold">
+                  <span class="stretch-card__hold-tag">Hold: 30s each side</span>
+                  <span class="stretch-card__hold-tag">Reps: 2 each side</span>
+                </div>
+                <p class="stretch-card__mod">Modification: Loop a towel around your arm if reaching across is uncomfortable</p>
+              </div>
+              <div class="stretch-card__footer">
+                <button class="stretch-timer-btn" data-seconds="30">
+                  <i class="fa-solid fa-stopwatch"></i>
+                  Start Timer — 30s
+                </button>
+              </div>
+            </div>
+
+            <div class="stretch-card">
+              <div class="stretch-card__header">
+                <div class="stretch-card__name">Doorway Chest Opener</div>
+                <div class="stretch-card__region">Shoulders</div>
+              </div>
+              <div class="stretch-card__body">
+                <div class="stretch-card__target">Pectoralis major, anterior deltoid, bicep tendon</div>
+                <ol class="stretch-card__steps">
+                  <li>Stand in a doorway or beside the ambulance bay</li>
+                  <li>Place your right forearm against the frame, elbow at 90 degrees</li>
+                  <li>Step forward until you feel a stretch across the front of your chest and shoulder</li>
+                  <li>Keep your core engaged — do not arch your lower back</li>
+                  <li>Hold, then switch sides</li>
+                </ol>
+                <div class="stretch-card__hold">
+                  <span class="stretch-card__hold-tag">Hold: 30s each side</span>
+                  <span class="stretch-card__hold-tag">Reps: 2 each side</span>
+                </div>
+                <p class="stretch-card__mod">Modification: Lower your arm angle to 45 degrees if 90 degrees is uncomfortable</p>
+              </div>
+              <div class="stretch-card__footer">
+                <button class="stretch-timer-btn" data-seconds="30">
+                  <i class="fa-solid fa-stopwatch"></i>
+                  Start Timer — 30s
+                </button>
+              </div>
+            </div>
+
+            <div class="stretch-card">
+              <div class="stretch-card__header">
+                <div class="stretch-card__name">Shoulder Pendulum</div>
+                <div class="stretch-card__region">Shoulders</div>
+              </div>
+              <div class="stretch-card__body">
+                <div class="stretch-card__target">Rotator cuff decompression, glenohumeral joint space</div>
+                <ol class="stretch-card__steps">
+                  <li>Stand beside a table or stretcher</li>
+                  <li>Support yourself with one hand</li>
+                  <li>Let the other arm hang completely relaxed</li>
+                  <li>Gently swing the hanging arm in small circles — clockwise then counterclockwise</li>
+                  <li>Let gravity and momentum do the work — do not actively move the shoulder</li>
+                </ol>
+                <div class="stretch-card__hold">
+                  <span class="stretch-card__hold-tag">Hold: 30s each direction</span>
+                  <span class="stretch-card__hold-tag">Reps: 2 sets</span>
+                </div>
+                <p class="stretch-card__mod">Modification: Safe for most rotator cuff injuries — check with your provider if unsure</p>
+              </div>
+              <div class="stretch-card__footer">
+                <button class="stretch-timer-btn" data-seconds="30">
+                  <i class="fa-solid fa-stopwatch"></i>
+                  Start Timer — 30s
+                </button>
+              </div>
+            </div>
+
+            <div class="stretch-card">
+              <div class="stretch-card__header">
+                <div class="stretch-card__name">Sleeper Stretch</div>
+                <div class="stretch-card__region">Shoulders</div>
+              </div>
+              <div class="stretch-card__body">
+                <div class="stretch-card__target">Posterior shoulder capsule, infraspinatus, teres minor</div>
+                <ol class="stretch-card__steps">
+                  <li>Lie on your side on the affected shoulder</li>
+                  <li>Bend your elbow to 90 degrees, forearm pointing toward the ceiling</li>
+                  <li>Use your top hand to gently press your forearm toward the floor</li>
+                  <li>Stop at the first point of resistance — never force this stretch</li>
+                  <li>Hold, then switch sides</li>
+                </ol>
+                <div class="stretch-card__hold">
+                  <span class="stretch-card__hold-tag">Hold: 30s each side</span>
+                  <span class="stretch-card__hold-tag">Reps: 2 each side</span>
+                </div>
+                <p class="stretch-card__mod">Modification: Reduce pressure if you feel any pinching — this should be a deep pull, not pain</p>
+              </div>
+              <div class="stretch-card__footer">
+                <button class="stretch-timer-btn" data-seconds="30">
+                  <i class="fa-solid fa-stopwatch"></i>
+                  Start Timer — 30s
+                </button>
+              </div>
+            </div>
+
+            <div class="stretch-card">
+              <div class="stretch-card__header">
+                <div class="stretch-card__name">Overhead Tricep &amp; Lat Stretch</div>
+                <div class="stretch-card__region">Shoulders</div>
+              </div>
+              <div class="stretch-card__body">
+                <div class="stretch-card__target">Latissimus dorsi, tricep, inferior rotator cuff</div>
+                <ol class="stretch-card__steps">
+                  <li>Stand or sit tall</li>
+                  <li>Raise your right arm overhead and bend the elbow, letting your hand drop behind your head</li>
+                  <li>Use your left hand to gently press down on the right elbow</li>
+                  <li>Simultaneously lean slightly left to deepen the lat stretch</li>
+                  <li>Hold, then switch sides</li>
+                </ol>
+                <div class="stretch-card__hold">
+                  <span class="stretch-card__hold-tag">Hold: 30s each side</span>
+                  <span class="stretch-card__hold-tag">Reps: 2 each side</span>
+                </div>
+                <p class="stretch-card__mod">Modification: Do the lean only — skip the overhead arm if shoulder is irritated</p>
+              </div>
+              <div class="stretch-card__footer">
+                <button class="stretch-timer-btn" data-seconds="30">
+                  <i class="fa-solid fa-stopwatch"></i>
+                  Start Timer — 30s
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ═══ TAB 3 — HIPS & LEGS ═══ -->
+        <div class="stretch-region" data-region="hips-legs">
+          <div class="stretch-grid">
+
+            <div class="stretch-card">
+              <div class="stretch-card__header">
+                <div class="stretch-card__name">Hip Flexor Lunge Stretch</div>
+                <div class="stretch-card__region">Hips &amp; Legs</div>
+              </div>
+              <div class="stretch-card__body">
+                <div class="stretch-card__target">Iliopsoas, rectus femoris, anterior hip capsule</div>
+                <ol class="stretch-card__steps">
+                  <li>Kneel on your right knee, left foot forward (use a kneeling pad on hard surfaces)</li>
+                  <li>Shift your weight forward until you feel a stretch in the front of your right hip</li>
+                  <li>Keep your torso upright — do not lean forward</li>
+                  <li>Tuck your pelvis slightly to deepen the stretch</li>
+                  <li>Hold, then switch sides</li>
+                </ol>
+                <div class="stretch-card__hold">
+                  <span class="stretch-card__hold-tag">Hold: 40s each side</span>
+                  <span class="stretch-card__hold-tag">Reps: 2 each side</span>
+                </div>
+                <p class="stretch-card__mod">Modification: Place your back knee on a folded jacket or pad for comfort</p>
+              </div>
+              <div class="stretch-card__footer">
+                <button class="stretch-timer-btn" data-seconds="40">
+                  <i class="fa-solid fa-stopwatch"></i>
+                  Start Timer — 40s
+                </button>
+              </div>
+            </div>
+
+            <div class="stretch-card">
+              <div class="stretch-card__header">
+                <div class="stretch-card__name">Seated Piriformis Stretch</div>
+                <div class="stretch-card__region">Hips &amp; Legs</div>
+              </div>
+              <div class="stretch-card__body">
+                <div class="stretch-card__target">Piriformis, deep external hip rotators, sciatic nerve decompression</div>
+                <ol class="stretch-card__steps">
+                  <li>Sit on a chair or bench</li>
+                  <li>Cross your right ankle over your left knee (figure-4 position)</li>
+                  <li>Sit tall and gently lean forward from the hips — not the waist</li>
+                  <li>You should feel a deep stretch in the right glute</li>
+                  <li>Hold, then switch sides</li>
+                </ol>
+                <div class="stretch-card__hold">
+                  <span class="stretch-card__hold-tag">Hold: 40s each side</span>
+                  <span class="stretch-card__hold-tag">Reps: 2 each side</span>
+                </div>
+                <p class="stretch-card__mod">Modification: If you have sciatic symptoms, do this very gently — stop if pain increases</p>
+              </div>
+              <div class="stretch-card__footer">
+                <button class="stretch-timer-btn" data-seconds="40">
+                  <i class="fa-solid fa-stopwatch"></i>
+                  Start Timer — 40s
+                </button>
+              </div>
+            </div>
+
+            <div class="stretch-card">
+              <div class="stretch-card__header">
+                <div class="stretch-card__name">Standing Hamstring Stretch</div>
+                <div class="stretch-card__region">Hips &amp; Legs</div>
+              </div>
+              <div class="stretch-card__body">
+                <div class="stretch-card__target">Biceps femoris, semimembranosus, semitendinosus</div>
+                <ol class="stretch-card__steps">
+                  <li>Stand facing a raised surface (ambulance bumper, bench, or low wall)</li>
+                  <li>Place your right heel on the surface, leg straight but not locked</li>
+                  <li>Hinge forward from the hips — keep your back flat, do not round forward</li>
+                  <li>Hold at the point of comfortable tension</li>
+                  <li>Switch sides</li>
+                </ol>
+                <div class="stretch-card__hold">
+                  <span class="stretch-card__hold-tag">Hold: 35s each side</span>
+                  <span class="stretch-card__hold-tag">Reps: 2 each side</span>
+                </div>
+                <p class="stretch-card__mod">Modification: Bend the elevated knee slightly if hamstrings are very tight</p>
+              </div>
+              <div class="stretch-card__footer">
+                <button class="stretch-timer-btn" data-seconds="35">
+                  <i class="fa-solid fa-stopwatch"></i>
+                  Start Timer — 35s
+                </button>
+              </div>
+            </div>
+
+            <div class="stretch-card">
+              <div class="stretch-card__header">
+                <div class="stretch-card__name">Standing Quad Stretch</div>
+                <div class="stretch-card__region">Hips &amp; Legs</div>
+              </div>
+              <div class="stretch-card__body">
+                <div class="stretch-card__target">Quadriceps, patellar tendon</div>
+                <ol class="stretch-card__steps">
+                  <li>Stand beside a wall or vehicle for balance</li>
+                  <li>Bend your right knee and bring your heel toward your glute</li>
+                  <li>Hold your right ankle with your right hand</li>
+                  <li>Keep your knees together and stand tall — do not lean forward</li>
+                  <li>Hold, then switch sides</li>
+                </ol>
+                <div class="stretch-card__hold">
+                  <span class="stretch-card__hold-tag">Hold: 30s each side</span>
+                  <span class="stretch-card__hold-tag">Reps: 2 each side</span>
+                </div>
+                <p class="stretch-card__mod">Modification: Loop a belt or strap around your ankle if you cannot reach it comfortably</p>
+              </div>
+              <div class="stretch-card__footer">
+                <button class="stretch-timer-btn" data-seconds="30">
+                  <i class="fa-solid fa-stopwatch"></i>
+                  Start Timer — 30s
+                </button>
+              </div>
+            </div>
+
+            <div class="stretch-card">
+              <div class="stretch-card__header">
+                <div class="stretch-card__name">Calf &amp; Achilles Stretch</div>
+                <div class="stretch-card__region">Hips &amp; Legs</div>
+              </div>
+              <div class="stretch-card__body">
+                <div class="stretch-card__target">Gastrocnemius, soleus, Achilles tendon, plantar fascia</div>
+                <ol class="stretch-card__steps">
+                  <li>Stand facing a wall, hands on the surface</li>
+                  <li>Step your right foot back into a lunge position</li>
+                  <li>Keep your right heel flat on the floor and right leg straight — stretches the gastrocnemius</li>
+                  <li>Then slightly bend the right knee — shifts stretch lower to soleus and Achilles</li>
+                  <li>Hold each position, then switch sides</li>
+                </ol>
+                <div class="stretch-card__hold">
+                  <span class="stretch-card__hold-tag">Hold: 30s straight + 30s bent each side</span>
+                  <span class="stretch-card__hold-tag">Reps: 2 each side</span>
+                </div>
+                <p class="stretch-card__mod">Modification: Do on a slight incline or step for a deeper stretch if tolerated</p>
+              </div>
+              <div class="stretch-card__footer">
+                <button class="stretch-timer-btn" data-seconds="30">
+                  <i class="fa-solid fa-stopwatch"></i>
+                  Start Timer — 30s
+                </button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ═══ TAB 4 — NECK (Placeholder) ═══ -->
+        <div class="stretch-region" data-region="neck">
+          <div class="stretch-coming-soon">
+            <i class="fa-solid fa-clock"></i>
+            <div class="stretch-coming-soon-text">Content loading in next update.</div>
+          </div>
+        </div>
+
+        <!-- ═══ TAB 5 — WRISTS & FOREARMS (Placeholder) ═══ -->
+        <div class="stretch-region" data-region="wrists">
+          <div class="stretch-coming-soon">
+            <i class="fa-solid fa-clock"></i>
+            <div class="stretch-coming-soon-text">Content loading in next update.</div>
+          </div>
+        </div>
+
+        <!-- ═══ TAB 6 — FULL BODY COOLDOWN (Placeholder) ═══ -->
+        <div class="stretch-region" data-region="full-body">
+          <div class="stretch-coming-soon">
+            <i class="fa-solid fa-clock"></i>
+            <div class="stretch-coming-soon-text">Content loading in next update.</div>
+          </div>
+        </div>
+
+      </div><!-- /stretch-content -->
+
+    </div><!-- /container -->
   </section>
 
 
@@ -5823,6 +6572,147 @@
             });
           }
         }, { threshold: 0.1 }).observe(preventionSection);
+      }
+
+    })();
+
+    /* ══════════════════════════════════════════════════════════
+       STRETCHING SECTION
+    ══════════════════════════════════════════════════════════ */
+    (function () {
+
+      /* ── Tab Switching ── */
+      const tabs    = document.querySelectorAll('#stretchTabs .stretch-tab');
+      const regions = document.querySelectorAll('#stretchContent .stretch-region');
+
+      function showRegion(regionKey) {
+        /* Update tabs */
+        tabs.forEach(t => {
+          t.classList.toggle('is-active', t.dataset.region === regionKey);
+          t.setAttribute('aria-selected', String(t.dataset.region === regionKey));
+        });
+
+        /* Fade out current, swap, fade in new */
+        regions.forEach(r => {
+          if (r.classList.contains('is-active')) {
+            r.style.opacity = '0';
+            setTimeout(() => {
+              r.classList.remove('is-active');
+              r.style.opacity = '';
+
+              /* Activate new region */
+              const next = document.querySelector(`.stretch-region[data-region="${regionKey}"]`);
+              if (next) {
+                next.classList.add('is-active');
+                /* Stagger cards in */
+                next.querySelectorAll('.stretch-card').forEach((card, i) => {
+                  card.classList.remove('is-visible');
+                  setTimeout(() => card.classList.add('is-visible'), 60 + i * 60);
+                });
+              }
+            }, 200);
+            return;
+          }
+        });
+
+        /* If no current active (shouldn't happen, but safety) */
+        const active = document.querySelector('.stretch-region.is-active');
+        if (!active) {
+          const next = document.querySelector(`.stretch-region[data-region="${regionKey}"]`);
+          if (next) {
+            next.classList.add('is-active');
+            next.querySelectorAll('.stretch-card').forEach((card, i) => {
+              card.classList.remove('is-visible');
+              setTimeout(() => card.classList.add('is-visible'), 60 + i * 60);
+            });
+          }
+        }
+      }
+
+      tabs.forEach(tab => {
+        tab.addEventListener('click', () => showRegion(tab.dataset.region));
+      });
+
+
+      /* ── Hold Timers ── */
+      document.querySelectorAll('.stretch-timer-btn').forEach(btn => {
+        const totalSeconds = parseInt(btn.dataset.seconds, 10);
+        let intervalId = null;
+        let remaining  = 0;
+
+        const defaultHTML = btn.innerHTML;
+
+        function reset() {
+          clearInterval(intervalId);
+          intervalId = null;
+          remaining = 0;
+          btn.classList.remove('is-running', 'is-done');
+          btn.innerHTML = defaultHTML;
+        }
+
+        function start() {
+          remaining = totalSeconds;
+          btn.classList.add('is-running');
+          btn.innerHTML = '<i class="fa-solid fa-stop"></i> ' + remaining + 's';
+
+          intervalId = setInterval(() => {
+            remaining--;
+            if (remaining <= 0) {
+              clearInterval(intervalId);
+              intervalId = null;
+              btn.classList.remove('is-running');
+              btn.classList.add('is-done');
+              btn.innerHTML = '<i class="fa-solid fa-check"></i> Done!';
+              setTimeout(reset, 1500);
+            } else {
+              btn.innerHTML = '<i class="fa-solid fa-stop"></i> ' + remaining + 's';
+            }
+          }, 1000);
+        }
+
+        btn.addEventListener('click', () => {
+          if (intervalId) {
+            reset();
+          } else if (!btn.classList.contains('is-done')) {
+            start();
+          }
+        });
+      });
+
+
+      /* ── Section entry: fade-up + initial card stagger ── */
+      const stretchSection = document.getElementById('stretching');
+      if (stretchSection) {
+        const fadeEls = stretchSection.querySelectorAll(
+          '.stretch-header, .stretch-tabs, .stretch-content'
+        );
+
+        fadeEls.forEach(el => {
+          el.style.opacity = '0';
+          el.style.transform = 'translateY(20px)';
+          el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        });
+
+        new IntersectionObserver(([entry]) => {
+          if (entry.isIntersecting) {
+            fadeEls.forEach((el, i) => {
+              setTimeout(() => {
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0)';
+              }, i * 120);
+            });
+
+            /* Stagger the initially visible cards */
+            setTimeout(() => {
+              const activeRegion = stretchSection.querySelector('.stretch-region.is-active');
+              if (activeRegion) {
+                activeRegion.querySelectorAll('.stretch-card').forEach((card, j) => {
+                  setTimeout(() => card.classList.add('is-visible'), j * 60);
+                });
+              }
+            }, fadeEls.length * 120 + 100);
+          }
+        }, { threshold: 0.1 }).observe(stretchSection);
       }
 
     })();
