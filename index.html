@@ -1633,6 +1633,497 @@
     }
 
     /* ============================================================
+       PREVENTION SECTION
+    ============================================================ */
+
+    .prevention-header {
+      text-align: center;
+      max-width: 700px;
+      margin-inline: auto;
+      margin-bottom: var(--sp-8);
+    }
+
+    .prevention-subhead {
+      font-size: 1.05rem;
+      color: var(--color-secondary);
+      line-height: 1.75;
+      margin-top: var(--sp-2);
+    }
+
+    /* ── Shift Readiness Dashboard ── */
+    .sr-progress-wrap {
+      max-width: 1160px;
+      margin-inline: auto;
+      margin-bottom: var(--sp-4);
+    }
+
+    .sr-progress-track {
+      height: 6px;
+      background: var(--color-border);
+      border-radius: 100px;
+      overflow: hidden;
+    }
+
+    .sr-progress-fill {
+      height: 100%;
+      background: var(--color-accent);
+      border-radius: 100px;
+      width: 0%;
+      transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1), background 0.4s ease;
+    }
+
+    .sr-progress-fill.is-complete {
+      background: #22c55e;
+    }
+
+    .sr-complete-msg {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-top: var(--sp-2);
+      font-family: var(--font-heading);
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #22c55e;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    .sr-complete-msg.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .sr-dashboard {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: var(--sp-2);
+      max-width: 1160px;
+      margin-inline: auto;
+      margin-bottom: var(--sp-8);
+    }
+
+    .sr-tile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: var(--sp-4) var(--sp-2);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      min-height: 44px;
+    }
+
+    .sr-tile:hover {
+      border-color: rgba(249, 115, 22, 0.4);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .sr-tile.is-reviewed {
+      background: rgba(34, 197, 94, 0.06);
+      border-color: rgba(34, 197, 94, 0.3);
+    }
+
+    .sr-tile__icon {
+      font-size: 2rem;
+      color: var(--color-accent);
+      margin-bottom: var(--sp-2);
+      position: relative;
+      transition: color 0.25s ease;
+    }
+
+    .sr-tile.is-reviewed .sr-tile__icon {
+      color: #22c55e;
+    }
+
+    .sr-tile__badge {
+      display: none;
+      position: absolute;
+      top: -4px;
+      right: -10px;
+      font-size: 0.7rem;
+      color: #22c55e;
+    }
+
+    .sr-tile.is-reviewed .sr-tile__badge {
+      display: block;
+    }
+
+    .sr-tile__name {
+      font-family: var(--font-heading);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--color-text);
+      margin-bottom: var(--sp-1);
+    }
+
+    .sr-tile__status {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--color-muted);
+      transition: color 0.25s ease;
+    }
+
+    .sr-tile__dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #eab308;
+      transition: background 0.25s ease;
+    }
+
+    .sr-tile.is-reviewed .sr-tile__dot {
+      background: #22c55e;
+    }
+
+    .sr-tile.is-reviewed .sr-tile__status {
+      color: #22c55e;
+    }
+
+    /* ── Prevention Accordion ── */
+    .prev-accordion {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      max-width: 1160px;
+      margin-inline: auto;
+    }
+
+    .prev-acc-item {
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .prev-acc-header {
+      display: flex;
+      align-items: center;
+      padding: var(--sp-3) var(--sp-4);
+      background: var(--color-surface);
+      border-left: 4px solid var(--color-accent);
+      cursor: pointer;
+      user-select: none;
+      gap: var(--sp-3);
+      transition: background 0.2s ease;
+    }
+
+    .prev-acc-header:hover {
+      background: #152a44;
+    }
+
+    .prev-acc-item.is-open .prev-acc-header {
+      background: #1a2f4e;
+    }
+
+    .prev-acc-header i.prev-acc-icon {
+      color: var(--color-accent);
+      font-size: 1.15rem;
+      flex-shrink: 0;
+      width: 24px;
+      text-align: center;
+    }
+
+    .prev-acc-title {
+      flex: 1;
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--color-text);
+    }
+
+    .prev-acc-arrow {
+      color: var(--color-muted);
+      font-size: 0.8rem;
+      flex-shrink: 0;
+      transition: transform 0.25s ease;
+    }
+
+    .prev-acc-item.is-open .prev-acc-arrow {
+      transform: rotate(180deg);
+    }
+
+    .prev-acc-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .prev-acc-item.is-open .prev-acc-body {
+      max-height: 3000px;
+    }
+
+    .prev-acc-content {
+      padding: var(--sp-4);
+      background: #0d1b2e;
+    }
+
+    .prev-acc-intro {
+      font-size: 1rem;
+      color: var(--color-secondary);
+      line-height: 1.75;
+      margin-bottom: var(--sp-4);
+      max-width: 700px;
+    }
+
+    /* ── Warm-up Movement Cards ── */
+    .warmup-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-3);
+      margin-bottom: var(--sp-4);
+    }
+
+    .warmup-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: var(--sp-3);
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .warmup-card:hover {
+      border-color: rgba(249, 115, 22, 0.3);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .warmup-card__name {
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--color-text);
+      margin-bottom: 4px;
+    }
+
+    .warmup-card__target {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--color-accent);
+      letter-spacing: 0.03em;
+      margin-bottom: var(--sp-1);
+    }
+
+    .warmup-card__desc {
+      font-size: 0.875rem;
+      color: var(--color-secondary);
+      line-height: 1.65;
+      margin-bottom: var(--sp-1);
+    }
+
+    .warmup-card__duration {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--color-muted);
+      font-family: var(--font-heading);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* ── Pro Tip Callout ── */
+    .prev-callout {
+      display: flex;
+      gap: var(--sp-2);
+      align-items: flex-start;
+      padding: var(--sp-3) var(--sp-4);
+      background: #1a2f4e;
+      border-left: 4px solid var(--color-accent);
+      border-radius: 0 8px 8px 0;
+      font-size: 0.9rem;
+      color: var(--color-secondary);
+      line-height: 1.65;
+    }
+
+    .prev-callout strong {
+      color: var(--color-text);
+    }
+
+    /* ── Equipment Checklist ── */
+    .equip-checklist {
+      margin-bottom: var(--sp-4);
+    }
+
+    .equip-group {
+      margin-bottom: var(--sp-3);
+    }
+
+    .equip-group__title {
+      font-family: var(--font-heading);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: var(--sp-1);
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .equip-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px var(--sp-2);
+      cursor: pointer;
+      user-select: none;
+      border-radius: 4px;
+      transition: background 0.15s ease;
+      min-height: 44px;
+    }
+
+    .equip-item:hover {
+      background: rgba(249, 115, 22, 0.04);
+    }
+
+    .equip-item__box {
+      width: 22px;
+      height: 22px;
+      border-radius: 4px;
+      border: 2px solid var(--color-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 0.7rem;
+      color: transparent;
+      transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .equip-item.is-checked .equip-item__box {
+      background: #22c55e;
+      border-color: #22c55e;
+      color: #fff;
+    }
+
+    .equip-item__label {
+      font-size: 0.875rem;
+      color: var(--color-secondary);
+      line-height: 1.5;
+      transition: color 0.2s ease, text-decoration 0.2s ease;
+    }
+
+    .equip-item.is-checked .equip-item__label {
+      text-decoration: line-through;
+      color: var(--color-muted);
+    }
+
+    .equip-progress {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: var(--sp-3);
+    }
+
+    .equip-progress__track {
+      flex: 1;
+      height: 4px;
+      background: var(--color-border);
+      border-radius: 100px;
+      overflow: hidden;
+    }
+
+    .equip-progress__fill {
+      height: 100%;
+      background: var(--color-accent);
+      border-radius: 100px;
+      width: 0%;
+      transition: width 0.3s ease, background 0.3s ease;
+    }
+
+    .equip-progress__fill.is-complete {
+      background: #22c55e;
+    }
+
+    .equip-progress__label {
+      font-family: var(--font-heading);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--color-muted);
+      white-space: nowrap;
+    }
+
+    .equip-progress__label em {
+      color: var(--color-accent);
+      font-style: normal;
+    }
+
+    /* ── Red Callout ── */
+    .prev-callout--danger {
+      display: flex;
+      gap: var(--sp-2);
+      align-items: flex-start;
+      padding: var(--sp-3) var(--sp-4);
+      background: rgba(239, 68, 68, 0.07);
+      border: 1px solid rgba(239, 68, 68, 0.2);
+      border-left: 4px solid #ef4444;
+      border-radius: 0 8px 8px 0;
+      font-size: 0.9rem;
+      color: var(--color-secondary);
+      line-height: 1.65;
+    }
+
+    .prev-callout--danger > i {
+      color: #ef4444;
+      font-size: 1rem;
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+
+    /* ── Prevention Responsive — Tablet ── */
+    @media (max-width: 900px) {
+      .sr-dashboard {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .warmup-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .prev-acc-content {
+        padding: var(--sp-3);
+      }
+    }
+
+    /* ── Prevention Responsive — Mobile ── */
+    @media (max-width: 640px) {
+      .sr-dashboard {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .warmup-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .prev-acc-header {
+        padding: var(--sp-2) var(--sp-3);
+      }
+
+      .prev-acc-title {
+        font-size: 0.88rem;
+      }
+
+      .prev-callout,
+      .prev-callout--danger {
+        padding: var(--sp-2) var(--sp-3);
+      }
+    }
+
+    /* ============================================================
        FOOTER
     ============================================================ */
     .footer {
@@ -3492,32 +3983,307 @@
   ============================================================ -->
   <section class="section section--base" id="prevention">
     <div class="container">
-      <div class="section__inner">
 
-        <div class="section__icon" aria-hidden="true">
-          <i class="fa-solid fa-shield-heart"></i>
+      <!-- Section Header -->
+      <div class="prevention-header">
+        <span class="eyebrow">Section 04</span>
+        <h2 class="section__heading" style="margin-top:var(--sp-2)">Injury Prevention Protocols</h2>
+        <hr class="section__divider" style="margin-inline:auto" />
+        <p class="prevention-subhead">
+          Prevention is not a single action — it is a system of habits
+          built into every shift. These protocols exist because the data
+          shows they work. Build them into your routine.
+        </p>
+      </div>
+
+      <!-- ── PART 1: Shift Readiness Dashboard ── -->
+
+      <!-- Progress Bar -->
+      <div class="sr-progress-wrap">
+        <div class="sr-progress-track">
+          <div class="sr-progress-fill" id="srProgressFill"></div>
+        </div>
+        <div class="sr-complete-msg" id="srCompleteMsg">
+          <i class="fa-solid fa-shield-halved"></i>
+          Shift Readiness Complete — Stay safe out there.
+        </div>
+      </div>
+
+      <!-- Dashboard Tiles -->
+      <div class="sr-dashboard" id="srDashboard">
+
+        <div class="sr-tile" data-tile="warmup">
+          <div class="sr-tile__icon">
+            <i class="fa-solid fa-person-running"></i>
+            <span class="sr-tile__badge"><i class="fa-solid fa-circle-check"></i></span>
+          </div>
+          <div class="sr-tile__name">Pre-Shift Warmup</div>
+          <div class="sr-tile__status">
+            <span class="sr-tile__dot"></span>
+            <span class="sr-tile__status-text">Not Reviewed</span>
+          </div>
         </div>
 
-        <span class="eyebrow">Section 04</span>
-        <span class="section__number">Staying Ahead of Injury</span>
+        <div class="sr-tile" data-tile="equipment">
+          <div class="sr-tile__icon">
+            <i class="fa-solid fa-truck-medical"></i>
+            <span class="sr-tile__badge"><i class="fa-solid fa-circle-check"></i></span>
+          </div>
+          <div class="sr-tile__name">Equipment Check</div>
+          <div class="sr-tile__status">
+            <span class="sr-tile__dot"></span>
+            <span class="sr-tile__status-text">Not Reviewed</span>
+          </div>
+        </div>
 
-        <h2 class="section__heading">Injury Prevention Protocols</h2>
-        <hr class="section__divider" />
-        <p class="section__body">
-          Prevention is more than warm-ups. This section outlines shift-start
-          routines, fatigue management, PPE fit, and the behavioral and
-          systemic factors that determine whether injuries happen.
-        </p>
+        <div class="sr-tile" data-tile="ppe">
+          <div class="sr-tile__icon">
+            <i class="fa-solid fa-helmet-safety"></i>
+            <span class="sr-tile__badge"><i class="fa-solid fa-circle-check"></i></span>
+          </div>
+          <div class="sr-tile__name">PPE Verified</div>
+          <div class="sr-tile__status">
+            <span class="sr-tile__dot"></span>
+            <span class="sr-tile__status-text">Not Reviewed</span>
+          </div>
+        </div>
 
-        <div class="section__placeholder-grid" aria-hidden="true">
-          <div class="placeholder-card">Protocol Card</div>
-          <div class="placeholder-card">Protocol Card</div>
-          <div class="placeholder-card">Protocol Card</div>
-          <div class="placeholder-card">Protocol Card</div>
+        <div class="sr-tile" data-tile="hazard">
+          <div class="sr-tile__icon">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <span class="sr-tile__badge"><i class="fa-solid fa-circle-check"></i></span>
+          </div>
+          <div class="sr-tile__name">Hazard Awareness</div>
+          <div class="sr-tile__status">
+            <span class="sr-tile__dot"></span>
+            <span class="sr-tile__status-text">Not Reviewed</span>
+          </div>
+        </div>
+
+        <div class="sr-tile" data-tile="brief">
+          <div class="sr-tile__icon">
+            <i class="fa-solid fa-comments"></i>
+            <span class="sr-tile__badge"><i class="fa-solid fa-circle-check"></i></span>
+          </div>
+          <div class="sr-tile__name">Team Brief</div>
+          <div class="sr-tile__status">
+            <span class="sr-tile__dot"></span>
+            <span class="sr-tile__status-text">Not Reviewed</span>
+          </div>
         </div>
 
       </div>
-    </div>
+
+      <!-- ── PART 2: Accordion Panels ── -->
+      <div class="prev-accordion" id="prevAccordion">
+
+        <!-- ACCORDION 1 — Pre-Shift Warm-Up Routine -->
+        <div class="prev-acc-item">
+          <div class="prev-acc-header">
+            <i class="fa-solid fa-person-running prev-acc-icon"></i>
+            <span class="prev-acc-title">Pre-Shift Warm-Up Routine</span>
+            <i class="fa-solid fa-chevron-down prev-acc-arrow"></i>
+          </div>
+          <div class="prev-acc-body">
+            <div class="prev-acc-content">
+
+              <p class="prev-acc-intro">
+                Cold muscles under sudden load are significantly more
+                vulnerable to strain and tear. A 5–7 minute warm-up
+                before your first call is one of the highest-return
+                injury prevention habits you can build.
+              </p>
+
+              <div class="warmup-grid">
+
+                <div class="warmup-card">
+                  <div class="warmup-card__name">Hip Circles</div>
+                  <div class="warmup-card__target">Hip flexors, lumbar spine</div>
+                  <p class="warmup-card__desc">
+                    Stand feet shoulder-width apart, hands on hips.
+                    Make slow controlled circles with your hips —
+                    5 in each direction. Keep upper body still.
+                  </p>
+                  <div class="warmup-card__duration">10 circles each direction</div>
+                </div>
+
+                <div class="warmup-card">
+                  <div class="warmup-card__name">Cat-Cow Stretch</div>
+                  <div class="warmup-card__target">Thoracic and lumbar spine</div>
+                  <p class="warmup-card__desc">
+                    On hands and knees, alternate between
+                    arching your back toward the ceiling and dropping
+                    your belly toward the floor. Move slowly and
+                    breathe through each position.
+                  </p>
+                  <div class="warmup-card__duration">10 slow repetitions</div>
+                </div>
+
+                <div class="warmup-card">
+                  <div class="warmup-card__name">Leg Swings</div>
+                  <div class="warmup-card__target">Hip flexors, hamstrings, glutes</div>
+                  <p class="warmup-card__desc">
+                    Stand beside a wall for balance.
+                    Swing one leg forward and back in a controlled arc.
+                    Keep your standing leg slightly bent.
+                  </p>
+                  <div class="warmup-card__duration">15 swings each leg</div>
+                </div>
+
+                <div class="warmup-card">
+                  <div class="warmup-card__name">Shoulder Rolls &amp; Cross-Body Stretch</div>
+                  <div class="warmup-card__target">Rotator cuff, posterior shoulder, trapezius</div>
+                  <p class="warmup-card__desc">
+                    Roll shoulders backward 10 times.
+                    Then pull one arm across your chest with the
+                    opposite hand, holding 20 seconds each side.
+                  </p>
+                  <div class="warmup-card__duration">10 rolls + 20 sec hold each side</div>
+                </div>
+
+                <div class="warmup-card">
+                  <div class="warmup-card__name">Bodyweight Squat</div>
+                  <div class="warmup-card__target">Quadriceps, glutes, lumbar stabilizers</div>
+                  <p class="warmup-card__desc">
+                    Feet shoulder-width apart, toes slightly out.
+                    Lower until thighs are parallel to the floor,
+                    chest up, back straight. Drive through heels to rise.
+                    This is your power lift rehearsal.
+                  </p>
+                  <div class="warmup-card__duration">10 slow controlled reps</div>
+                </div>
+
+                <div class="warmup-card">
+                  <div class="warmup-card__name">Wrist Flexor &amp; Extensor Stretch</div>
+                  <div class="warmup-card__target">Forearm muscles, carpal tunnel region</div>
+                  <p class="warmup-card__desc">
+                    Extend one arm, palm up. Use other hand
+                    to gently pull fingers downward — hold 20 seconds.
+                    Flip palm down and pull fingers upward — hold 20 seconds.
+                    Switch arms.
+                  </p>
+                  <div class="warmup-card__duration">20 seconds each direction, each hand</div>
+                </div>
+
+              </div>
+
+              <div class="prev-callout">
+                <div>
+                  <strong>Pro Tip:</strong> This routine takes less than 7 minutes.
+                  Do it at the start of every shift — before the first call,
+                  not after. Reactive warm-ups don't work.
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- ACCORDION 2 — Equipment Check Protocol -->
+        <div class="prev-acc-item">
+          <div class="prev-acc-header">
+            <i class="fa-solid fa-truck-medical prev-acc-icon"></i>
+            <span class="prev-acc-title">Equipment Check Protocol</span>
+            <i class="fa-solid fa-chevron-down prev-acc-arrow"></i>
+          </div>
+          <div class="prev-acc-body">
+            <div class="prev-acc-content">
+
+              <p class="prev-acc-intro">
+                Faulty equipment is a direct cause of provider injury.
+                A stretcher that fails mid-lift, a wheel lock that
+                doesn't hold, or a latch that gives way can end a career.
+                This check takes 4 minutes and should happen every shift.
+              </p>
+
+              <!-- Mini progress -->
+              <div class="equip-progress" id="equipProgress">
+                <div class="equip-progress__track">
+                  <div class="equip-progress__fill" id="equipProgressFill"></div>
+                </div>
+                <span class="equip-progress__label"><em id="equipCheckedCount">0</em>/12 items checked</span>
+              </div>
+
+              <div class="equip-checklist" id="equipChecklist">
+
+                <div class="equip-group">
+                  <div class="equip-group__title">Stretcher</div>
+                  <div class="equip-item" role="checkbox" aria-checked="false" tabindex="0">
+                    <div class="equip-item__box"><i class="fa-solid fa-check"></i></div>
+                    <span class="equip-item__label">All four wheel locks engage and release cleanly</span>
+                  </div>
+                  <div class="equip-item" role="checkbox" aria-checked="false" tabindex="0">
+                    <div class="equip-item__box"><i class="fa-solid fa-check"></i></div>
+                    <span class="equip-item__label">Loading mechanism operates smoothly</span>
+                  </div>
+                  <div class="equip-item" role="checkbox" aria-checked="false" tabindex="0">
+                    <div class="equip-item__box"><i class="fa-solid fa-check"></i></div>
+                    <span class="equip-item__label">Stretcher height adjusts through all positions</span>
+                  </div>
+                  <div class="equip-item" role="checkbox" aria-checked="false" tabindex="0">
+                    <div class="equip-item__box"><i class="fa-solid fa-check"></i></div>
+                    <span class="equip-item__label">Safety rails lock securely up and down</span>
+                  </div>
+                  <div class="equip-item" role="checkbox" aria-checked="false" tabindex="0">
+                    <div class="equip-item__box"><i class="fa-solid fa-check"></i></div>
+                    <span class="equip-item__label">Patient straps present, undamaged, buckles function</span>
+                  </div>
+                  <div class="equip-item" role="checkbox" aria-checked="false" tabindex="0">
+                    <div class="equip-item__box"><i class="fa-solid fa-check"></i></div>
+                    <span class="equip-item__label">Undercarriage free of visible damage</span>
+                  </div>
+                </div>
+
+                <div class="equip-group">
+                  <div class="equip-group__title">Stair Chair</div>
+                  <div class="equip-item" role="checkbox" aria-checked="false" tabindex="0">
+                    <div class="equip-item__box"><i class="fa-solid fa-check"></i></div>
+                    <span class="equip-item__label">Wheel locks function on all wheels</span>
+                  </div>
+                  <div class="equip-item" role="checkbox" aria-checked="false" tabindex="0">
+                    <div class="equip-item__box"><i class="fa-solid fa-check"></i></div>
+                    <span class="equip-item__label">Seatbelt present and buckle functions</span>
+                  </div>
+                  <div class="equip-item" role="checkbox" aria-checked="false" tabindex="0">
+                    <div class="equip-item__box"><i class="fa-solid fa-check"></i></div>
+                    <span class="equip-item__label">Footrests fold and lock in position</span>
+                  </div>
+                  <div class="equip-item" role="checkbox" aria-checked="false" tabindex="0">
+                    <div class="equip-item__box"><i class="fa-solid fa-check"></i></div>
+                    <span class="equip-item__label">Frame shows no cracks, bends, or weld failures</span>
+                  </div>
+                </div>
+
+                <div class="equip-group">
+                  <div class="equip-group__title">Bariatric Equipment (if applicable)</div>
+                  <div class="equip-item" role="checkbox" aria-checked="false" tabindex="0">
+                    <div class="equip-item__box"><i class="fa-solid fa-check"></i></div>
+                    <span class="equip-item__label">Bariatric stretcher weight rating placard visible</span>
+                  </div>
+                  <div class="equip-item" role="checkbox" aria-checked="false" tabindex="0">
+                    <div class="equip-item__box"><i class="fa-solid fa-check"></i></div>
+                    <span class="equip-item__label">Bariatric straps rated and present</span>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="prev-callout--danger">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+                <div>
+                  If any item fails — remove the equipment from service
+                  immediately and notify your supervisor. Never operate
+                  faulty equipment or work around a mechanical issue.
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /prev-accordion -->
+
+    </div><!-- /container -->
   </section>
 
 
@@ -4048,6 +4814,116 @@
           });
         }
       })();
+
+    /* ══════════════════════════════════════════════════════════
+       PREVENTION SECTION
+    ══════════════════════════════════════════════════════════ */
+    (function () {
+
+      /* ── Shift Readiness Dashboard ── */
+      const srTiles      = document.querySelectorAll('.sr-tile');
+      const srProgressFill = document.getElementById('srProgressFill');
+      const srCompleteMsg  = document.getElementById('srCompleteMsg');
+      const totalTiles   = srTiles.length;
+
+      function updateSrProgress() {
+        const checked = document.querySelectorAll('.sr-tile.is-reviewed').length;
+        const pct = Math.round((checked / totalTiles) * 100);
+        srProgressFill.style.width = pct + '%';
+
+        if (checked === totalTiles) {
+          srProgressFill.classList.add('is-complete');
+          srCompleteMsg.classList.add('is-visible');
+        } else {
+          srProgressFill.classList.remove('is-complete');
+          srCompleteMsg.classList.remove('is-visible');
+        }
+      }
+
+      srTiles.forEach(tile => {
+        tile.addEventListener('click', () => {
+          const isReviewed = tile.classList.toggle('is-reviewed');
+          const statusText = tile.querySelector('.sr-tile__status-text');
+          statusText.textContent = isReviewed ? 'Reviewed' : 'Not Reviewed';
+          updateSrProgress();
+        });
+      });
+
+
+      /* ── Prevention Accordion (one open at a time) ── */
+      document.querySelectorAll('.prev-acc-header').forEach(header => {
+        header.addEventListener('click', () => {
+          const item = header.closest('.prev-acc-item');
+          const accordion = header.closest('.prev-accordion');
+
+          accordion.querySelectorAll('.prev-acc-item.is-open').forEach(open => {
+            if (open !== item) open.classList.remove('is-open');
+          });
+
+          item.classList.toggle('is-open');
+        });
+      });
+
+
+      /* ── Equipment Checklist ── */
+      const equipItems       = document.querySelectorAll('#equipChecklist .equip-item');
+      const equipProgressFill = document.getElementById('equipProgressFill');
+      const equipCheckedCount = document.getElementById('equipCheckedCount');
+      const totalEquipItems  = equipItems.length;
+
+      function updateEquipProgress() {
+        const checked = document.querySelectorAll('#equipChecklist .equip-item.is-checked').length;
+        const pct = Math.round((checked / totalEquipItems) * 100);
+        equipProgressFill.style.width = pct + '%';
+        equipCheckedCount.textContent = checked;
+
+        if (checked === totalEquipItems) {
+          equipProgressFill.classList.add('is-complete');
+        } else {
+          equipProgressFill.classList.remove('is-complete');
+        }
+      }
+
+      equipItems.forEach(item => {
+        function toggle() {
+          const isChecked = item.classList.toggle('is-checked');
+          item.setAttribute('aria-checked', String(isChecked));
+          updateEquipProgress();
+        }
+
+        item.addEventListener('click', toggle);
+        item.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+        });
+      });
+
+
+      /* ── Section entry fade-up on scroll ── */
+      const preventionSection = document.getElementById('prevention');
+      if (preventionSection) {
+        const fadeEls = preventionSection.querySelectorAll(
+          '.prevention-header, .sr-progress-wrap, .sr-dashboard, .prev-accordion'
+        );
+
+        fadeEls.forEach(el => {
+          el.style.opacity = '0';
+          el.style.transform = 'translateY(20px)';
+          el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        });
+
+        new IntersectionObserver(([entry]) => {
+          if (entry.isIntersecting) {
+            fadeEls.forEach((el, i) => {
+              setTimeout(() => {
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0)';
+              }, i * 120);
+            });
+          }
+        }, { threshold: 0.1 }).observe(preventionSection);
+      }
+
+    })();
 
     })();
   </script>
