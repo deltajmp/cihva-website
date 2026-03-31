@@ -2894,9 +2894,90 @@
       line-height: 1.6;
     }
 
+    /* ── Cooldown Intro Banner ── */
+    .cooldown-banner {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--sp-3);
+      padding: var(--sp-3) var(--sp-4);
+      background: #1a2f4e;
+      border-left: 4px solid var(--color-accent);
+      border-radius: 0 8px 8px 0;
+      margin-bottom: var(--sp-4);
+    }
+
+    .cooldown-banner i {
+      color: var(--color-accent);
+      font-size: 1.25rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .cooldown-banner p {
+      font-size: 0.95rem;
+      color: var(--color-secondary);
+      line-height: 1.7;
+    }
+
+    /* ── Recovery Principles Strip ── */
+    .recovery-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--sp-3);
+      max-width: 1160px;
+      margin-inline: auto;
+      margin-top: var(--sp-8);
+    }
+
+    .recovery-card {
+      background: var(--color-surface);
+      border-top: 3px solid var(--color-accent);
+      border-radius: 0 0 8px 8px;
+      padding: var(--sp-4);
+      text-align: center;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.35s ease, transform 0.35s ease, box-shadow 0.2s ease;
+    }
+
+    .recovery-card.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .recovery-card:hover {
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    }
+
+    .recovery-card__icon {
+      font-size: 2rem;
+      color: var(--color-accent);
+      margin-bottom: var(--sp-2);
+    }
+
+    .recovery-card__title {
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--color-text);
+      margin-bottom: var(--sp-1);
+    }
+
+    .recovery-card__body {
+      font-size: 0.84rem;
+      color: var(--color-muted);
+      line-height: 1.65;
+    }
+
     /* ── Stretching Responsive — Tablet ── */
     @media (max-width: 900px) {
       .stretch-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .recovery-strip {
         grid-template-columns: 1fr 1fr;
       }
     }
@@ -2909,6 +2990,10 @@
 
       .stretch-tabs {
         padding-bottom: 4px;
+      }
+
+      .recovery-strip {
+        grid-template-columns: 1fr;
       }
     }
 
@@ -5919,31 +6004,447 @@
           </div>
         </div>
 
-        <!-- ═══ TAB 4 — NECK (Placeholder) ═══ -->
+        <!-- ═══ TAB 4 — NECK ═══ -->
         <div class="stretch-region" data-region="neck">
-          <div class="stretch-coming-soon">
-            <i class="fa-solid fa-clock"></i>
-            <div class="stretch-coming-soon-text">Content loading in next update.</div>
+          <div class="stretch-grid">
+
+            <div class="stretch-card">
+              <div class="stretch-card__header">
+                <div class="stretch-card__name">Cervical Side Bend</div>
+                <div class="stretch-card__region">Neck</div>
+              </div>
+              <div class="stretch-card__body">
+                <div class="stretch-card__target">Scalenes, upper trapezius, levator scapulae</div>
+                <ol class="stretch-card__steps">
+                  <li>Sit or stand tall with shoulders relaxed</li>
+                  <li>Gently drop your right ear toward your right shoulder</li>
+                  <li>Do not rotate — keep your nose pointing forward</li>
+                  <li>For a deeper stretch, gently rest your right hand on the left side of your head — do not pull, just add light weight</li>
+                  <li>Hold, then switch sides</li>
+                </ol>
+                <div class="stretch-card__hold">
+                  <span class="stretch-card__hold-tag">Hold: 30s each side</span>
+                  <span class="stretch-card__hold-tag">Reps: 2 each side</span>
+                </div>
+                <p class="stretch-card__mod">Modification: Skip the hand placement if you have any neck nerve symptoms</p>
+              </div>
+              <div class="stretch-card__footer">
+                <button class="stretch-timer-btn" data-seconds="30">
+                  <i class="fa-solid fa-stopwatch"></i>
+                  Start Timer — 30s
+                </button>
+              </div>
+            </div>
+
+            <div class="stretch-card">
+              <div class="stretch-card__header">
+                <div class="stretch-card__name">Chin Tuck</div>
+                <div class="stretch-card__region">Neck</div>
+              </div>
+              <div class="stretch-card__body">
+                <div class="stretch-card__target">Deep cervical flexors, suboccipital decompression</div>
+                <ol class="stretch-card__steps">
+                  <li>Sit or stand tall</li>
+                  <li>Without tilting your head, draw your chin straight back — creating a "double chin"</li>
+                  <li>You should feel a gentle stretch at the base of the skull</li>
+                  <li>Hold briefly, release, repeat</li>
+                  <li>Do this every hour during long calls or documentation sessions</li>
+                </ol>
+                <div class="stretch-card__hold">
+                  <span class="stretch-card__hold-tag">Hold: 5s</span>
+                  <span class="stretch-card__hold-tag">Reps: 10</span>
+                </div>
+                <p class="stretch-card__mod">Modification: Do lying on your back for gravity-assisted decompression</p>
+              </div>
+              <div class="stretch-card__footer">
+                <button class="stretch-timer-btn" data-seconds="5">
+                  <i class="fa-solid fa-stopwatch"></i>
+                  Start Timer — 5s
+                </button>
+              </div>
+            </div>
+
+            <div class="stretch-card">
+              <div class="stretch-card__header">
+                <div class="stretch-card__name">Upper Trap Stretch</div>
+                <div class="stretch-card__region">Neck</div>
+              </div>
+              <div class="stretch-card__body">
+                <div class="stretch-card__target">Upper trapezius, cervical lateral flexors</div>
+                <ol class="stretch-card__steps">
+                  <li>Sit tall, right hand gripping the edge of your seat</li>
+                  <li>Tilt your left ear toward your left shoulder</li>
+                  <li>With your left hand, gently add overpressure by pressing on the right side of your head</li>
+                  <li>The grip on the seat anchors your right shoulder down, intensifying the stretch</li>
+                  <li>Hold, then switch sides</li>
+                </ol>
+                <div class="stretch-card__hold">
+                  <span class="stretch-card__hold-tag">Hold: 30s each side</span>
+                  <span class="stretch-card__hold-tag">Reps: 2 each side</span>
+                </div>
+                <p class="stretch-card__mod">Modification: Skip the seat grip — just perform the side bend without anchoring</p>
+              </div>
+              <div class="stretch-card__footer">
+                <button class="stretch-timer-btn" data-seconds="30">
+                  <i class="fa-solid fa-stopwatch"></i>
+                  Start Timer — 30s
+                </button>
+              </div>
+            </div>
+
+            <div class="stretch-card">
+              <div class="stretch-card__header">
+                <div class="stretch-card__name">Cervical Rotation Stretch</div>
+                <div class="stretch-card__region">Neck</div>
+              </div>
+              <div class="stretch-card__body">
+                <div class="stretch-card__target">Cervical rotators, sternocleidomastoid</div>
+                <ol class="stretch-card__steps">
+                  <li>Sit or stand tall, shoulders relaxed</li>
+                  <li>Slowly rotate your head to look over your right shoulder</li>
+                  <li>At end range, gently add a few degrees more with your right hand on your chin — very light pressure only</li>
+                  <li>Hold, return to center, switch sides</li>
+                  <li>Move slowly — no quick rotations</li>
+                </ol>
+                <div class="stretch-card__hold">
+                  <span class="stretch-card__hold-tag">Hold: 20s each side</span>
+                  <span class="stretch-card__hold-tag">Reps: 3 each side</span>
+                </div>
+                <p class="stretch-card__mod">Modification: Stay within pain-free range — reduce rotation if you feel dizziness or any nerve symptoms</p>
+              </div>
+              <div class="stretch-card__footer">
+                <button class="stretch-timer-btn" data-seconds="20">
+                  <i class="fa-solid fa-stopwatch"></i>
+                  Start Timer — 20s
+                </button>
+              </div>
+            </div>
+
           </div>
         </div>
 
-        <!-- ═══ TAB 5 — WRISTS & FOREARMS (Placeholder) ═══ -->
+        <!-- ═══ TAB 5 — WRISTS & FOREARMS ═══ -->
         <div class="stretch-region" data-region="wrists">
-          <div class="stretch-coming-soon">
-            <i class="fa-solid fa-clock"></i>
-            <div class="stretch-coming-soon-text">Content loading in next update.</div>
+          <div class="stretch-grid">
+
+            <div class="stretch-card">
+              <div class="stretch-card__header">
+                <div class="stretch-card__name">Wrist Flexor Stretch</div>
+                <div class="stretch-card__region">Wrists &amp; Forearms</div>
+              </div>
+              <div class="stretch-card__body">
+                <div class="stretch-card__target">Flexor carpi radialis, flexor carpi ulnaris, carpal tunnel region</div>
+                <ol class="stretch-card__steps">
+                  <li>Extend your right arm in front, palm facing up</li>
+                  <li>Use your left hand to gently bend your right hand downward — fingers pointing toward the floor</li>
+                  <li>Keep your elbow straight</li>
+                  <li>Hold at comfortable tension</li>
+                  <li>Switch sides</li>
+                </ol>
+                <div class="stretch-card__hold">
+                  <span class="stretch-card__hold-tag">Hold: 30s each side</span>
+                  <span class="stretch-card__hold-tag">Reps: 2 each side</span>
+                </div>
+                <p class="stretch-card__mod">Modification: Reduce wrist bend angle if you have active carpal tunnel symptoms</p>
+              </div>
+              <div class="stretch-card__footer">
+                <button class="stretch-timer-btn" data-seconds="30">
+                  <i class="fa-solid fa-stopwatch"></i>
+                  Start Timer — 30s
+                </button>
+              </div>
+            </div>
+
+            <div class="stretch-card">
+              <div class="stretch-card__header">
+                <div class="stretch-card__name">Wrist Extensor Stretch</div>
+                <div class="stretch-card__region">Wrists &amp; Forearms</div>
+              </div>
+              <div class="stretch-card__body">
+                <div class="stretch-card__target">Extensor carpi group, dorsal forearm compartment</div>
+                <ol class="stretch-card__steps">
+                  <li>Extend your right arm in front, palm facing down</li>
+                  <li>Use your left hand to gently bend your right hand downward — fingers toward the floor</li>
+                  <li>Keep your elbow straight — feel the stretch along the top of the forearm</li>
+                  <li>Hold, then switch sides</li>
+                </ol>
+                <div class="stretch-card__hold">
+                  <span class="stretch-card__hold-tag">Hold: 30s each side</span>
+                  <span class="stretch-card__hold-tag">Reps: 2 each side</span>
+                </div>
+                <p class="stretch-card__mod">Modification: Always pair this with the flexor stretch — do both together every time</p>
+              </div>
+              <div class="stretch-card__footer">
+                <button class="stretch-timer-btn" data-seconds="30">
+                  <i class="fa-solid fa-stopwatch"></i>
+                  Start Timer — 30s
+                </button>
+              </div>
+            </div>
+
+            <div class="stretch-card">
+              <div class="stretch-card__header">
+                <div class="stretch-card__name">Prayer Stretch</div>
+                <div class="stretch-card__region">Wrists &amp; Forearms</div>
+              </div>
+              <div class="stretch-card__body">
+                <div class="stretch-card__target">Wrist flexors, intrinsic hand muscles, finger flexors</div>
+                <ol class="stretch-card__steps">
+                  <li>Place your palms together in front of your chest, fingers pointing up</li>
+                  <li>Keeping palms together, slowly lower your hands toward your waist</li>
+                  <li>Stop when you feel tension in the wrists and forearms</li>
+                  <li>Reverse — flip hands so fingers point down and gently raise them</li>
+                  <li>Hold each direction</li>
+                </ol>
+                <div class="stretch-card__hold">
+                  <span class="stretch-card__hold-tag">Hold: 30s each direction</span>
+                  <span class="stretch-card__hold-tag">Reps: 2</span>
+                </div>
+                <p class="stretch-card__mod">Modification: Do one hand at a time if bilateral is uncomfortable</p>
+              </div>
+              <div class="stretch-card__footer">
+                <button class="stretch-timer-btn" data-seconds="30">
+                  <i class="fa-solid fa-stopwatch"></i>
+                  Start Timer — 30s
+                </button>
+              </div>
+            </div>
+
+            <div class="stretch-card">
+              <div class="stretch-card__header">
+                <div class="stretch-card__name">Finger Extension &amp; Spread</div>
+                <div class="stretch-card__region">Wrists &amp; Forearms</div>
+              </div>
+              <div class="stretch-card__body">
+                <div class="stretch-card__target">Intrinsic hand muscles, lumbricales, interossei — decompresses grip fatigue</div>
+                <ol class="stretch-card__steps">
+                  <li>Make a tight fist with your right hand</li>
+                  <li>Slowly open and spread your fingers as wide as possible</li>
+                  <li>Hold the spread position briefly</li>
+                  <li>Close back into a fist — move slowly</li>
+                  <li>Switch hands</li>
+                </ol>
+                <div class="stretch-card__hold">
+                  <span class="stretch-card__hold-tag">Hold: 5s spread</span>
+                  <span class="stretch-card__hold-tag">Reps: 10 each hand</span>
+                </div>
+                <p class="stretch-card__mod">Modification: Do in warm water if hands are stiff from cold exposure</p>
+              </div>
+              <div class="stretch-card__footer">
+                <button class="stretch-timer-btn" data-seconds="5">
+                  <i class="fa-solid fa-stopwatch"></i>
+                  Start Timer — 5s
+                </button>
+              </div>
+            </div>
+
           </div>
         </div>
 
-        <!-- ═══ TAB 6 — FULL BODY COOLDOWN (Placeholder) ═══ -->
+        <!-- ═══ TAB 6 — FULL BODY COOLDOWN ═══ -->
         <div class="stretch-region" data-region="full-body">
-          <div class="stretch-coming-soon">
-            <i class="fa-solid fa-clock"></i>
-            <div class="stretch-coming-soon-text">Content loading in next update.</div>
+
+          <div class="cooldown-banner">
+            <i class="fa-solid fa-moon"></i>
+            <p>
+              This sequence is designed to be done in order
+              at the end of a shift. Work through all 5 movements
+              from top to bottom — total time approximately
+              10 minutes.
+            </p>
+          </div>
+
+          <div class="stretch-grid">
+
+            <div class="stretch-card">
+              <div class="stretch-card__header">
+                <div class="stretch-card__name">Standing Forward Fold</div>
+                <div class="stretch-card__region">Full Body Cooldown</div>
+              </div>
+              <div class="stretch-card__body">
+                <div class="stretch-card__target">Full posterior chain — hamstrings, calves, lumbar spine</div>
+                <ol class="stretch-card__steps">
+                  <li>Stand with feet hip-width apart</li>
+                  <li>Slowly fold forward, letting your upper body hang toward the floor</li>
+                  <li>Bend your knees slightly if hamstrings are tight</li>
+                  <li>Let your head hang heavy — release neck tension</li>
+                  <li>Slowly roll back up one vertebra at a time</li>
+                </ol>
+                <div class="stretch-card__hold">
+                  <span class="stretch-card__hold-tag">Hold: 45s</span>
+                  <span class="stretch-card__hold-tag">Reps: 2</span>
+                </div>
+                <p class="stretch-card__mod">Modification: Hold opposite elbows and let arms hang as a counterweight for added decompression</p>
+              </div>
+              <div class="stretch-card__footer">
+                <button class="stretch-timer-btn" data-seconds="45">
+                  <i class="fa-solid fa-stopwatch"></i>
+                  Start Timer — 45s
+                </button>
+              </div>
+            </div>
+
+            <div class="stretch-card">
+              <div class="stretch-card__header">
+                <div class="stretch-card__name">Seated Spinal Twist</div>
+                <div class="stretch-card__region">Full Body Cooldown</div>
+              </div>
+              <div class="stretch-card__body">
+                <div class="stretch-card__target">Thoracic and lumbar rotators, piriformis, IT band</div>
+                <ol class="stretch-card__steps">
+                  <li>Sit tall on a chair or bench</li>
+                  <li>Cross your right leg over your left knee</li>
+                  <li>Place your left hand on your right knee</li>
+                  <li>Rotate your torso to the right, looking over your right shoulder</li>
+                  <li>Use your right hand on the chair back for support</li>
+                </ol>
+                <div class="stretch-card__hold">
+                  <span class="stretch-card__hold-tag">Hold: 35s each side</span>
+                  <span class="stretch-card__hold-tag">Reps: 2 each side</span>
+                </div>
+                <p class="stretch-card__mod">Modification: Keep both feet on the floor and rotate torso only if crossing legs is uncomfortable</p>
+              </div>
+              <div class="stretch-card__footer">
+                <button class="stretch-timer-btn" data-seconds="35">
+                  <i class="fa-solid fa-stopwatch"></i>
+                  Start Timer — 35s
+                </button>
+              </div>
+            </div>
+
+            <div class="stretch-card">
+              <div class="stretch-card__header">
+                <div class="stretch-card__name">Supine Hip &amp; Glute Release</div>
+                <div class="stretch-card__region">Full Body Cooldown</div>
+              </div>
+              <div class="stretch-card__body">
+                <div class="stretch-card__target">Glutes, piriformis, lumbar spine</div>
+                <ol class="stretch-card__steps">
+                  <li>Lie on your back</li>
+                  <li>Cross your right ankle over your left knee (figure-4 position)</li>
+                  <li>Lift your left foot off the floor and draw both legs toward your chest</li>
+                  <li>Hold behind your left thigh or shin</li>
+                  <li>Hold, then switch sides</li>
+                </ol>
+                <div class="stretch-card__hold">
+                  <span class="stretch-card__hold-tag">Hold: 45s each side</span>
+                  <span class="stretch-card__hold-tag">Reps: 2 each side</span>
+                </div>
+                <p class="stretch-card__mod">Modification: Keep your bottom foot on the floor if lifting both legs is uncomfortable</p>
+              </div>
+              <div class="stretch-card__footer">
+                <button class="stretch-timer-btn" data-seconds="45">
+                  <i class="fa-solid fa-stopwatch"></i>
+                  Start Timer — 45s
+                </button>
+              </div>
+            </div>
+
+            <div class="stretch-card">
+              <div class="stretch-card__header">
+                <div class="stretch-card__name">Chest and Shoulder Opener</div>
+                <div class="stretch-card__region">Full Body Cooldown</div>
+              </div>
+              <div class="stretch-card__body">
+                <div class="stretch-card__target">Pectoralis major and minor, anterior deltoid, intercostals</div>
+                <ol class="stretch-card__steps">
+                  <li>Sit or stand tall, hands clasped behind your back</li>
+                  <li>Squeeze your shoulder blades together</li>
+                  <li>Gently lift your hands away from your body without bending forward</li>
+                  <li>Open your chest and breathe deeply</li>
+                  <li>Hold for the full duration</li>
+                </ol>
+                <div class="stretch-card__hold">
+                  <span class="stretch-card__hold-tag">Hold: 40s</span>
+                  <span class="stretch-card__hold-tag">Reps: 2</span>
+                </div>
+                <p class="stretch-card__mod">Modification: Use a towel between your hands if clasping behind the back is uncomfortable</p>
+              </div>
+              <div class="stretch-card__footer">
+                <button class="stretch-timer-btn" data-seconds="40">
+                  <i class="fa-solid fa-stopwatch"></i>
+                  Start Timer — 40s
+                </button>
+              </div>
+            </div>
+
+            <div class="stretch-card">
+              <div class="stretch-card__header">
+                <div class="stretch-card__name">Legs Up the Wall</div>
+                <div class="stretch-card__region">Full Body Cooldown</div>
+              </div>
+              <div class="stretch-card__body">
+                <div class="stretch-card__target">Lower extremity venous drainage, lumbar decompression, nervous system reset</div>
+                <ol class="stretch-card__steps">
+                  <li>Find a wall space at the ambulance bay or bunk room</li>
+                  <li>Lie on your back and walk your legs up the wall, hips as close to the wall as comfortable</li>
+                  <li>Arms relaxed at your sides or on your abdomen</li>
+                  <li>Close your eyes and breathe slowly</li>
+                  <li>This is a true recovery position — take the full time</li>
+                </ol>
+                <div class="stretch-card__hold">
+                  <span class="stretch-card__hold-tag">Hold: 3 min</span>
+                  <span class="stretch-card__hold-tag">Reps: 1</span>
+                </div>
+                <p class="stretch-card__mod">Modification: Place a folded blanket under your hips for gentle lumbar support</p>
+              </div>
+              <div class="stretch-card__footer">
+                <button class="stretch-timer-btn" data-seconds="180">
+                  <i class="fa-solid fa-stopwatch"></i>
+                  Start Timer — 3:00
+                </button>
+              </div>
+            </div>
+
           </div>
         </div>
 
       </div><!-- /stretch-content -->
+
+      <!-- ── PART 3: Recovery Principles Strip ── -->
+      <div class="recovery-strip" id="recoveryStrip">
+
+        <div class="recovery-card">
+          <div class="recovery-card__icon"><i class="fa-solid fa-droplet"></i></div>
+          <div class="recovery-card__title">Hydration</div>
+          <p class="recovery-card__body">
+            Dehydration reduces muscle elasticity and significantly increases injury risk.
+            On a 12-hour shift, aim for at least 2–3 liters of water.
+            Fatigue and headaches mid-shift are often dehydration — not tiredness.
+          </p>
+        </div>
+
+        <div class="recovery-card">
+          <div class="recovery-card__icon"><i class="fa-solid fa-moon"></i></div>
+          <div class="recovery-card__title">Sleep &amp; Recovery</div>
+          <p class="recovery-card__body">
+            Muscle repair happens during sleep — not during rest periods.
+            Providers working back-to-back shifts accumulate a tissue repair deficit
+            that compounds injury risk. Prioritize sleep quality as a professional obligation.
+          </p>
+        </div>
+
+        <div class="recovery-card">
+          <div class="recovery-card__icon"><i class="fa-solid fa-utensils"></i></div>
+          <div class="recovery-card__title">Nutrition Timing</div>
+          <p class="recovery-card__body">
+            Lifting on an empty stomach reduces strength and increases injury risk.
+            A small protein-rich snack before a physically demanding shift supports
+            muscle function and recovery. Avoid heavy meals immediately before lifting.
+          </p>
+        </div>
+
+        <div class="recovery-card">
+          <div class="recovery-card__icon"><i class="fa-solid fa-person-walking"></i></div>
+          <div class="recovery-card__title">Active Recovery</div>
+          <p class="recovery-card__body">
+            Light movement between calls — short walks, gentle stretching —
+            outperforms sitting still for recovery. Prolonged static postures in the
+            ambulance or at the station stiffen muscles and increase the next lift's injury risk.
+          </p>
+        </div>
+
+      </div>
 
     </div><!-- /container -->
   </section>
@@ -6650,10 +7151,19 @@
           btn.innerHTML = defaultHTML;
         }
 
+        function fmtTime(s) {
+          if (s >= 60) {
+            const m = Math.floor(s / 60);
+            const sec = s % 60;
+            return m + ':' + String(sec).padStart(2, '0');
+          }
+          return s + 's';
+        }
+
         function start() {
           remaining = totalSeconds;
           btn.classList.add('is-running');
-          btn.innerHTML = '<i class="fa-solid fa-stop"></i> ' + remaining + 's';
+          btn.innerHTML = '<i class="fa-solid fa-stop"></i> ' + fmtTime(remaining);
 
           intervalId = setInterval(() => {
             remaining--;
@@ -6665,7 +7175,7 @@
               btn.innerHTML = '<i class="fa-solid fa-check"></i> Done!';
               setTimeout(reset, 1500);
             } else {
-              btn.innerHTML = '<i class="fa-solid fa-stop"></i> ' + remaining + 's';
+              btn.innerHTML = '<i class="fa-solid fa-stop"></i> ' + fmtTime(remaining);
             }
           }, 1000);
         }
@@ -6713,6 +7223,19 @@
             }, fadeEls.length * 120 + 100);
           }
         }, { threshold: 0.1 }).observe(stretchSection);
+      }
+
+
+      /* ── Recovery Strip: fade-up on scroll ── */
+      const recoveryStrip = document.getElementById('recoveryStrip');
+      if (recoveryStrip) {
+        new IntersectionObserver(([entry]) => {
+          if (entry.isIntersecting) {
+            recoveryStrip.querySelectorAll('.recovery-card').forEach((card, i) => {
+              setTimeout(() => card.classList.add('is-visible'), i * 100);
+            });
+          }
+        }, { threshold: 0.15 }).observe(recoveryStrip);
       }
 
     })();
