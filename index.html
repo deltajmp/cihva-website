@@ -1360,7 +1360,7 @@
     .h-step-row {
       display: flex;
       align-items: center;
-      padding: var(--sp-3) var(--sp-4);
+      padding: var(--sp-3) var(--sp-6);
       background: var(--color-bg);
       border-bottom: 1px solid var(--color-border);
       gap: 0;
@@ -1403,7 +1403,7 @@
 
     .h-step-card.is-active {
       display: block;
-      padding: var(--sp-5);
+      padding: var(--sp-6) var(--sp-8);
       animation: hFadeIn 0.25s ease both;
     }
 
@@ -1419,9 +1419,9 @@
       color: var(--color-accent);
       background: rgba(249, 115, 22, 0.1);
       border: 1px solid rgba(249, 115, 22, 0.2);
-      padding: 4px 12px;
+      padding: 4px 14px;
       border-radius: 100px;
-      margin-bottom: var(--sp-1);
+      margin-bottom: var(--sp-2);
     }
     .h-step-title {
       font-family: var(--font-heading);
@@ -1431,13 +1431,13 @@
       text-transform: uppercase;
       color: var(--color-text);
       line-height: 1.15;
-      margin-bottom: var(--sp-2);
+      margin-bottom: var(--sp-3);
     }
     .h-step-desc {
       font-size: 0.95rem;
       color: var(--color-secondary);
       line-height: 1.75;
-      margin-bottom: var(--sp-3);
+      margin-bottom: var(--sp-4);
       max-width: 720px;
     }
 
@@ -1445,8 +1445,8 @@
     .h-keypoints {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 8px var(--sp-4);
-      margin-bottom: var(--sp-3);
+      gap: 10px;
+      margin-bottom: var(--sp-4);
     }
     .h-kp {
       display: flex;
@@ -1454,35 +1454,36 @@
       gap: 10px;
       font-size: 0.84rem;
       color: var(--color-secondary);
-      line-height: 1.5;
-      padding: 8px 12px;
+      line-height: 1.55;
+      padding: 10px 14px;
       background: rgba(249, 115, 22, 0.03);
       border-radius: 6px;
-      border: 1px solid rgba(249, 115, 22, 0.06);
+      border: 1px solid rgba(249, 115, 22, 0.08);
     }
-    .h-kp i { color: var(--color-accent); font-size: 0.72rem; flex-shrink: 0; margin-top: 3px; }
+    .h-kp i { color: var(--color-accent); font-size: 0.72rem; flex-shrink: 0; margin-top: 4px; }
 
     /* Common mistake callout */
     .h-mistake {
       display: flex;
-      gap: 12px;
+      gap: 14px;
       align-items: flex-start;
-      padding: var(--sp-3);
-      background: rgba(239,68,68,0.07);
-      border: 1px solid rgba(239,68,68,0.15);
+      padding: var(--sp-3) var(--sp-4);
+      background: rgba(239,68,68,0.06);
+      border: 1px solid rgba(239,68,68,0.12);
       border-left: 3px solid #ef4444;
       border-radius: 0 8px 8px 0;
+      margin-top: var(--sp-1);
     }
     .h-mistake > i       { color: #ef4444; font-size: 0.9rem; flex-shrink: 0; margin-top: 3px; }
-    .h-mistake-label     { font-family: var(--font-heading); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #ef4444; margin-bottom: 3px; }
-    .h-mistake-text      { font-size: 0.84rem; color: var(--color-secondary); line-height: 1.55; }
+    .h-mistake-label     { font-family: var(--font-heading); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: #ef4444; margin-bottom: 4px; }
+    .h-mistake-text      { font-size: 0.84rem; color: var(--color-secondary); line-height: 1.6; }
 
     /* — Nav — */
     .h-step-nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: var(--sp-3) var(--sp-5);
+      padding: var(--sp-4) var(--sp-8);
       background: var(--color-bg);
       border-top: 1px solid var(--color-border);
       gap: var(--sp-2);
@@ -1521,15 +1522,17 @@
 
     /* Responsive */
     @media (max-width: 900px) {
-      .h-step-card.is-active { padding: var(--sp-3); }
+      .h-step-card.is-active { padding: var(--sp-4) var(--sp-4); }
       .h-keypoints { grid-template-columns: 1fr; }
-      .h-step-row { padding: var(--sp-2) var(--sp-3); }
+      .h-step-row { padding: var(--sp-3) var(--sp-4); }
+      .h-step-nav { padding: var(--sp-3) var(--sp-4); }
     }
     @media (max-width: 540px) {
+      .h-step-card.is-active { padding: var(--sp-4) var(--sp-3); }
       .h-step-nav { flex-wrap: wrap; padding: var(--sp-3); }
-      .h-step-counter { width: 100%; text-align: center; order: -1; }
+      .h-step-counter { width: 100%; text-align: center; order: -1; margin-bottom: var(--sp-1); }
       .h-nav-btn { flex: 1; justify-content: center; }
-      .h-step-eyebrow { margin-bottom: 6px; }
+      .h-step-row { padding: var(--sp-2) var(--sp-3); }
     }
 
     /* ── Common Mistakes Panel ── */
