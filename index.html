@@ -2381,8 +2381,8 @@
     .daily-checklist__header {
       display: flex;
       align-items: center;
-      gap: var(--sp-3);
-      padding: var(--sp-4) var(--sp-5);
+      gap: var(--sp-4);
+      padding: var(--sp-5) var(--sp-8);
       background: var(--color-surface);
       border-bottom: 1px solid var(--color-border);
     }
@@ -2406,18 +2406,18 @@
     .daily-checklist__subtitle {
       font-size: 0.82rem;
       color: var(--color-muted);
-      margin-top: 2px;
+      margin-top: 4px;
     }
 
     .daily-checklist__body {
-      padding: var(--sp-5);
+      padding: var(--sp-6) var(--sp-8);
       background: var(--color-bg);
     }
 
     .daily-checklist__grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: var(--sp-6);
+      gap: var(--sp-8);
     }
 
     .daily-group__title {
@@ -2427,37 +2427,41 @@
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--color-accent);
-      margin-bottom: var(--sp-2);
-      padding-bottom: 6px;
+      margin-bottom: var(--sp-3);
+      padding-bottom: 8px;
       border-bottom: 1px solid var(--color-border);
     }
 
     .daily-item {
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 10px var(--sp-2);
+      gap: 14px;
+      padding: 12px var(--sp-2);
       cursor: pointer;
       user-select: none;
-      border-radius: 4px;
+      border-radius: 6px;
       transition: background 0.15s ease;
-      min-height: 44px;
+      min-height: 48px;
     }
 
     .daily-item:hover {
       background: rgba(249, 115, 22, 0.04);
     }
 
+    .daily-item + .daily-item {
+      border-top: 1px solid rgba(30, 58, 95, 0.3);
+    }
+
     .daily-item__box {
-      width: 22px;
-      height: 22px;
-      border-radius: 4px;
+      width: 24px;
+      height: 24px;
+      border-radius: 5px;
       border: 2px solid var(--color-border);
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      font-size: 0.7rem;
+      font-size: 0.72rem;
       color: transparent;
       transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
     }
@@ -2469,9 +2473,9 @@
     }
 
     .daily-item__label {
-      font-size: 0.875rem;
+      font-size: 0.88rem;
       color: var(--color-secondary);
-      line-height: 1.5;
+      line-height: 1.55;
       transition: color 0.2s ease;
     }
 
@@ -2480,7 +2484,7 @@
     }
 
     .daily-checklist__footer {
-      padding: var(--sp-3) var(--sp-5);
+      padding: var(--sp-4) var(--sp-8);
       background: var(--color-surface);
       border-top: 1px solid var(--color-border);
       display: flex;
@@ -2615,18 +2619,19 @@
 
       .daily-checklist__grid {
         grid-template-columns: 1fr;
+        gap: var(--sp-6);
       }
 
       .daily-checklist__header {
-        padding: var(--sp-3);
+        padding: var(--sp-4) var(--sp-3);
       }
 
       .daily-checklist__body {
-        padding: var(--sp-3);
+        padding: var(--sp-4) var(--sp-3);
       }
 
       .daily-checklist__footer {
-        padding: var(--sp-3);
+        padding: var(--sp-3) var(--sp-3);
         justify-content: stretch;
       }
 
@@ -6149,7 +6154,7 @@
               </div>
 
               <!-- During Shift -->
-              <div class="daily-group__title" style="margin-top:var(--sp-4)">During Shift</div>
+              <div class="daily-group__title" style="margin-top:var(--sp-6)">During Shift</div>
               <div class="daily-item" role="checkbox" aria-checked="false" tabindex="0">
                 <div class="daily-item__box"><i class="fa-solid fa-check"></i></div>
                 <span class="daily-item__label">Scene size-up for physical hazards on every call</span>
