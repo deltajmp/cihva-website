@@ -2998,6 +2998,690 @@
     }
 
     /* ============================================================
+       RESOURCES SECTION
+    ============================================================ */
+
+    .resources-header {
+      text-align: center;
+      max-width: 700px;
+      margin-inline: auto;
+      margin-bottom: var(--sp-8);
+    }
+
+    .resources-subhead {
+      font-size: 1.05rem;
+      color: var(--color-secondary);
+      line-height: 1.75;
+      margin-top: var(--sp-2);
+    }
+
+    /* ── Resource Cards Grid ── */
+    .res-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--sp-3);
+      max-width: 1160px;
+      margin-inline: auto;
+      margin-bottom: var(--sp-8);
+    }
+
+    .res-card {
+      background: var(--color-surface);
+      border-top: 3px solid var(--color-accent);
+      border-radius: 0 0 8px 8px;
+      padding: var(--sp-4);
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.35s ease, transform 0.35s ease, box-shadow 0.2s ease;
+    }
+
+    .res-card.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .res-card:hover {
+      box-shadow: 0 8px 32px rgba(249, 115, 22, 0.12);
+    }
+
+    .res-card__icon {
+      font-size: 2rem;
+      color: var(--color-accent);
+      margin-bottom: var(--sp-2);
+    }
+
+    .res-card__name {
+      font-family: var(--font-heading);
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--color-text);
+      margin-bottom: var(--sp-1);
+    }
+
+    .res-card__desc {
+      font-size: 0.84rem;
+      color: var(--color-muted);
+      line-height: 1.65;
+      margin-bottom: var(--sp-2);
+      flex: 1;
+    }
+
+    .res-card__tag {
+      font-size: 0.72rem;
+      font-style: italic;
+      color: var(--color-accent);
+      margin-bottom: var(--sp-3);
+    }
+
+    .res-card__btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-heading);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 10px var(--sp-3);
+      border-radius: 6px;
+      border: 1px solid var(--color-accent);
+      background: transparent;
+      color: var(--color-accent);
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s ease, color 0.2s ease;
+      align-self: flex-start;
+    }
+
+    .res-card__btn:hover {
+      background: var(--color-accent);
+      color: var(--color-bg);
+    }
+
+    /* ── Injury Reporting Panel ── */
+    .report-panel {
+      max-width: 1160px;
+      margin-inline: auto;
+      margin-bottom: var(--sp-8);
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .report-panel__header {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-3);
+      padding: var(--sp-4) var(--sp-5);
+      background: var(--color-surface);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .report-panel__header > i {
+      font-size: 1.5rem;
+      color: var(--color-accent);
+      flex-shrink: 0;
+    }
+
+    .report-panel__title {
+      font-family: var(--font-heading);
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--color-text);
+      line-height: 1.2;
+    }
+
+    .report-panel__subtitle {
+      font-size: 0.82rem;
+      color: var(--color-muted);
+      margin-top: 2px;
+      line-height: 1.5;
+    }
+
+    .report-panel__body {
+      padding: var(--sp-5);
+      background: var(--color-bg);
+    }
+
+    /* Stepper row */
+    .rpt-step-row {
+      display: flex;
+      align-items: center;
+      margin-bottom: var(--sp-4);
+    }
+
+    .rpt-circle {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      cursor: pointer;
+      user-select: none;
+      background: var(--color-bg);
+      border: 2px solid var(--color-border);
+      color: var(--color-muted);
+      font-family: var(--font-heading);
+      font-size: 0.88rem;
+      font-weight: 700;
+      transition: background 0.25s ease, border-color 0.25s ease,
+                  color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .rpt-circle:hover {
+      border-color: var(--color-accent);
+      color: var(--color-accent);
+    }
+
+    .rpt-circle.is-active {
+      background: var(--color-accent);
+      border-color: var(--color-accent);
+      color: var(--color-bg);
+      box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.2);
+    }
+
+    .rpt-circle.is-completed {
+      background: var(--color-accent);
+      border-color: var(--color-accent);
+      color: var(--color-bg);
+    }
+
+    .rpt-line {
+      flex: 1;
+      height: 2px;
+      background: var(--color-border);
+      min-width: 8px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .rpt-line-fill {
+      position: absolute;
+      inset: 0;
+      background: var(--color-accent);
+      width: 0%;
+      transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* Step content panels */
+    .rpt-card {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+
+    .rpt-card.is-active {
+      display: block;
+      opacity: 1;
+    }
+
+    .rpt-card__icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      background: rgba(249, 115, 22, 0.1);
+      border: 1px solid rgba(249, 115, 22, 0.2);
+      color: var(--color-accent);
+      font-size: 1rem;
+      margin-bottom: var(--sp-2);
+    }
+
+    .rpt-card__title {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--color-text);
+      margin-bottom: var(--sp-2);
+    }
+
+    .rpt-card__body {
+      font-size: 0.9rem;
+      color: var(--color-secondary);
+      line-height: 1.75;
+    }
+
+    .rpt-card__body p + p { margin-top: var(--sp-2); }
+
+    .rpt-card__body ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: var(--sp-1);
+      margin-bottom: var(--sp-2);
+    }
+
+    .rpt-card__body ul li::before {
+      content: '—';
+      color: var(--color-accent);
+      font-weight: 700;
+      margin-right: 8px;
+    }
+
+    .rpt-card__body strong {
+      color: var(--color-text);
+    }
+
+    /* ── Know Your Rights Accordion ── */
+    .rights-panel {
+      max-width: 1160px;
+      margin-inline: auto;
+      margin-bottom: var(--sp-8);
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .rights-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--sp-4) var(--sp-5);
+      background: var(--color-surface);
+      cursor: pointer;
+      user-select: none;
+      gap: var(--sp-3);
+      transition: background 0.2s ease;
+    }
+
+    .rights-header:hover { background: #172a42; }
+
+    .rights-title-group {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-3);
+    }
+
+    .rights-title-group > i {
+      font-size: 1.3rem;
+      color: var(--color-accent);
+      flex-shrink: 0;
+    }
+
+    .rights-title {
+      font-family: var(--font-heading);
+      font-size: clamp(0.88rem, 2vw, 1.1rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--color-text);
+    }
+
+    .rights-arrow {
+      color: var(--color-muted);
+      font-size: 0.85rem;
+      flex-shrink: 0;
+      transition: transform 0.25s ease;
+    }
+
+    .rights-panel.is-open .rights-arrow {
+      transform: rotate(180deg);
+    }
+
+    .rights-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .rights-panel.is-open .rights-body {
+      max-height: 2000px;
+    }
+
+    .rights-content {
+      padding: var(--sp-5);
+      background: var(--color-bg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-3);
+    }
+
+    .rights-block {
+      padding: var(--sp-3) var(--sp-4);
+      border-left: 4px solid var(--color-accent);
+      background: var(--color-surface);
+      border-radius: 0 8px 8px 0;
+    }
+
+    .rights-block__title {
+      font-family: var(--font-heading);
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--color-text);
+      margin-bottom: var(--sp-1);
+    }
+
+    .rights-block__text {
+      font-size: 0.84rem;
+      color: var(--color-secondary);
+      line-height: 1.65;
+    }
+
+    .rights-disclaimer {
+      font-size: 0.78rem;
+      font-style: italic;
+      color: var(--color-muted);
+      line-height: 1.6;
+      padding-top: var(--sp-2);
+      border-top: 1px solid var(--color-border);
+    }
+
+    /* ── Near-Miss Panel ── */
+    .nearmiss-panel {
+      max-width: 1160px;
+      margin-inline: auto;
+      margin-bottom: var(--sp-8);
+      background: #0f2040;
+      border: 2px solid var(--color-accent);
+      border-radius: 10px;
+      padding: var(--sp-6);
+      display: grid;
+      grid-template-columns: 220px 1fr;
+      gap: var(--sp-6);
+      align-items: start;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .nearmiss-panel.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes borderPulse {
+      0%   { border-color: var(--color-accent); }
+      50%  { border-color: rgba(249, 115, 22, 0.3); }
+      100% { border-color: var(--color-accent); }
+    }
+
+    .nearmiss-panel.is-visible {
+      animation: borderPulse 1.5s ease 1;
+    }
+
+    .nearmiss-left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .nearmiss-left > i {
+      font-size: 3.5rem;
+      color: var(--color-accent);
+      margin-bottom: var(--sp-3);
+    }
+
+    .nearmiss-stat {
+      font-family: var(--font-heading);
+      font-size: 1rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--color-text);
+      line-height: 1.4;
+    }
+
+    .nearmiss-right__title {
+      font-family: var(--font-heading);
+      font-size: clamp(1rem, 2.5vw, 1.35rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--color-text);
+      margin-bottom: var(--sp-2);
+    }
+
+    .nearmiss-right__body {
+      font-size: 0.9rem;
+      color: var(--color-secondary);
+      line-height: 1.75;
+    }
+
+    .nearmiss-right__body p + p { margin-top: var(--sp-2); }
+
+    .nearmiss-right__body ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: var(--sp-1);
+      margin-bottom: var(--sp-2);
+    }
+
+    .nearmiss-right__body ul li::before {
+      content: '—';
+      color: var(--color-accent);
+      font-weight: 700;
+      margin-right: 8px;
+    }
+
+    .nearmiss-callout {
+      margin-top: var(--sp-3);
+      padding: var(--sp-2) var(--sp-3);
+      border-left: 3px solid var(--color-accent);
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--color-accent);
+      line-height: 1.5;
+      font-style: italic;
+    }
+
+    /* ── Corps Contact Card ── */
+    .contact-card {
+      max-width: 600px;
+      margin-inline: auto;
+      background: var(--color-surface);
+      border: 2px solid var(--color-border);
+      border-radius: 10px;
+      padding: var(--sp-6);
+      text-align: center;
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .contact-card.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .contact-card__icon {
+      font-size: 2rem;
+      color: var(--color-accent);
+      margin-bottom: var(--sp-2);
+    }
+
+    .contact-card__title {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--color-text);
+      margin-bottom: 4px;
+    }
+
+    .contact-card__subtitle {
+      font-size: 0.82rem;
+      color: var(--color-muted);
+      margin-bottom: var(--sp-4);
+      line-height: 1.5;
+    }
+
+    .contact-details {
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-2);
+      text-align: left;
+      max-width: 380px;
+      margin-inline: auto;
+      margin-bottom: var(--sp-4);
+    }
+
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.88rem;
+    }
+
+    .contact-detail > i {
+      color: var(--color-accent);
+      width: 18px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .contact-detail__label {
+      color: var(--color-muted);
+    }
+
+    .contact-detail__value {
+      color: var(--color-text);
+      font-weight: 600;
+    }
+
+    .contact-buttons {
+      display: flex;
+      gap: var(--sp-2);
+      justify-content: center;
+      margin-bottom: var(--sp-3);
+    }
+
+    .contact-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--sp-1);
+      font-family: var(--font-heading);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 12px var(--sp-4);
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background var(--ease), transform var(--ease), box-shadow var(--ease);
+    }
+
+    .contact-btn--primary {
+      background: var(--color-accent);
+      color: var(--color-bg);
+    }
+
+    .contact-btn--primary:hover {
+      background: var(--color-accent-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(249, 115, 22, 0.3);
+    }
+
+    .contact-btn--outline {
+      background: transparent;
+      border: 1px solid var(--color-accent);
+      color: var(--color-accent);
+    }
+
+    .contact-btn--outline:hover {
+      background: var(--color-accent);
+      color: var(--color-bg);
+      transform: translateY(-2px);
+    }
+
+    .contact-note {
+      font-size: 0.75rem;
+      font-style: italic;
+      color: var(--color-muted);
+      line-height: 1.6;
+    }
+
+    /* ── Resources Responsive — Tablet ── */
+    @media (max-width: 900px) {
+      .res-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .nearmiss-panel {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .nearmiss-left {
+        order: 0;
+      }
+
+      .rights-header {
+        padding: var(--sp-3) var(--sp-4);
+      }
+    }
+
+    /* ── Resources Responsive — Mobile ── */
+    @media (max-width: 640px) {
+      .res-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .rpt-step-row {
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .rpt-line {
+        width: 2px;
+        height: 16px;
+        min-width: 2px;
+        flex: none;
+      }
+
+      .rpt-line-fill {
+        width: 100% !important;
+        height: 0%;
+        transition: height 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .nearmiss-panel {
+        padding: var(--sp-4);
+      }
+
+      .contact-buttons {
+        flex-direction: column;
+      }
+
+      .contact-btn {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .report-panel__header {
+        padding: var(--sp-3);
+      }
+
+      .report-panel__body {
+        padding: var(--sp-3);
+      }
+
+      .rights-content {
+        padding: var(--sp-3);
+      }
+    }
+
+    /* ============================================================
        FOOTER
     ============================================================ */
     .footer {
@@ -6455,32 +7139,289 @@
   ============================================================ -->
   <section class="section section--base" id="resources">
     <div class="container">
-      <div class="section__inner">
 
-        <div class="section__icon" aria-hidden="true">
-          <i class="fa-solid fa-folder-open"></i>
+      <!-- Section Header -->
+      <div class="resources-header">
+        <span class="eyebrow">Section 06</span>
+        <h2 class="section__heading" style="margin-top:var(--sp-2)">Resources &amp; Reporting</h2>
+        <hr class="section__divider" style="margin-inline:auto" />
+        <p class="resources-subhead">
+          Knowledge is only useful when it is acted on. Use these
+          resources to go deeper, report injuries properly, and
+          protect both yourself and your fellow providers.
+        </p>
+      </div>
+
+      <!-- ── PART 1: External Resource Cards ── -->
+      <div class="res-grid" id="resGrid">
+
+        <div class="res-card">
+          <div class="res-card__icon"><i class="fa-solid fa-microscope"></i></div>
+          <div class="res-card__name">NIOSH</div>
+          <p class="res-card__desc">The federal agency leading research on EMS occupational hazards. Their EMS worker safety resources include injury data, fatigue research, and field guidance for corps leadership.</p>
+          <div class="res-card__tag">Federal Research &amp; Guidance</div>
+          <a href="https://www.cdc.gov/niosh/topics/ems" target="_blank" rel="noopener noreferrer" class="res-card__btn">Visit Resource <i class="fa-solid fa-arrow-right"></i></a>
         </div>
 
-        <span class="eyebrow">Section 06</span>
-        <span class="section__number">Tools, Forms & References</span>
+        <div class="res-card">
+          <div class="res-card__icon"><i class="fa-solid fa-user-doctor"></i></div>
+          <div class="res-card__name">NAEMSP</div>
+          <p class="res-card__desc">Clinical and operational guidelines for EMS practice including injury prevention protocols and evidence-based recommendations for provider health and safety.</p>
+          <div class="res-card__tag">Clinical Guidelines</div>
+          <a href="https://www.naemsp.org" target="_blank" rel="noopener noreferrer" class="res-card__btn">Visit Resource <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
 
-        <h2 class="section__heading">Resources &amp; Reporting</h2>
-        <hr class="section__divider" />
-        <p class="section__body">
-          Everything in one place — injury reporting forms, OSHA guidelines,
-          corps safety contacts, external research links, and downloadable
-          reference cards for the field.
-        </p>
+        <div class="res-card">
+          <div class="res-card__icon"><i class="fa-solid fa-hard-hat"></i></div>
+          <div class="res-card__name">OSHA — EMS Safety</div>
+          <p class="res-card__desc">OSHA's EMS-specific safety standards covering bloodborne pathogens, ergonomics, vehicle safety, and workplace violence — with compliance tools for corps leadership.</p>
+          <div class="res-card__tag">Regulatory Standards &amp; Compliance</div>
+          <a href="https://www.osha.gov/emergency-medical-services" target="_blank" rel="noopener noreferrer" class="res-card__btn">Visit Resource <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
 
-        <div class="section__placeholder-grid" aria-hidden="true">
-          <div class="placeholder-card">Resource Link</div>
-          <div class="placeholder-card">Resource Link</div>
-          <div class="placeholder-card">Resource Link</div>
-          <div class="placeholder-card">Resource Link</div>
+        <div class="res-card">
+          <div class="res-card__icon"><i class="fa-solid fa-star-of-life"></i></div>
+          <div class="res-card__name">NAEMT</div>
+          <p class="res-card__desc">The leading professional organization for EMS providers. Offers continuing education, advocacy resources, and wellness programs specifically designed for working providers.</p>
+          <div class="res-card__tag">Professional Organization</div>
+          <a href="https://www.naemt.org" target="_blank" rel="noopener noreferrer" class="res-card__btn">Visit Resource <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="res-card">
+          <div class="res-card__icon"><i class="fa-solid fa-newspaper"></i></div>
+          <div class="res-card__name">EMS1 — Provider Wellness</div>
+          <p class="res-card__desc">Industry news and educational content covering provider wellness, injury prevention research, and operational safety updates relevant to working EMS professionals.</p>
+          <div class="res-card__tag">Industry News &amp; Education</div>
+          <a href="https://www.ems1.com/ems-provider-wellness" target="_blank" rel="noopener noreferrer" class="res-card__btn">Visit Resource <i class="fa-solid fa-arrow-right"></i></a>
+        </div>
+
+        <div class="res-card">
+          <div class="res-card__icon"><i class="fa-solid fa-car-burst"></i></div>
+          <div class="res-card__name">NHTSA — Office of EMS</div>
+          <p class="res-card__desc">The federal office overseeing EMS system development and safety. Provides data on EMS vehicle incidents, national EMS scope of practice guidelines, and system research.</p>
+          <div class="res-card__tag">Federal EMS Oversight</div>
+          <a href="https://www.ems.gov" target="_blank" rel="noopener noreferrer" class="res-card__btn">Visit Resource <i class="fa-solid fa-arrow-right"></i></a>
         </div>
 
       </div>
-    </div>
+
+      <!-- ── PART 2: Injury Reporting Guide ── -->
+      <div class="report-panel" id="reportPanel">
+
+        <div class="report-panel__header">
+          <i class="fa-solid fa-file-medical"></i>
+          <div>
+            <div class="report-panel__title">How to Report an Injury — Know the Process</div>
+            <div class="report-panel__subtitle">Reporting protects you legally, financially, and ensures your corps can prevent the same injury from happening to someone else.</div>
+          </div>
+        </div>
+
+        <div class="report-panel__body">
+
+          <div class="rpt-step-row" id="rptStepRow">
+            <div class="rpt-circle is-active" data-step="0">1</div>
+            <div class="rpt-line"><div class="rpt-line-fill"></div></div>
+            <div class="rpt-circle" data-step="1">2</div>
+            <div class="rpt-line"><div class="rpt-line-fill"></div></div>
+            <div class="rpt-circle" data-step="2">3</div>
+            <div class="rpt-line"><div class="rpt-line-fill"></div></div>
+            <div class="rpt-circle" data-step="3">4</div>
+            <div class="rpt-line"><div class="rpt-line-fill"></div></div>
+            <div class="rpt-circle" data-step="4">5</div>
+          </div>
+
+          <div class="rpt-card is-active" data-step="0">
+            <div class="rpt-card__icon"><i class="fa-solid fa-clock"></i></div>
+            <div class="rpt-card__title">Step 1 — Report Immediately</div>
+            <div class="rpt-card__body">
+              <p>Report any injury — no matter how minor it seems — to your supervisor at the time it occurs or as soon as safely possible during your shift. Do not wait until the end of your shift and do not assume it will resolve on its own.</p>
+              <p><strong>Why it matters:</strong></p>
+              <ul>
+                <li>Delayed reporting can complicate workers' compensation claims</li>
+                <li>Some injuries — particularly back and soft tissue — worsen significantly within 24–48 hours</li>
+                <li>Your supervisor needs to document the circumstances while details are fresh</li>
+              </ul>
+              <p><strong>Key rule:</strong> If you felt it, report it. Even if you finish the shift. Even if it feels minor.</p>
+            </div>
+          </div>
+
+          <div class="rpt-card" data-step="1">
+            <div class="rpt-card__icon"><i class="fa-solid fa-pen-to-square"></i></div>
+            <div class="rpt-card__title">Step 2 — Document the Circumstances</div>
+            <div class="rpt-card__body">
+              <p>Before your memory fades, write down exactly what happened — the call type, the address, the patient weight if known, the surface conditions, what you were doing when the injury occurred, and who was present.</p>
+              <p><strong>What to document:</strong></p>
+              <ul>
+                <li>Time, date, and location of the incident</li>
+                <li>Exactly what activity caused the injury (lifting, fall, patient contact, etc.)</li>
+                <li>Names of all witnesses — partner, crew, bystanders</li>
+                <li>Equipment involved — stretcher number, stair chair ID</li>
+                <li>Any contributing factors: wet floor, time pressure, short staffing, equipment issues</li>
+              </ul>
+              <p><strong>This documentation is your protection</strong> — keep a personal copy.</p>
+            </div>
+          </div>
+
+          <div class="rpt-card" data-step="2">
+            <div class="rpt-card__icon"><i class="fa-solid fa-hospital"></i></div>
+            <div class="rpt-card__title">Step 3 — Seek Medical Evaluation</div>
+            <div class="rpt-card__body">
+              <p>Even if you feel you can continue working, get a medical evaluation as soon as possible after any significant injury. Many serious injuries — particularly lumbar disc injuries and rotator cuff tears — present with manageable initial pain that worsens dramatically within 48–72 hours.</p>
+              <p><strong>Important:</strong></p>
+              <ul>
+                <li>Go to an occupational health provider or emergency department — not just urgent care for serious injuries</li>
+                <li>Tell the provider exactly what happened and that it occurred at work</li>
+                <li>Get documentation of the evaluation — you will need this for your claim</li>
+                <li>Do not let anyone pressure you to skip evaluation</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="rpt-card" data-step="3">
+            <div class="rpt-card__icon"><i class="fa-solid fa-file-contract"></i></div>
+            <div class="rpt-card__title">Step 4 — File the Workers' Compensation Claim</div>
+            <div class="rpt-card__body">
+              <p>Workers' compensation exists specifically to protect you when you are injured on the job. It covers medical costs, lost wages, and rehabilitation. Filing a claim is your legal right — not a burden on your corps.</p>
+              <p><strong>How it works:</strong></p>
+              <ul>
+                <li>Your supervisor or corps administrator will provide the claim forms</li>
+                <li>File promptly — most states have a deadline for filing after an injury (often 30–90 days)</li>
+                <li>Keep copies of everything you submit</li>
+                <li>If your claim is denied, you have the right to appeal — consult a workers' compensation attorney if needed</li>
+              </ul>
+              <p><strong>Key rule:</strong> Filing a workers' comp claim is not complaining. It is using a system designed specifically for this situation.</p>
+            </div>
+          </div>
+
+          <div class="rpt-card" data-step="4">
+            <div class="rpt-card__icon"><i class="fa-solid fa-person-walking-arrow-right"></i></div>
+            <div class="rpt-card__title">Step 5 — Return to Duty Safely</div>
+            <div class="rpt-card__body">
+              <p>Returning to full duty before you are medically cleared is one of the most common causes of re-injury in EMS. A partial recovery followed by another heavy lift often results in a more severe injury than the original.</p>
+              <p><strong>Safe return to duty:</strong></p>
+              <ul>
+                <li>Return only with written medical clearance</li>
+                <li>Discuss any duty restrictions with your supervisor before your first shift back</li>
+                <li>Modified duty is not a punishment — it is a bridge to full recovery</li>
+                <li>Inform your partner of any current limitations so they can adjust expectations and assist</li>
+                <li>If you are not ready, say so — your long-term career depends on full recovery</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ── PART 3: Know Your Rights ── -->
+      <div class="rights-panel" id="rightsPanel">
+
+        <div class="rights-header" id="rightsToggle">
+          <div class="rights-title-group">
+            <i class="fa-solid fa-scale-balanced"></i>
+            <span class="rights-title">Know Your Rights as an Injured EMS Provider</span>
+          </div>
+          <i class="fa-solid fa-chevron-down rights-arrow"></i>
+        </div>
+
+        <div class="rights-body">
+          <div class="rights-content">
+
+            <div class="rights-block">
+              <div class="rights-block__title">The Right to Report Without Retaliation</div>
+              <p class="rights-block__text">It is illegal for your employer to retaliate against you for reporting a workplace injury or filing a workers' compensation claim. Retaliation includes schedule changes, termination, demotion, or intimidation. If you experience retaliation, contact your state's department of labor or an employment attorney.</p>
+            </div>
+
+            <div class="rights-block">
+              <div class="rights-block__title">The Right to Medical Treatment</div>
+              <p class="rights-block__text">You have the right to seek medical treatment for any workplace injury. In most states, your employer or their insurance carrier must cover reasonable and necessary medical treatment related to your work injury. You may have the right to choose your own physician depending on your state.</p>
+            </div>
+
+            <div class="rights-block">
+              <div class="rights-block__title">The Right to Lost Wage Compensation</div>
+              <p class="rights-block__text">If your injury prevents you from working, workers' compensation typically covers a portion of your lost wages — usually 60–70% of your average weekly wage. This coverage begins after a waiting period (typically 3–7 days) and continues for the duration of your disability.</p>
+            </div>
+
+            <div class="rights-block">
+              <div class="rights-block__title">The Right to a Safe Workplace</div>
+              <p class="rights-block__text">OSHA requires employers to provide a workplace free from recognized hazards. This includes providing properly maintained equipment, adequate staffing for heavy lifts, and training on safe patient handling. You have the right to report OSHA violations without fear of retaliation.</p>
+            </div>
+
+            <p class="rights-disclaimer">This information is educational and does not constitute legal advice. Laws vary by state and employment classification. Consult a qualified attorney for guidance specific to your situation.</p>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ── PART 4: Near-Miss Reporting ── -->
+      <div class="nearmiss-panel" id="nearmissPanel">
+
+        <div class="nearmiss-left">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          <div class="nearmiss-stat">Up to 90% of EMS safety incidents go unreported.</div>
+        </div>
+
+        <div>
+          <div class="nearmiss-right__title">Near-Miss Reporting Saves Careers</div>
+          <div class="nearmiss-right__body">
+            <p>A near-miss is any incident that could have caused injury but did not. The stretcher wheel that almost gave way. The icy step you caught yourself on. The lift that felt wrong but nobody got hurt.</p>
+            <p>Near-miss reporting is one of the most powerful injury prevention tools available to your corps — but only if providers actually use it. Every near-miss that goes unreported is a missed opportunity to fix the condition before someone does get hurt.</p>
+            <p><strong>How to report:</strong></p>
+            <ul>
+              <li>Tell your supervisor immediately after the call</li>
+              <li>Document it using the same process as an injury</li>
+              <li>Many corps have anonymous reporting options — use them if you have concerns about perception</li>
+              <li>There is no such thing as a "too minor" near-miss report</li>
+            </ul>
+          </div>
+          <div class="nearmiss-callout">If something felt wrong — report it. You may be protecting the next crew.</div>
+        </div>
+
+      </div>
+
+      <!-- ── PART 5: Corps Safety Contact Card ── -->
+      <div class="contact-card" id="contactCard">
+        <div class="contact-card__icon"><i class="fa-solid fa-id-card"></i></div>
+        <div class="contact-card__title">Corps Safety Officer</div>
+        <p class="contact-card__subtitle">Your first point of contact for any injury, near-miss, or safety concern.</p>
+
+        <div class="contact-details">
+          <div class="contact-detail">
+            <i class="fa-solid fa-user"></i>
+            <span class="contact-detail__label">Safety Officer Name:</span>
+            <span class="contact-detail__value">[Your Name Here]</span>
+          </div>
+          <div class="contact-detail">
+            <i class="fa-solid fa-phone"></i>
+            <span class="contact-detail__label">Contact:</span>
+            <span class="contact-detail__value">[Phone Number]</span>
+          </div>
+          <div class="contact-detail">
+            <i class="fa-solid fa-envelope"></i>
+            <span class="contact-detail__label">Email:</span>
+            <span class="contact-detail__value">[Email Address]</span>
+          </div>
+          <div class="contact-detail">
+            <i class="fa-solid fa-clock"></i>
+            <span class="contact-detail__label">Available:</span>
+            <span class="contact-detail__value">[Hours / On-Call Info]</span>
+          </div>
+        </div>
+
+        <div class="contact-buttons">
+          <a href="mailto:?subject=Injury%20Report" class="contact-btn contact-btn--primary">
+            <i class="fa-solid fa-file-medical"></i>
+            Report an Injury
+          </a>
+          <a href="mailto:?subject=Near-Miss%20Report" class="contact-btn contact-btn--outline">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            Report a Near-Miss
+          </a>
+        </div>
+
+        <p class="contact-note">All reports are taken seriously. Retaliation of any kind is prohibited and will be addressed by corps leadership.</p>
+      </div>
+
+    </div><!-- /container -->
   </section>
 
 
@@ -6496,9 +7437,9 @@
           <i class="fa-solid fa-truck-medical" aria-hidden="true"></i>
           EMS SafeGuard
         </div>
-        <p class="footer__tagline">
-          Evidence-based injury prevention and orthopedic education for EMS
-          professionals. Built by the corps, for the corps.
+        <p class="footer__tagline">Protecting those who protect others.</p>
+        <p style="font-size:0.8rem;color:var(--color-muted);margin-top:var(--sp-1);line-height:1.5;">
+          An educational resource for EMS providers and corps leadership.
         </p>
       </div>
 
@@ -6506,47 +7447,33 @@
       <div>
         <p class="footer__heading">Quick Links</p>
         <nav class="footer__nav" aria-label="Footer navigation">
-          <a href="#home">Home</a>
-          <a href="#injuries">Injury Landscape</a>
-          <a href="#body-guide">Body Guide</a>
-          <a href="#handling">Lifting & Handling</a>
-          <a href="#prevention">Prevention</a>
-          <a href="#stretching">Stretching</a>
-          <a href="#resources">Resources</a>
+          <a href="#injuries">The Injury Landscape</a>
+          <a href="#body-guide">Orthopedic Body Guide</a>
+          <a href="#handling">Lifting &amp; Handling</a>
+          <a href="#prevention">Prevention Protocols</a>
+          <a href="#stretching">Stretching &amp; Recovery</a>
+          <a href="#resources">Resources &amp; Reporting</a>
         </nav>
       </div>
 
-      <!-- Contact -->
+      <!-- Built For -->
       <div>
-        <p class="footer__heading">Safety Officer</p>
-        <div class="footer__contact-item">
-          <i class="fa-solid fa-user-shield" aria-hidden="true"></i>
-          <span>Corps Safety Officer<br /><em style="color: var(--color-muted); font-style: normal;">Name Placeholder</em></span>
-        </div>
-        <div class="footer__contact-item">
-          <i class="fa-solid fa-envelope" aria-hidden="true"></i>
-          <span>safety@yourcorps.org</span>
-        </div>
-        <div class="footer__contact-item">
-          <i class="fa-solid fa-phone" aria-hidden="true"></i>
-          <span>(555) 000-0000</span>
-        </div>
-        <div class="footer__contact-item">
-          <i class="fa-solid fa-triangle-exclamation" aria-hidden="true"></i>
-          <span>Report an injury: use the<br />form in Resources &rarr;</span>
-        </div>
+        <p class="footer__heading">Built For</p>
+        <p style="font-size:0.9rem;color:var(--color-muted);line-height:1.6;margin-bottom:var(--sp-2);">
+          Hudson Valley EMS providers committed to longer, healthier careers.
+        </p>
+        <p style="font-size:0.82rem;color:var(--color-accent);line-height:1.5;">
+          Stay safe. Report everything. Look out for your crew.
+        </p>
       </div>
 
     </div>
 
     <div class="footer__bottom">
       <p class="footer__copy">
-        &copy; <span id="year"></span> EMS SafeGuard. All rights reserved.
+        &copy; <span id="year"></span> EMS SafeGuard Educational Resource.
+        For training purposes only. Not a substitute for professional medical advice.
       </p>
-      <span class="footer__badge">
-        <i class="fa-solid fa-heart-pulse" aria-hidden="true"></i>
-        Built for those who run toward the call
-      </span>
     </div>
   </footer>
 
@@ -7236,6 +8163,113 @@
             });
           }
         }, { threshold: 0.15 }).observe(recoveryStrip);
+      }
+
+    })();
+
+    /* ══════════════════════════════════════════════════════════
+       RESOURCES SECTION
+    ══════════════════════════════════════════════════════════ */
+    (function () {
+
+      /* ── Resource Cards: stagger fade-up ── */
+      const resGrid = document.getElementById('resGrid');
+      if (resGrid) {
+        new IntersectionObserver(([entry]) => {
+          if (entry.isIntersecting) {
+            resGrid.querySelectorAll('.res-card').forEach((card, i) => {
+              setTimeout(() => card.classList.add('is-visible'), i * 60);
+            });
+          }
+        }, { threshold: 0.1 }).observe(resGrid);
+      }
+
+
+      /* ── Injury Reporting Stepper ── */
+      const rptCircles  = document.querySelectorAll('#rptStepRow .rpt-circle');
+      const rptLines    = document.querySelectorAll('#rptStepRow .rpt-line-fill');
+      const rptCards    = document.querySelectorAll('#reportPanel .rpt-card');
+      let rptCurrent    = 0;
+
+      function rptGo(idx) {
+        rptCurrent = idx;
+
+        rptCircles.forEach((c, i) => {
+          c.classList.remove('is-active', 'is-completed');
+          if (i < idx) c.classList.add('is-completed');
+          else if (i === idx) c.classList.add('is-active');
+        });
+
+        rptLines.forEach((lf, i) => {
+          lf.style.width = i < idx ? '100%' : '0%';
+        });
+
+        rptCards.forEach((card, i) => {
+          card.classList.toggle('is-active', i === idx);
+        });
+      }
+
+      rptCircles.forEach((c, i) => {
+        c.addEventListener('click', () => rptGo(i));
+      });
+
+
+      /* ── Know Your Rights Accordion ── */
+      const rightsPanel  = document.getElementById('rightsPanel');
+      const rightsToggle = document.getElementById('rightsToggle');
+
+      if (rightsToggle && rightsPanel) {
+        rightsToggle.addEventListener('click', () => {
+          rightsPanel.classList.toggle('is-open');
+        });
+      }
+
+
+      /* ── Near-Miss Panel: fade-up ── */
+      const nearmissPanel = document.getElementById('nearmissPanel');
+      if (nearmissPanel) {
+        new IntersectionObserver(([entry]) => {
+          if (entry.isIntersecting) {
+            nearmissPanel.classList.add('is-visible');
+          }
+        }, { threshold: 0.15 }).observe(nearmissPanel);
+      }
+
+
+      /* ── Contact Card: fade-up ── */
+      const contactCard = document.getElementById('contactCard');
+      if (contactCard) {
+        new IntersectionObserver(([entry]) => {
+          if (entry.isIntersecting) {
+            contactCard.classList.add('is-visible');
+          }
+        }, { threshold: 0.2 }).observe(contactCard);
+      }
+
+
+      /* ── Section entry: fade-up ── */
+      const resSection = document.getElementById('resources');
+      if (resSection) {
+        const fadeEls = resSection.querySelectorAll(
+          '.resources-header'
+        );
+
+        fadeEls.forEach(el => {
+          el.style.opacity = '0';
+          el.style.transform = 'translateY(20px)';
+          el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        });
+
+        new IntersectionObserver(([entry]) => {
+          if (entry.isIntersecting) {
+            fadeEls.forEach((el, i) => {
+              setTimeout(() => {
+                el.style.opacity = '1';
+                el.style.transform = 'translateY(0)';
+              }, i * 120);
+            });
+          }
+        }, { threshold: 0.1 }).observe(resSection);
       }
 
     })();
