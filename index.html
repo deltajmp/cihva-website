@@ -2084,6 +2084,474 @@
       margin-top: 3px;
     }
 
+    /* ── Scene Size-Up Sub-blocks ── */
+    .scene-blocks {
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-3);
+    }
+
+    .scene-block {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: var(--sp-3);
+    }
+
+    .scene-block__header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: var(--sp-2);
+    }
+
+    .scene-block__header i {
+      color: var(--color-accent);
+      font-size: 1rem;
+      width: 20px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .scene-block__title {
+      font-family: var(--font-heading);
+      font-size: 0.88rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--color-text);
+    }
+
+    .scene-block__list {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      list-style: none;
+    }
+
+    .scene-block__list li {
+      font-size: 0.875rem;
+      color: var(--color-secondary);
+      line-height: 1.65;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .scene-block__list li::before {
+      content: '—';
+      color: var(--color-accent);
+      font-weight: 700;
+      position: absolute;
+      left: 0;
+    }
+
+    /* ── Communication Two-Column Layout ── */
+    .comm-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-3);
+    }
+
+    /* Verbal Cues Card */
+    .comm-cues {
+      background: var(--color-bg);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: var(--sp-4);
+    }
+
+    .comm-cues__title {
+      font-family: var(--font-heading);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: var(--sp-3);
+    }
+
+    .comm-cue {
+      margin-bottom: var(--sp-3);
+    }
+
+    .comm-cue:last-child {
+      margin-bottom: 0;
+    }
+
+    .comm-cue__cmd {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--color-text);
+      letter-spacing: 0.02em;
+      margin-bottom: 4px;
+    }
+
+    .comm-cue__desc {
+      font-size: 0.84rem;
+      color: var(--color-secondary);
+      line-height: 1.6;
+    }
+
+    /* Communication Rules Card */
+    .comm-rules {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-left: 4px solid var(--color-accent);
+      border-radius: 0 8px 8px 0;
+      padding: var(--sp-4);
+    }
+
+    .comm-rules__title {
+      font-family: var(--font-heading);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: var(--sp-3);
+    }
+
+    .comm-rule {
+      margin-bottom: var(--sp-3);
+    }
+
+    .comm-rule:last-child {
+      margin-bottom: 0;
+    }
+
+    .comm-rule__name {
+      font-family: var(--font-heading);
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--color-text);
+      margin-bottom: 4px;
+    }
+
+    .comm-rule__text {
+      font-size: 0.84rem;
+      color: var(--color-secondary);
+      line-height: 1.65;
+    }
+
+    /* ── PPE Content Blocks ── */
+    .ppe-block {
+      margin-bottom: var(--sp-4);
+    }
+
+    .ppe-block:last-child {
+      margin-bottom: 0;
+    }
+
+    .ppe-block__header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: var(--sp-2);
+    }
+
+    .ppe-block__header i {
+      color: var(--color-accent);
+      font-size: 1rem;
+    }
+
+    .ppe-block__title {
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: var(--color-text);
+    }
+
+    .ppe-block__body {
+      font-size: 0.875rem;
+      color: var(--color-secondary);
+      line-height: 1.75;
+    }
+
+    .ppe-block__body ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: var(--sp-1);
+    }
+
+    .ppe-block__body ul li::before {
+      content: '—';
+      color: var(--color-accent);
+      font-weight: 700;
+      margin-right: 8px;
+    }
+
+    .ppe-block__body p + p {
+      margin-top: var(--sp-1);
+    }
+
+    .ppe-block__body p + ul {
+      margin-top: var(--sp-1);
+    }
+
+    /* Footwear Comparison Table */
+    .footwear-compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-3);
+      margin-top: var(--sp-2);
+    }
+
+    .footwear-col {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: var(--sp-3);
+    }
+
+    .footwear-col--good {
+      border-top: 3px solid #22c55e;
+    }
+
+    .footwear-col--bad {
+      border-top: 3px solid #ef4444;
+    }
+
+    .footwear-col__title {
+      font-family: var(--font-heading);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: var(--sp-2);
+    }
+
+    .footwear-col--good .footwear-col__title {
+      color: #22c55e;
+    }
+
+    .footwear-col--bad .footwear-col__title {
+      color: #ef4444;
+    }
+
+    .footwear-col__list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .footwear-col__list li {
+      font-size: 0.84rem;
+      color: var(--color-secondary);
+      line-height: 1.5;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+    }
+
+    .footwear-col--good .footwear-col__list li::before {
+      content: '\2713';
+      color: #22c55e;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .footwear-col--bad .footwear-col__list li::before {
+      content: '\2717';
+      color: #ef4444;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* ── Daily Prevention Checklist Panel ── */
+    .daily-checklist-panel {
+      max-width: 1160px;
+      margin-inline: auto;
+      margin-top: var(--sp-8);
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .daily-checklist__header {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-3);
+      padding: var(--sp-4) var(--sp-5);
+      background: var(--color-surface);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .daily-checklist__header i {
+      font-size: 1.5rem;
+      color: var(--color-accent);
+      flex-shrink: 0;
+    }
+
+    .daily-checklist__title {
+      font-family: var(--font-heading);
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--color-text);
+      line-height: 1.2;
+    }
+
+    .daily-checklist__subtitle {
+      font-size: 0.82rem;
+      color: var(--color-muted);
+      margin-top: 2px;
+    }
+
+    .daily-checklist__body {
+      padding: var(--sp-5);
+      background: var(--color-bg);
+    }
+
+    .daily-checklist__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-6);
+    }
+
+    .daily-group__title {
+      font-family: var(--font-heading);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: var(--sp-2);
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .daily-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px var(--sp-2);
+      cursor: pointer;
+      user-select: none;
+      border-radius: 4px;
+      transition: background 0.15s ease;
+      min-height: 44px;
+    }
+
+    .daily-item:hover {
+      background: rgba(249, 115, 22, 0.04);
+    }
+
+    .daily-item__box {
+      width: 22px;
+      height: 22px;
+      border-radius: 4px;
+      border: 2px solid var(--color-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 0.7rem;
+      color: transparent;
+      transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .daily-item.is-checked .daily-item__box {
+      background: #22c55e;
+      border-color: #22c55e;
+      color: #fff;
+    }
+
+    .daily-item__label {
+      font-size: 0.875rem;
+      color: var(--color-secondary);
+      line-height: 1.5;
+      transition: color 0.2s ease;
+    }
+
+    .daily-item.is-checked .daily-item__label {
+      color: var(--color-muted);
+    }
+
+    .daily-checklist__footer {
+      padding: var(--sp-3) var(--sp-5);
+      background: var(--color-surface);
+      border-top: 1px solid var(--color-border);
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .daily-print-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--sp-1);
+      font-family: var(--font-heading);
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 10px var(--sp-4);
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      background: var(--color-accent);
+      color: var(--color-bg);
+      transition: background var(--ease), transform var(--ease);
+    }
+
+    .daily-print-btn:hover {
+      background: var(--color-accent-hover);
+      transform: translateY(-2px);
+    }
+
+    /* ── Print Styles ── */
+    @media print {
+      body > *:not(#prevention) { display: none !important; }
+      #prevention > .container > *:not(.daily-checklist-panel) { display: none !important; }
+      .nav, .hero, #injuries, #body-guide, #handling,
+      #stretching, #resources, .footer { display: none !important; }
+
+      .daily-checklist-panel {
+        border: 2px solid #333;
+        margin: 0;
+        max-width: 100%;
+      }
+
+      .daily-checklist__header {
+        background: #f5f5f5 !important;
+        color: #000 !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .daily-checklist__header i { color: #333 !important; }
+      .daily-checklist__title { color: #000 !important; }
+      .daily-checklist__subtitle { color: #555 !important; }
+
+      .daily-checklist__body {
+        background: #fff !important;
+        padding: 16px;
+      }
+
+      .daily-group__title {
+        color: #000 !important;
+        border-color: #ccc !important;
+      }
+
+      .daily-item__box {
+        border-color: #999 !important;
+        background: #fff !important;
+        color: transparent !important;
+      }
+
+      .daily-item__label { color: #333 !important; }
+
+      .daily-checklist__footer { display: none !important; }
+    }
+
     /* ── Prevention Responsive — Tablet ── */
     @media (max-width: 900px) {
       .sr-dashboard {
@@ -2096,6 +2564,18 @@
 
       .prev-acc-content {
         padding: var(--sp-3);
+      }
+
+      .comm-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .footwear-compare {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .daily-checklist__grid {
+        grid-template-columns: 1fr 1fr;
       }
     }
 
@@ -2120,6 +2600,36 @@
       .prev-callout,
       .prev-callout--danger {
         padding: var(--sp-2) var(--sp-3);
+      }
+
+      .comm-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .footwear-compare {
+        grid-template-columns: 1fr;
+      }
+
+      .daily-checklist__grid {
+        grid-template-columns: 1fr;
+      }
+
+      .daily-checklist__header {
+        padding: var(--sp-3);
+      }
+
+      .daily-checklist__body {
+        padding: var(--sp-3);
+      }
+
+      .daily-checklist__footer {
+        padding: var(--sp-3);
+        justify-content: stretch;
+      }
+
+      .daily-print-btn {
+        width: 100%;
+        justify-content: center;
       }
     }
 
@@ -4281,7 +4791,377 @@
           </div>
         </div>
 
+        <!-- ACCORDION 3 — Scene Size-Up for Physical Hazards -->
+        <div class="prev-acc-item">
+          <div class="prev-acc-header">
+            <i class="fa-solid fa-magnifying-glass prev-acc-icon"></i>
+            <span class="prev-acc-title">Scene Size-Up for Physical Hazards</span>
+            <i class="fa-solid fa-chevron-down prev-acc-arrow"></i>
+          </div>
+          <div class="prev-acc-body">
+            <div class="prev-acc-content">
+
+              <p class="prev-acc-intro">
+                Before you move a patient, you should have already
+                identified every physical risk in the environment.
+                Scene safety training must include physical injury
+                hazards — not just violence and environmental threats.
+              </p>
+
+              <div class="scene-blocks">
+
+                <div class="scene-block">
+                  <div class="scene-block__header">
+                    <i class="fa-solid fa-house"></i>
+                    <span class="scene-block__title">Interior Environments</span>
+                  </div>
+                  <ul class="scene-block__list">
+                    <li>Note floor surfaces: tile, hardwood, loose rugs (rugs must be secured or removed before lifting)</li>
+                    <li>Identify doorway widths before committing to a path</li>
+                    <li>Locate furniture that must be moved before patient movement</li>
+                    <li>Check stairwells: lighting, railings, step integrity</li>
+                    <li>Bathrooms are the most confined and highest-risk lift environment in EMS — plan before entering</li>
+                  </ul>
+                </div>
+
+                <div class="scene-block">
+                  <div class="scene-block__header">
+                    <i class="fa-solid fa-road"></i>
+                    <span class="scene-block__title">Roadway &amp; Outdoor Scenes</span>
+                  </div>
+                  <ul class="scene-block__list">
+                    <li>Identify traffic hazard before exiting the unit</li>
+                    <li>Note ground surface: gravel, wet pavement, grass, ice</li>
+                    <li>Assess slope of the approach path to the patient</li>
+                    <li>Identify tripping hazards: curbs, equipment lines, hose</li>
+                    <li>Plan your path to the ambulance before moving the patient</li>
+                  </ul>
+                </div>
+
+                <div class="scene-block">
+                  <div class="scene-block__header">
+                    <i class="fa-solid fa-stairs"></i>
+                    <span class="scene-block__title">Stair &amp; Elevation Hazards</span>
+                  </div>
+                  <ul class="scene-block__list">
+                    <li>Count stairs and identify landing points before lifting</li>
+                    <li>Check for loose carpet, missing handrails, damaged steps</li>
+                    <li>Identify the widest path — never assume the obvious is best</li>
+                    <li>Brief your team on every step, landing, and turn in advance</li>
+                    <li>Pre-position the stretcher at the optimal landing point</li>
+                  </ul>
+                </div>
+
+                <div class="scene-block">
+                  <div class="scene-block__header">
+                    <i class="fa-solid fa-person-dots-from-line"></i>
+                    <span class="scene-block__title">Patient Environment Factors</span>
+                  </div>
+                  <ul class="scene-block__list">
+                    <li>Pets that may interfere — secure before beginning</li>
+                    <li>Family members who may try to help — assign them a specific role or a safe place to stand</li>
+                    <li>Hoarding conditions — may require clearing before access</li>
+                    <li>Unstable furniture the patient may be near</li>
+                  </ul>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- ACCORDION 4 — Communication Protocols During Lifts -->
+        <div class="prev-acc-item">
+          <div class="prev-acc-header">
+            <i class="fa-solid fa-comments prev-acc-icon"></i>
+            <span class="prev-acc-title">Communication Protocols During Lifts</span>
+            <i class="fa-solid fa-chevron-down prev-acc-arrow"></i>
+          </div>
+          <div class="prev-acc-body">
+            <div class="prev-acc-content">
+
+              <p class="prev-acc-intro">
+                The most preventable cause of lift-related injury is a
+                breakdown in communication between providers. These
+                protocols exist so that every provider uses the same
+                language — on every call, every time.
+              </p>
+
+              <div class="comm-layout">
+
+                <!-- Left: Verbal Cues -->
+                <div class="comm-cues">
+                  <div class="comm-cues__title">Standard Verbal Cues</div>
+
+                  <div class="comm-cue">
+                    <div class="comm-cue__cmd">"READY?"</div>
+                    <div class="comm-cue__desc">Used by lead before any lift. All providers respond "READY" before movement begins.</div>
+                  </div>
+
+                  <div class="comm-cue">
+                    <div class="comm-cue__cmd">"LIFT ON 3 — 1, 2, 3"</div>
+                    <div class="comm-cue__desc">Standard lift count. Movement begins ON 3. Everyone agrees on this beforehand.</div>
+                  </div>
+
+                  <div class="comm-cue">
+                    <div class="comm-cue__cmd">"HOLD"</div>
+                    <div class="comm-cue__desc">Freeze all movement immediately. Any provider can call a hold at any time.</div>
+                  </div>
+
+                  <div class="comm-cue">
+                    <div class="comm-cue__cmd">"SET DOWN"</div>
+                    <div class="comm-cue__desc">Controlled return to starting surface. Called when a lift cannot safely be completed.</div>
+                  </div>
+
+                  <div class="comm-cue">
+                    <div class="comm-cue__cmd">"STEP"</div>
+                    <div class="comm-cue__desc">Used during stair chair descent. Called by lead before each step.</div>
+                  </div>
+
+                  <div class="comm-cue">
+                    <div class="comm-cue__cmd">"CLEAR"</div>
+                    <div class="comm-cue__desc">Equipment or path is clear to proceed.</div>
+                  </div>
+
+                  <div class="comm-cue">
+                    <div class="comm-cue__cmd">"HELP"</div>
+                    <div class="comm-cue__desc">Any provider can call this at any time. Means: stop, assess, get more resources.</div>
+                  </div>
+                </div>
+
+                <!-- Right: Communication Rules -->
+                <div class="comm-rules">
+                  <div class="comm-rules__title">Communication Rules</div>
+
+                  <div class="comm-rule">
+                    <div class="comm-rule__name">Rule 1 — Anyone Can Stop a Lift</div>
+                    <div class="comm-rule__text">No hierarchy overrides a safety call. If any provider says "hold" or "set down," the lift stops. No exceptions.</div>
+                  </div>
+
+                  <div class="comm-rule">
+                    <div class="comm-rule__name">Rule 2 — Confirm Before You Move</div>
+                    <div class="comm-rule__text">The lead calls the count. Everyone confirms readiness. Movement never begins without confirmation from all providers.</div>
+                  </div>
+
+                  <div class="comm-rule">
+                    <div class="comm-rule__name">Rule 3 — Call Out Changes</div>
+                    <div class="comm-rule__text">Patient shifts, surface changes, obstacles, fatigue — call them out immediately. Silence during a lift is a hazard.</div>
+                  </div>
+
+                  <div class="comm-rule">
+                    <div class="comm-rule__name">Rule 4 — Debrief Difficult Lifts</div>
+                    <div class="comm-rule__text">After any lift that felt unsafe or caused discomfort, debrief as a crew. What happened? What would change it? This is how habits improve.</div>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- ACCORDION 5 — PPE & Back Support Guidance -->
+        <div class="prev-acc-item">
+          <div class="prev-acc-header">
+            <i class="fa-solid fa-helmet-safety prev-acc-icon"></i>
+            <span class="prev-acc-title">PPE &amp; Back Support Guidance</span>
+            <i class="fa-solid fa-chevron-down prev-acc-arrow"></i>
+          </div>
+          <div class="prev-acc-body">
+            <div class="prev-acc-content">
+
+              <p class="prev-acc-intro">
+                Physical injury PPE is as important as infectious
+                exposure PPE. Understanding what works — and what
+                doesn't — is essential to using it correctly.
+              </p>
+
+              <!-- Block 1: Back Belts -->
+              <div class="ppe-block">
+                <div class="ppe-block__header">
+                  <i class="fa-solid fa-circle-question"></i>
+                  <span class="ppe-block__title">Do Back Belts Actually Prevent Injury?</span>
+                </div>
+                <div class="ppe-block__body">
+                  <p>The evidence on back belts is mixed. NIOSH and OSHA do not recommend them as a primary prevention tool:</p>
+                  <ul>
+                    <li>They do not substitute for proper lifting mechanics</li>
+                    <li>Over-reliance weakens the core muscles that actually protect the spine</li>
+                    <li>They do not protect against sudden unexpected loads</li>
+                  </ul>
+                  <p>When they may help:</p>
+                  <ul>
+                    <li>Providers returning from lumbar injury under medical guidance</li>
+                    <li>As a posture reminder — not as structural protection</li>
+                  </ul>
+                </div>
+                <div class="prev-callout" style="margin-top:var(--sp-2)">
+                  <div>
+                    <strong>Important:</strong> A back belt is not armor. It does not make an unsafe
+                    lift safe. Use proper mechanics every time —
+                    with or without a belt.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Block 2: Footwear -->
+              <div class="ppe-block">
+                <div class="ppe-block__header">
+                  <i class="fa-solid fa-shoe-prints"></i>
+                  <span class="ppe-block__title">Your Boots Are Your Foundation</span>
+                </div>
+                <div class="footwear-compare">
+                  <div class="footwear-col footwear-col--good">
+                    <div class="footwear-col__title">Recommended</div>
+                    <ul class="footwear-col__list">
+                      <li>ASTM-rated slip-resistant outsole</li>
+                      <li>Ankle coverage — 6-inch minimum</li>
+                      <li>Composite or steel toe</li>
+                      <li>Cushioned midsole for prolonged standing</li>
+                      <li>Replaced every 12 months regardless of appearance</li>
+                    </ul>
+                  </div>
+                  <div class="footwear-col footwear-col--bad">
+                    <div class="footwear-col__title">Avoid</div>
+                    <ul class="footwear-col__list">
+                      <li>Running shoes or cross-trainers — no ankle support</li>
+                      <li>Worn outsoles — grip degrades invisibly</li>
+                      <li>Boots that are too tight — impairs proprioception</li>
+                      <li>Non-rated tactical footwear without ASTM testing</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Block 3: Gloves -->
+              <div class="ppe-block">
+                <div class="ppe-block__header">
+                  <i class="fa-solid fa-hand-dots"></i>
+                  <span class="ppe-block__title">Grip and Hand Protection During Patient Handling</span>
+                </div>
+                <div class="ppe-block__body">
+                  <ul>
+                    <li>Nitrile exam gloves reduce grip friction significantly — be aware during equipment handling</li>
+                    <li>For stretcher and stair chair handling, consider lightweight mechanic gloves that maintain grip</li>
+                    <li>Cold hands lose grip strength by up to 30% — warm up before lifting in cold conditions</li>
+                    <li>Never use exam gloves as sole hand protection when handling sharp or rough equipment surfaces</li>
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
       </div><!-- /prev-accordion -->
+
+      <!-- ── PART 3: Daily Prevention Checklist ── -->
+      <div class="daily-checklist-panel" id="dailyChecklist">
+
+        <div class="daily-checklist__header">
+          <i class="fa-solid fa-clipboard-list"></i>
+          <div>
+            <div class="daily-checklist__title">Daily Provider Prevention Checklist</div>
+            <div class="daily-checklist__subtitle">Run through this at the start of every shift.</div>
+          </div>
+        </div>
+
+        <div class="daily-checklist__body">
+          <div class="daily-checklist__grid">
+
+            <div>
+              <!-- Pre-Shift -->
+              <div class="daily-group__title">Pre-Shift</div>
+              <div class="daily-item" role="checkbox" aria-checked="false" tabindex="0">
+                <div class="daily-item__box"><i class="fa-solid fa-check"></i></div>
+                <span class="daily-item__label">Completed pre-shift warm-up routine (7 minutes)</span>
+              </div>
+              <div class="daily-item" role="checkbox" aria-checked="false" tabindex="0">
+                <div class="daily-item__box"><i class="fa-solid fa-check"></i></div>
+                <span class="daily-item__label">Equipment check completed — all items passed</span>
+              </div>
+              <div class="daily-item" role="checkbox" aria-checked="false" tabindex="0">
+                <div class="daily-item__box"><i class="fa-solid fa-check"></i></div>
+                <span class="daily-item__label">Footwear in good condition — outsoles checked</span>
+              </div>
+              <div class="daily-item" role="checkbox" aria-checked="false" tabindex="0">
+                <div class="daily-item__box"><i class="fa-solid fa-check"></i></div>
+                <span class="daily-item__label">Back or joint pain present? Notified supervisor.</span>
+              </div>
+              <div class="daily-item" role="checkbox" aria-checked="false" tabindex="0">
+                <div class="daily-item__box"><i class="fa-solid fa-check"></i></div>
+                <span class="daily-item__label">Fatigue level assessed — flagged if impaired</span>
+              </div>
+              <div class="daily-item" role="checkbox" aria-checked="false" tabindex="0">
+                <div class="daily-item__box"><i class="fa-solid fa-check"></i></div>
+                <span class="daily-item__label">Reviewed roster — know your lifting partner today</span>
+              </div>
+
+              <!-- During Shift -->
+              <div class="daily-group__title" style="margin-top:var(--sp-4)">During Shift</div>
+              <div class="daily-item" role="checkbox" aria-checked="false" tabindex="0">
+                <div class="daily-item__box"><i class="fa-solid fa-check"></i></div>
+                <span class="daily-item__label">Scene size-up for physical hazards on every call</span>
+              </div>
+              <div class="daily-item" role="checkbox" aria-checked="false" tabindex="0">
+                <div class="daily-item__box"><i class="fa-solid fa-check"></i></div>
+                <span class="daily-item__label">Stretcher height adjusted before every patient transfer</span>
+              </div>
+              <div class="daily-item" role="checkbox" aria-checked="false" tabindex="0">
+                <div class="daily-item__box"><i class="fa-solid fa-check"></i></div>
+                <span class="daily-item__label">Verbal count used on every lift</span>
+              </div>
+              <div class="daily-item" role="checkbox" aria-checked="false" tabindex="0">
+                <div class="daily-item__box"><i class="fa-solid fa-check"></i></div>
+                <span class="daily-item__label">Lift assist requested when load is borderline</span>
+              </div>
+              <div class="daily-item" role="checkbox" aria-checked="false" tabindex="0">
+                <div class="daily-item__box"><i class="fa-solid fa-check"></i></div>
+                <span class="daily-item__label">Staying hydrated throughout the shift</span>
+              </div>
+              <div class="daily-item" role="checkbox" aria-checked="false" tabindex="0">
+                <div class="daily-item__box"><i class="fa-solid fa-check"></i></div>
+                <span class="daily-item__label">Taking micro-stretch breaks between calls when possible</span>
+              </div>
+            </div>
+
+            <div>
+              <!-- Post-Shift -->
+              <div class="daily-group__title">Post-Shift</div>
+              <div class="daily-item" role="checkbox" aria-checked="false" tabindex="0">
+                <div class="daily-item__box"><i class="fa-solid fa-check"></i></div>
+                <span class="daily-item__label">Any pain or discomfort reported to supervisor</span>
+              </div>
+              <div class="daily-item" role="checkbox" aria-checked="false" tabindex="0">
+                <div class="daily-item__box"><i class="fa-solid fa-check"></i></div>
+                <span class="daily-item__label">Near-miss incidents documented</span>
+              </div>
+              <div class="daily-item" role="checkbox" aria-checked="false" tabindex="0">
+                <div class="daily-item__box"><i class="fa-solid fa-check"></i></div>
+                <span class="daily-item__label">Equipment issues reported and tagged out of service</span>
+              </div>
+              <div class="daily-item" role="checkbox" aria-checked="false" tabindex="0">
+                <div class="daily-item__box"><i class="fa-solid fa-check"></i></div>
+                <span class="daily-item__label">Post-shift cooldown stretch completed (5 minutes)</span>
+              </div>
+              <div class="daily-item" role="checkbox" aria-checked="false" tabindex="0">
+                <div class="daily-item__box"><i class="fa-solid fa-check"></i></div>
+                <span class="daily-item__label">Mental check-in — stress and fatigue noted</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="daily-checklist__footer">
+          <button class="daily-print-btn" id="dailyPrintBtn">
+            <i class="fa-solid fa-print"></i>
+            Print Checklist
+          </button>
+        </div>
+
+      </div>
 
     </div><!-- /container -->
   </section>
@@ -4898,11 +5778,33 @@
       });
 
 
+      /* ── Daily Prevention Checklist ── */
+      const dailyItems = document.querySelectorAll('#dailyChecklist .daily-item');
+
+      dailyItems.forEach(item => {
+        function toggle() {
+          const isChecked = item.classList.toggle('is-checked');
+          item.setAttribute('aria-checked', String(isChecked));
+        }
+
+        item.addEventListener('click', toggle);
+        item.addEventListener('keydown', e => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+        });
+      });
+
+      /* ── Print Button ── */
+      const printBtn = document.getElementById('dailyPrintBtn');
+      if (printBtn) {
+        printBtn.addEventListener('click', () => window.print());
+      }
+
+
       /* ── Section entry fade-up on scroll ── */
       const preventionSection = document.getElementById('prevention');
       if (preventionSection) {
         const fadeEls = preventionSection.querySelectorAll(
-          '.prevention-header, .sr-progress-wrap, .sr-dashboard, .prev-accordion'
+          '.prevention-header, .sr-progress-wrap, .sr-dashboard, .prev-accordion, .daily-checklist-panel'
         );
 
         fadeEls.forEach(el => {
