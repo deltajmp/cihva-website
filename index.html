@@ -3175,188 +3175,206 @@
       transform: rotateY(180deg);
     }
 
-    /* ── Injury Reporting Panel ── */
-    .report-panel {
-      max-width: 1160px;
+    /* ── Injury Reporting Section ── */
+    .report-section {
+      max-width: 800px;
       margin-inline: auto;
       margin-bottom: var(--sp-8);
-      border: 1px solid var(--color-border);
-      border-radius: 10px;
-      overflow: hidden;
     }
 
-    .report-panel__header {
-      text-align: center;
-      padding: var(--sp-5) var(--sp-8) var(--sp-4);
-      background: var(--color-surface);
-      border-bottom: 1px solid var(--color-border);
+    .report-section__header {
+      margin-bottom: var(--sp-6);
     }
 
-    .report-panel__header > i {
-      font-size: 1.4rem;
+    .report-section__eyebrow {
+      display: inline-block;
+      font-family: var(--font-heading);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
       color: var(--color-accent);
       margin-bottom: var(--sp-2);
     }
 
-    .report-panel__title {
+    .report-section__title {
       font-family: var(--font-heading);
-      font-size: clamp(0.95rem, 2vw, 1.15rem);
-      font-weight: 700;
+      font-size: clamp(1.2rem, 3vw, 1.6rem);
+      font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.02em;
       color: var(--color-text);
-      line-height: 1.2;
+      line-height: 1.1;
       margin-bottom: var(--sp-2);
     }
 
-    .report-panel__divider {
-      width: 36px;
-      height: 2px;
-      background: var(--color-accent);
-      border: none;
-      border-radius: 2px;
-      margin: var(--sp-1) auto var(--sp-2);
-    }
-
-    .report-panel__subtitle {
-      font-size: 0.84rem;
+    .report-section__subtitle {
+      font-size: 0.9rem;
       color: var(--color-muted);
-      line-height: 1.6;
-      max-width: 500px;
-      margin-inline: auto;
+      line-height: 1.65;
+      max-width: 560px;
     }
 
-    .report-panel__body {
-      padding: var(--sp-6) var(--sp-8);
-      background: var(--color-bg);
-    }
-
-    /* Stepper row */
-    .rpt-step-row {
+    /* Timeline */
+    .report-timeline {
       display: flex;
-      align-items: center;
-      margin-bottom: var(--sp-4);
-      padding: var(--sp-2) 0;
+      flex-direction: column;
+      gap: 0;
     }
 
-    .rpt-circle {
-      width: 32px;
-      height: 32px;
+    .report-step {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: 0;
+      cursor: pointer;
+    }
+
+    /* Left rail: number + line */
+    .report-step__rail {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .report-step__num {
+      width: 36px;
+      height: 36px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-shrink: 0;
-      cursor: pointer;
-      user-select: none;
-      background: transparent;
-      border: 1.5px solid var(--color-border);
-      color: var(--color-muted);
       font-family: var(--font-heading);
-      font-size: 0.75rem;
+      font-size: 0.8rem;
       font-weight: 700;
-      transition: background 0.25s ease, border-color 0.25s ease,
-                  color 0.25s ease;
+      background: transparent;
+      border: 2px solid var(--color-border);
+      color: var(--color-muted);
+      flex-shrink: 0;
+      transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
     }
 
-    .rpt-circle:hover {
-      border-color: var(--color-accent);
-      color: var(--color-accent);
-    }
-
-    .rpt-circle.is-active {
+    .report-step.is-active .report-step__num {
       background: var(--color-accent);
       border-color: var(--color-accent);
       color: var(--color-bg);
     }
 
-    .rpt-circle.is-completed {
-      background: rgba(249, 115, 22, 0.2);
-      border-color: var(--color-accent);
-      color: var(--color-accent);
-    }
-
-    .rpt-line {
+    .report-step__line {
+      width: 2px;
       flex: 1;
-      height: 1px;
       background: var(--color-border);
-      min-width: 8px;
-      position: relative;
-      overflow: hidden;
+      min-height: 16px;
+      transition: background 0.25s ease;
     }
 
-    .rpt-line-fill {
-      position: absolute;
-      inset: 0;
+    .report-step.is-active .report-step__line {
       background: var(--color-accent);
-      width: 0%;
-      transition: width 0.4s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    /* Step content panels */
-    .rpt-card {
+    .report-step:last-child .report-step__line {
       display: none;
-      opacity: 0;
-      transition: opacity 0.2s ease;
     }
 
-    .rpt-card.is-active {
-      display: block;
-      opacity: 1;
+    /* Right: content */
+    .report-step__content {
+      padding: 6px 0 var(--sp-5) var(--sp-4);
     }
 
-    .rpt-card__icon {
-      display: inline-flex;
+    .report-step__header {
+      display: flex;
       align-items: center;
-      justify-content: center;
-      width: 44px;
-      height: 44px;
-      border-radius: 10px;
-      background: rgba(249, 115, 22, 0.1);
-      border: 1px solid rgba(249, 115, 22, 0.2);
+      gap: 10px;
+      margin-bottom: 0;
+      padding: 6px 0;
+    }
+
+    .report-step__icon {
+      color: var(--color-muted);
+      font-size: 0.85rem;
+      transition: color 0.25s ease;
+    }
+
+    .report-step.is-active .report-step__icon {
       color: var(--color-accent);
-      font-size: 1.1rem;
-      margin-bottom: var(--sp-3);
     }
 
-    .rpt-card__title {
+    .report-step__name {
       font-family: var(--font-heading);
-      font-size: 1.15rem;
+      font-size: 0.92rem;
       font-weight: 700;
-      letter-spacing: 0.03em;
       text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--color-muted);
+      transition: color 0.25s ease;
+    }
+
+    .report-step.is-active .report-step__name {
       color: var(--color-text);
-      margin-bottom: var(--sp-3);
     }
 
-    .rpt-card__body {
-      font-size: 0.9rem;
+    /* Expandable body */
+    .report-step__body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .report-step.is-active .report-step__body {
+      max-height: 600px;
+    }
+
+    .report-step__inner {
+      padding-top: var(--sp-3);
+      font-size: 0.88rem;
       color: var(--color-secondary);
-      line-height: 1.8;
-      max-width: 720px;
+      line-height: 1.75;
     }
 
-    .rpt-card__body p + p { margin-top: var(--sp-3); }
+    .report-step__inner p + p {
+      margin-top: var(--sp-2);
+    }
 
-    .rpt-card__body ul {
+    .report-step__inner strong {
+      color: var(--color-text);
+    }
+
+    .report-step__inner ul {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 8px;
-      margin-top: var(--sp-2);
-      margin-bottom: var(--sp-3);
-      padding-left: var(--sp-1);
+      gap: 6px;
+      margin-top: var(--sp-1);
+      margin-bottom: var(--sp-2);
     }
 
-    .rpt-card__body ul li::before {
-      content: '—';
+    .report-step__inner ul li {
+      padding-left: 18px;
+      position: relative;
+    }
+
+    .report-step__inner ul li::before {
+      content: '\2022';
       color: var(--color-accent);
       font-weight: 700;
-      margin-right: 8px;
+      position: absolute;
+      left: 0;
     }
 
-    .rpt-card__body strong {
-      color: var(--color-text);
+    /* Responsive */
+    @media (max-width: 640px) {
+      .report-step {
+        grid-template-columns: 40px 1fr;
+      }
+
+      .report-step__num {
+        width: 30px;
+        height: 30px;
+        font-size: 0.72rem;
+      }
+
+      .report-step__content {
+        padding-left: var(--sp-2);
+      }
     }
 
     /* ── Know Your Rights Accordion ── */
@@ -3616,24 +3634,6 @@
         grid-template-columns: 1fr;
       }
 
-      .rpt-step-row {
-        flex-direction: column;
-        gap: 3px;
-        padding: var(--sp-2) 0;
-      }
-
-      .rpt-line {
-        width: 1px;
-        height: 12px;
-        min-width: 1px;
-        flex: none;
-      }
-
-      .rpt-line-fill {
-        width: 100%;
-        transition: height 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-      }
-
       .contact-buttons {
         flex-direction: column;
       }
@@ -3643,13 +3643,6 @@
         justify-content: center;
       }
 
-      .report-panel__header {
-        padding: var(--sp-4) var(--sp-3) var(--sp-3);
-      }
-
-      .report-panel__body {
-        padding: var(--sp-4) var(--sp-3);
-      }
 
       .rights-content {
         padding: var(--sp-4) var(--sp-3);
@@ -7233,106 +7226,139 @@
 
       </div>
 
-      <!-- ── PART 2: Injury Reporting Guide ── -->
-      <div class="report-panel" id="reportPanel">
+      <!-- ── PART 2: How to Report an Injury ── -->
+      <div class="report-section" id="reportPanel">
 
-        <div class="report-panel__header">
-          <i class="fa-solid fa-file-medical"></i>
-          <div class="report-panel__title">How to Report an Injury</div>
-          <hr class="report-panel__divider" />
-          <p class="report-panel__subtitle">Reporting protects you legally, financially, and ensures your corps can prevent the same injury from happening to someone else.</p>
+        <div class="report-section__header">
+          <span class="report-section__eyebrow">5-Step Guide</span>
+          <div class="report-section__title">How to Report an Injury</div>
+          <p class="report-section__subtitle">Reporting protects you legally, financially, and ensures your corps can prevent the same injury from happening to someone else.</p>
         </div>
 
-        <div class="report-panel__body">
+        <div class="report-timeline" id="reportTimeline">
 
-          <div class="rpt-step-row" id="rptStepRow">
-            <div class="rpt-circle is-active" data-step="0">1</div>
-            <div class="rpt-line"><div class="rpt-line-fill"></div></div>
-            <div class="rpt-circle" data-step="1">2</div>
-            <div class="rpt-line"><div class="rpt-line-fill"></div></div>
-            <div class="rpt-circle" data-step="2">3</div>
-            <div class="rpt-line"><div class="rpt-line-fill"></div></div>
-            <div class="rpt-circle" data-step="3">4</div>
-            <div class="rpt-line"><div class="rpt-line-fill"></div></div>
-            <div class="rpt-circle" data-step="4">5</div>
-          </div>
-
-          <div class="rpt-card is-active" data-step="0">
-            <div class="rpt-card__icon"><i class="fa-solid fa-clock"></i></div>
-            <div class="rpt-card__title">Step 1 — Report Immediately</div>
-            <div class="rpt-card__body">
-              <p>Report any injury — no matter how minor it seems — to your supervisor at the time it occurs or as soon as safely possible during your shift. Do not wait until the end of your shift and do not assume it will resolve on its own.</p>
-              <p><strong>Why it matters:</strong></p>
-              <ul>
-                <li>Delayed reporting can complicate workers' compensation claims</li>
-                <li>Some injuries — particularly back and soft tissue — worsen significantly within 24–48 hours</li>
-                <li>Your supervisor needs to document the circumstances while details are fresh</li>
-              </ul>
-              <p><strong>Key rule:</strong> If you felt it, report it. Even if you finish the shift. Even if it feels minor.</p>
+          <div class="report-step is-active" data-step="0">
+            <div class="report-step__rail">
+              <div class="report-step__num">1</div>
+              <div class="report-step__line"></div>
+            </div>
+            <div class="report-step__content">
+              <div class="report-step__header">
+                <i class="fa-solid fa-clock report-step__icon"></i>
+                <span class="report-step__name">Report Immediately</span>
+              </div>
+              <div class="report-step__body">
+                <div class="report-step__inner">
+                  <p>Report any injury — no matter how minor it seems — to your supervisor at the time it occurs or as soon as safely possible during your shift.</p>
+                  <p><strong>Why it matters:</strong></p>
+                  <ul>
+                    <li>Delayed reporting can complicate workers' compensation claims</li>
+                    <li>Back and soft tissue injuries worsen significantly within 24–48 hours</li>
+                    <li>Your supervisor needs to document while details are fresh</li>
+                  </ul>
+                  <p><strong>Key rule:</strong> If you felt it, report it. Even if you finish the shift.</p>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div class="rpt-card" data-step="1">
-            <div class="rpt-card__icon"><i class="fa-solid fa-pen-to-square"></i></div>
-            <div class="rpt-card__title">Step 2 — Document the Circumstances</div>
-            <div class="rpt-card__body">
-              <p>Before your memory fades, write down exactly what happened — the call type, the address, the patient weight if known, the surface conditions, what you were doing when the injury occurred, and who was present.</p>
-              <p><strong>What to document:</strong></p>
-              <ul>
-                <li>Time, date, and location of the incident</li>
-                <li>Exactly what activity caused the injury (lifting, fall, patient contact, etc.)</li>
-                <li>Names of all witnesses — partner, crew, bystanders</li>
-                <li>Equipment involved — stretcher number, stair chair ID</li>
-                <li>Any contributing factors: wet floor, time pressure, short staffing, equipment issues</li>
-              </ul>
-              <p><strong>This documentation is your protection</strong> — keep a personal copy.</p>
+          <div class="report-step" data-step="1">
+            <div class="report-step__rail">
+              <div class="report-step__num">2</div>
+              <div class="report-step__line"></div>
+            </div>
+            <div class="report-step__content">
+              <div class="report-step__header">
+                <i class="fa-solid fa-pen-to-square report-step__icon"></i>
+                <span class="report-step__name">Document the Circumstances</span>
+              </div>
+              <div class="report-step__body">
+                <div class="report-step__inner">
+                  <p>Before your memory fades, write down exactly what happened — the call type, address, patient weight, surface conditions, and who was present.</p>
+                  <p><strong>What to document:</strong></p>
+                  <ul>
+                    <li>Time, date, and location of the incident</li>
+                    <li>What activity caused the injury</li>
+                    <li>Names of all witnesses</li>
+                    <li>Equipment involved — stretcher number, stair chair ID</li>
+                    <li>Contributing factors: wet floor, time pressure, short staffing</li>
+                  </ul>
+                  <p><strong>This documentation is your protection</strong> — keep a personal copy.</p>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div class="rpt-card" data-step="2">
-            <div class="rpt-card__icon"><i class="fa-solid fa-hospital"></i></div>
-            <div class="rpt-card__title">Step 3 — Seek Medical Evaluation</div>
-            <div class="rpt-card__body">
-              <p>Even if you feel you can continue working, get a medical evaluation as soon as possible after any significant injury. Many serious injuries — particularly lumbar disc injuries and rotator cuff tears — present with manageable initial pain that worsens dramatically within 48–72 hours.</p>
-              <p><strong>Important:</strong></p>
-              <ul>
-                <li>Go to an occupational health provider or emergency department — not just urgent care for serious injuries</li>
-                <li>Tell the provider exactly what happened and that it occurred at work</li>
-                <li>Get documentation of the evaluation — you will need this for your claim</li>
-                <li>Do not let anyone pressure you to skip evaluation</li>
-              </ul>
+          <div class="report-step" data-step="2">
+            <div class="report-step__rail">
+              <div class="report-step__num">3</div>
+              <div class="report-step__line"></div>
+            </div>
+            <div class="report-step__content">
+              <div class="report-step__header">
+                <i class="fa-solid fa-hospital report-step__icon"></i>
+                <span class="report-step__name">Seek Medical Evaluation</span>
+              </div>
+              <div class="report-step__body">
+                <div class="report-step__inner">
+                  <p>Get a medical evaluation as soon as possible. Many serious injuries present with manageable initial pain that worsens dramatically within 48–72 hours.</p>
+                  <ul>
+                    <li>Go to occupational health or the ED — not just urgent care</li>
+                    <li>Tell the provider it occurred at work</li>
+                    <li>Get documentation of the evaluation</li>
+                    <li>Do not let anyone pressure you to skip evaluation</li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div class="rpt-card" data-step="3">
-            <div class="rpt-card__icon"><i class="fa-solid fa-file-contract"></i></div>
-            <div class="rpt-card__title">Step 4 — File the Workers' Compensation Claim</div>
-            <div class="rpt-card__body">
-              <p>Workers' compensation exists specifically to protect you when you are injured on the job. It covers medical costs, lost wages, and rehabilitation. Filing a claim is your legal right — not a burden on your corps.</p>
-              <p><strong>How it works:</strong></p>
-              <ul>
-                <li>Your supervisor or corps administrator will provide the claim forms</li>
-                <li>File promptly — most states have a deadline for filing after an injury (often 30–90 days)</li>
-                <li>Keep copies of everything you submit</li>
-                <li>If your claim is denied, you have the right to appeal — consult a workers' compensation attorney if needed</li>
-              </ul>
-              <p><strong>Key rule:</strong> Filing a workers' comp claim is not complaining. It is using a system designed specifically for this situation.</p>
+          <div class="report-step" data-step="3">
+            <div class="report-step__rail">
+              <div class="report-step__num">4</div>
+              <div class="report-step__line"></div>
+            </div>
+            <div class="report-step__content">
+              <div class="report-step__header">
+                <i class="fa-solid fa-file-contract report-step__icon"></i>
+                <span class="report-step__name">File Workers' Compensation</span>
+              </div>
+              <div class="report-step__body">
+                <div class="report-step__inner">
+                  <p>Workers' comp covers medical costs, lost wages, and rehabilitation. Filing a claim is your legal right — not a burden on your corps.</p>
+                  <ul>
+                    <li>Your supervisor will provide the claim forms</li>
+                    <li>File promptly — most states have a 30–90 day deadline</li>
+                    <li>Keep copies of everything you submit</li>
+                    <li>If denied, you have the right to appeal</li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div class="rpt-card" data-step="4">
-            <div class="rpt-card__icon"><i class="fa-solid fa-person-walking-arrow-right"></i></div>
-            <div class="rpt-card__title">Step 5 — Return to Duty Safely</div>
-            <div class="rpt-card__body">
-              <p>Returning to full duty before you are medically cleared is one of the most common causes of re-injury in EMS. A partial recovery followed by another heavy lift often results in a more severe injury than the original.</p>
-              <p><strong>Safe return to duty:</strong></p>
-              <ul>
-                <li>Return only with written medical clearance</li>
-                <li>Discuss any duty restrictions with your supervisor before your first shift back</li>
-                <li>Modified duty is not a punishment — it is a bridge to full recovery</li>
-                <li>Inform your partner of any current limitations so they can adjust expectations and assist</li>
-                <li>If you are not ready, say so — your long-term career depends on full recovery</li>
-              </ul>
+          <div class="report-step" data-step="4">
+            <div class="report-step__rail">
+              <div class="report-step__num">5</div>
+              <div class="report-step__line"></div>
+            </div>
+            <div class="report-step__content">
+              <div class="report-step__header">
+                <i class="fa-solid fa-person-walking-arrow-right report-step__icon"></i>
+                <span class="report-step__name">Return to Duty Safely</span>
+              </div>
+              <div class="report-step__body">
+                <div class="report-step__inner">
+                  <p>Returning before you are medically cleared is one of the most common causes of re-injury in EMS.</p>
+                  <ul>
+                    <li>Return only with written medical clearance</li>
+                    <li>Discuss duty restrictions with your supervisor first</li>
+                    <li>Modified duty is a bridge to full recovery — not a punishment</li>
+                    <li>Inform your partner of any current limitations</li>
+                    <li>If you are not ready, say so</li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -8185,34 +8211,15 @@
       }
 
 
-      /* ── Injury Reporting Stepper ── */
-      const rptCircles  = document.querySelectorAll('#rptStepRow .rpt-circle');
-      const rptLines    = document.querySelectorAll('#rptStepRow .rpt-line-fill');
-      const rptCards    = document.querySelectorAll('#reportPanel .rpt-card');
-      let rptCurrent    = 0;
+      /* ── Injury Reporting Timeline ── */
+      const reportSteps = document.querySelectorAll('#reportTimeline .report-step');
 
-      function rptGo(idx) {
-        rptCurrent = idx;
-
-        rptCircles.forEach((c, i) => {
-          c.classList.remove('is-active', 'is-completed');
-          if (i < idx) c.classList.add('is-completed');
-          else if (i === idx) c.classList.add('is-active');
+      reportSteps.forEach(step => {
+        step.addEventListener('click', () => {
+          const wasActive = step.classList.contains('is-active');
+          reportSteps.forEach(s => s.classList.remove('is-active'));
+          if (!wasActive) step.classList.add('is-active');
         });
-
-        rptLines.forEach((lf, i) => {
-          const filled = i < idx ? '100%' : '0%';
-          lf.style.width = filled;
-          lf.style.height = filled;
-        });
-
-        rptCards.forEach((card, i) => {
-          card.classList.toggle('is-active', i === idx);
-        });
-      }
-
-      rptCircles.forEach((c, i) => {
-        c.addEventListener('click', () => rptGo(i));
       });
 
 
