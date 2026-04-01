@@ -1537,102 +1537,106 @@
 
     /* ── Common Mistakes Panel ── */
     .h-mistakes-panel {
-      margin-top: var(--sp-6);
-      border: 1px solid var(--color-border);
-      border-radius: 10px;
-      overflow: hidden;
+      margin-top: var(--sp-8);
     }
 
     .h-mistakes-header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: var(--sp-4) var(--sp-5);
-      background: var(--color-surface);
-      cursor: pointer;
-      gap: var(--sp-3);
-      user-select: none;
-      transition: background 0.2s ease;
+      text-align: center;
+      max-width: 700px;
+      margin-inline: auto;
+      margin-bottom: var(--sp-6);
     }
-    .h-mistakes-header:hover { background: #172a42; }
 
-    .h-mistakes-title-group {
-      display: flex;
-      align-items: center;
-      gap: var(--sp-3);
+    .h-mistakes-header i {
+      font-size: 2rem;
+      color: #ef4444;
+      margin-bottom: var(--sp-2);
     }
-    .h-mistakes-title-group > i { font-size: 1.2rem; color: #ef4444; flex-shrink: 0; }
+
     .h-mistakes-title {
       font-family: var(--font-heading);
-      font-size: clamp(0.88rem, 2vw, 1.05rem);
-      font-weight: 700;
+      font-size: clamp(1.4rem, 3.5vw, 2rem);
+      font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.02em;
       color: var(--color-text);
+      line-height: 1.1;
+      margin-bottom: var(--sp-2);
     }
 
-    .h-mistakes-toggle {
-      font-family: var(--font-heading);
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 7px var(--sp-3);
-      border-radius: 5px;
-      border: 1px solid var(--color-border);
-      background: transparent;
-      color: var(--color-muted);
-      cursor: pointer;
-      white-space: nowrap;
-      flex-shrink: 0;
-      transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+    .h-mistakes-subtitle {
+      font-size: 0.95rem;
+      color: var(--color-secondary);
+      line-height: 1.6;
     }
-    .h-mistakes-toggle:hover { border-color: var(--color-accent); color: var(--color-accent); }
 
-    .h-mistakes-body {
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    .h-mistakes-divider {
+      width: 48px;
+      height: 3px;
+      background: #ef4444;
+      border: none;
+      border-radius: 2px;
+      margin: var(--sp-3) auto;
     }
-    .h-mistakes-body.is-open { max-height: 3000px; }
 
     .h-mistakes-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: var(--sp-3);
-      padding: var(--sp-5);
-      background: var(--color-bg);
     }
 
     .h-mk-card {
       display: flex;
-      gap: var(--sp-2);
       align-items: flex-start;
-      padding: var(--sp-3) var(--sp-3);
+      gap: var(--sp-3);
+      padding: var(--sp-4);
       background: var(--color-surface);
-      border-left: 3px solid #ef4444;
-      border-radius: 0 8px 8px 0;
+      border-radius: 10px;
+      border: 1px solid var(--color-border);
       opacity: 0;
       transform: translateY(10px);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      transition: opacity 0.35s ease, transform 0.35s ease,
+                  border-color 0.2s ease, box-shadow 0.2s ease;
     }
     .h-mk-card.is-visible {
       opacity: 1;
       transform: translateY(0);
-      transition: opacity 0.35s ease, transform 0.35s ease,
-                  box-shadow 0.2s ease;
     }
-    .h-mk-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.28); }
-    .h-mk-card > i   { color: #ef4444; font-size: 0.85rem; flex-shrink: 0; margin-top: 4px; }
+    .h-mk-card:hover {
+      border-color: rgba(239, 68, 68, 0.3);
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
+    }
 
-    .h-mk-num   { font-family: var(--font-heading); font-size: 0.6rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: #ef4444; margin-bottom: 2px; }
-    .h-mk-title { font-family: var(--font-heading); font-size: 0.88rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--color-text); margin-bottom: 4px; }
-    .h-mk-text  { font-size: 0.84rem; color: var(--color-secondary); line-height: 1.55; }
+    .h-mk-number {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      font-weight: 800;
+      line-height: 1;
+      color: #ef4444;
+      opacity: 0.3;
+      flex-shrink: 0;
+      width: 36px;
+      text-align: center;
+    }
+
+    .h-mk-title {
+      font-family: var(--font-heading);
+      font-size: 0.92rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--color-text);
+      margin-bottom: 6px;
+    }
+
+    .h-mk-text {
+      font-size: 0.84rem;
+      color: var(--color-muted);
+      line-height: 1.6;
+    }
 
     @media (max-width: 700px) {
-      .h-mistakes-grid   { grid-template-columns: 1fr; }
-      .h-mistakes-toggle { width: 100%; text-align: center; }
-      .h-mistakes-header { flex-wrap: wrap; }
+      .h-mistakes-grid { grid-template-columns: 1fr; }
     }
 
     /* ============================================================
@@ -5500,110 +5504,99 @@
 
       </div><!-- /h-content -->
 
-      <!-- ── COMMON MISTAKES PANEL ── -->
-      <div class="h-mistakes-panel">
+      <!-- ── TOP 10 LIFTING MISTAKES ── -->
+      <div class="h-mistakes-panel" id="mistakesPanel">
+
         <div class="h-mistakes-header">
-          <div class="h-mistakes-title-group">
-            <i class="fa-solid fa-triangle-exclamation"></i>
-            <span class="h-mistakes-title">Top 10 Lifting Mistakes That Cause EMS Injuries</span>
-          </div>
-          <button class="h-mistakes-toggle" aria-expanded="false">Show</button>
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          <div class="h-mistakes-title">Top 10 Lifting Mistakes That Cause EMS Injuries</div>
+          <hr class="h-mistakes-divider" />
+          <p class="h-mistakes-subtitle">These are the errors that send providers home injured. Learn them. Avoid them. Every shift.</p>
         </div>
-        <div class="h-mistakes-body">
-          <div class="h-mistakes-grid">
 
-            <div class="h-mk-card">
-              <i class="fa-solid fa-triangle-exclamation"></i>
-              <div>
-                <div class="h-mk-num">01</div>
-                <div class="h-mk-title">Rushing the Lift</div>
-                <div class="h-mk-text">Time pressure is the #1 reason EMS providers skip safety steps. A 30-second setup prevents a 3-month recovery.</div>
-              </div>
+        <div class="h-mistakes-grid">
+
+          <div class="h-mk-card">
+            <div class="h-mk-number">01</div>
+            <div>
+              <div class="h-mk-title">Rushing the Lift</div>
+              <div class="h-mk-text">Time pressure is the #1 reason EMS providers skip safety steps. A 30-second setup prevents a 3-month recovery.</div>
             </div>
+          </div>
 
-            <div class="h-mk-card">
-              <i class="fa-solid fa-triangle-exclamation"></i>
-              <div>
-                <div class="h-mk-num">02</div>
-                <div class="h-mk-title">Lifting With the Back</div>
-                <div class="h-mk-text">Flexing the spine under load is the primary mechanism of lumbar disc herniation. Hinge at the hips — every time.</div>
-              </div>
+          <div class="h-mk-card">
+            <div class="h-mk-number">02</div>
+            <div>
+              <div class="h-mk-title">Lifting With the Back</div>
+              <div class="h-mk-text">Flexing the spine under load is the primary mechanism of lumbar disc herniation. Hinge at the hips — every time.</div>
             </div>
+          </div>
 
-            <div class="h-mk-card">
-              <i class="fa-solid fa-triangle-exclamation"></i>
-              <div>
-                <div class="h-mk-num">03</div>
-                <div class="h-mk-title">Feet Too Close Together</div>
-                <div class="h-mk-text">A narrow base during a lift forces lateral compensation that strains the spine and knees.</div>
-              </div>
+          <div class="h-mk-card">
+            <div class="h-mk-number">03</div>
+            <div>
+              <div class="h-mk-title">Feet Too Close Together</div>
+              <div class="h-mk-text">A narrow base during a lift forces lateral compensation that strains the spine and knees.</div>
             </div>
+          </div>
 
-            <div class="h-mk-card">
-              <i class="fa-solid fa-triangle-exclamation"></i>
-              <div>
-                <div class="h-mk-num">04</div>
-                <div class="h-mk-title">Holding Your Breath</div>
-                <div class="h-mk-text">The Valsalva maneuver spikes intra-abdominal pressure. Exhale steadily through the exertion phase.</div>
-              </div>
+          <div class="h-mk-card">
+            <div class="h-mk-number">04</div>
+            <div>
+              <div class="h-mk-title">Holding Your Breath</div>
+              <div class="h-mk-text">The Valsalva maneuver spikes intra-abdominal pressure. Exhale steadily through the exertion phase.</div>
             </div>
+          </div>
 
-            <div class="h-mk-card">
-              <i class="fa-solid fa-triangle-exclamation"></i>
-              <div>
-                <div class="h-mk-num">05</div>
-                <div class="h-mk-title">Not Communicating the Count</div>
-                <div class="h-mk-text">Asynchronous lifts create sudden uneven loads. Always agree on a count before lifting.</div>
-              </div>
+          <div class="h-mk-card">
+            <div class="h-mk-number">05</div>
+            <div>
+              <div class="h-mk-title">Not Communicating the Count</div>
+              <div class="h-mk-text">Asynchronous lifts create sudden uneven loads. Always agree on a count before lifting.</div>
             </div>
+          </div>
 
-            <div class="h-mk-card">
-              <i class="fa-solid fa-triangle-exclamation"></i>
-              <div>
-                <div class="h-mk-num">06</div>
-                <div class="h-mk-title">Overestimating Patient Assist</div>
-                <div class="h-mk-text">A patient who says they can help often cannot. Plan for dead weight — anything extra is a bonus.</div>
-              </div>
+          <div class="h-mk-card">
+            <div class="h-mk-number">06</div>
+            <div>
+              <div class="h-mk-title">Overestimating Patient Assist</div>
+              <div class="h-mk-text">A patient who says they can help often cannot. Plan for dead weight — anything extra is a bonus.</div>
             </div>
+          </div>
 
-            <div class="h-mk-card">
-              <i class="fa-solid fa-triangle-exclamation"></i>
-              <div>
-                <div class="h-mk-num">07</div>
-                <div class="h-mk-title">Loading Solo</div>
-                <div class="h-mk-text">One-person stretcher loading is a leading cause of back injury. Always use a partner or mechanical assist.</div>
-              </div>
+          <div class="h-mk-card">
+            <div class="h-mk-number">07</div>
+            <div>
+              <div class="h-mk-title">Loading Solo</div>
+              <div class="h-mk-text">One-person stretcher loading is a leading cause of back injury. Always use a partner or mechanical assist.</div>
             </div>
+          </div>
 
-            <div class="h-mk-card">
-              <i class="fa-solid fa-triangle-exclamation"></i>
-              <div>
-                <div class="h-mk-num">08</div>
-                <div class="h-mk-title">Ignoring Equipment Issues</div>
-                <div class="h-mk-text">A stretcher with a sticky wheel turns a routine lift into an emergency. Check equipment every shift.</div>
-              </div>
+          <div class="h-mk-card">
+            <div class="h-mk-number">08</div>
+            <div>
+              <div class="h-mk-title">Ignoring Equipment Issues</div>
+              <div class="h-mk-text">A stretcher with a sticky wheel turns a routine lift into an emergency. Check equipment every shift.</div>
             </div>
+          </div>
 
-            <div class="h-mk-card">
-              <i class="fa-solid fa-triangle-exclamation"></i>
-              <div>
-                <div class="h-mk-num">09</div>
-                <div class="h-mk-title">Not Asking for Help</div>
-                <div class="h-mk-text">Requesting lift assist is a professional decision — not a sign of weakness. Your back has to last your career.</div>
-              </div>
+          <div class="h-mk-card">
+            <div class="h-mk-number">09</div>
+            <div>
+              <div class="h-mk-title">Not Asking for Help</div>
+              <div class="h-mk-text">Requesting lift assist is a professional decision — not a sign of weakness. Your back has to last your career.</div>
             </div>
+          </div>
 
-            <div class="h-mk-card">
-              <i class="fa-solid fa-triangle-exclamation"></i>
-              <div>
-                <div class="h-mk-num">10</div>
-                <div class="h-mk-title">Pushing Through Pain</div>
-                <div class="h-mk-text">Lifting through existing pain accelerates injury. Report it, modify duties, and get evaluated.</div>
-              </div>
+          <div class="h-mk-card">
+            <div class="h-mk-number">10</div>
+            <div>
+              <div class="h-mk-title">Pushing Through Pain</div>
+              <div class="h-mk-text">Lifting through existing pain accelerates injury. Report it, modify duties, and get evaluated.</div>
             </div>
+          </div>
 
-          </div><!-- /h-mistakes-grid -->
-        </div><!-- /h-mistakes-body -->
+        </div><!-- /h-mistakes-grid -->
       </div><!-- /h-mistakes-panel -->
 
     </div><!-- /container -->
@@ -7984,25 +7977,16 @@
           });
         });
 
-        /* Common Mistakes Panel */
-        const mkToggle = document.querySelector('.h-mistakes-toggle');
-        const mkBody   = document.querySelector('.h-mistakes-body');
-        const mkCards  = document.querySelectorAll('.h-mk-card');
-
-        if (mkToggle && mkBody) {
-          mkToggle.addEventListener('click', () => {
-            const isOpen = mkBody.classList.toggle('is-open');
-            mkToggle.textContent = isOpen ? 'Hide' : 'Show';
-            mkToggle.setAttribute('aria-expanded', isOpen);
-
-            if (isOpen) {
-              mkCards.forEach((card, i) => {
-                setTimeout(() => card.classList.add('is-visible'), 60 + i * 45);
+        /* Common Mistakes — scroll reveal */
+        const mistakesPanel = document.getElementById('mistakesPanel');
+        if (mistakesPanel) {
+          new IntersectionObserver(([entry]) => {
+            if (entry.isIntersecting) {
+              mistakesPanel.querySelectorAll('.h-mk-card').forEach((card, i) => {
+                setTimeout(() => card.classList.add('is-visible'), i * 50);
               });
-            } else {
-              mkCards.forEach(card => card.classList.remove('is-visible'));
             }
-          });
+          }, { threshold: 0.1 }).observe(mistakesPanel);
         }
       })();
 
