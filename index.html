@@ -3186,35 +3186,44 @@
     }
 
     .report-panel__header {
-      display: flex;
-      align-items: center;
-      gap: var(--sp-4);
-      padding: var(--sp-5) var(--sp-8);
+      text-align: center;
+      padding: var(--sp-6) var(--sp-8) var(--sp-4);
       background: var(--color-surface);
       border-bottom: 1px solid var(--color-border);
     }
 
     .report-panel__header > i {
-      font-size: 1.5rem;
+      font-size: 2rem;
       color: var(--color-accent);
-      flex-shrink: 0;
+      margin-bottom: var(--sp-2);
     }
 
     .report-panel__title {
       font-family: var(--font-heading);
-      font-size: clamp(1rem, 2.5vw, 1.25rem);
-      font-weight: 700;
+      font-size: clamp(1.2rem, 3vw, 1.6rem);
+      font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.03em;
       color: var(--color-text);
-      line-height: 1.2;
+      line-height: 1.15;
+      margin-bottom: var(--sp-2);
+    }
+
+    .report-panel__divider {
+      width: 48px;
+      height: 3px;
+      background: var(--color-accent);
+      border: none;
+      border-radius: 2px;
+      margin: var(--sp-2) auto var(--sp-3);
     }
 
     .report-panel__subtitle {
-      font-size: 0.82rem;
-      color: var(--color-muted);
-      margin-top: 4px;
-      line-height: 1.5;
+      font-size: 0.9rem;
+      color: var(--color-secondary);
+      line-height: 1.6;
+      max-width: 560px;
+      margin-inline: auto;
     }
 
     .report-panel__body {
@@ -3459,107 +3468,6 @@
       border-top: 1px solid var(--color-border);
     }
 
-    /* ── Near-Miss Panel ── */
-    .nearmiss-panel {
-      max-width: 1160px;
-      margin-inline: auto;
-      margin-bottom: var(--sp-8);
-      background: #0f2040;
-      border: 2px solid var(--color-accent);
-      border-radius: 10px;
-      padding: var(--sp-6);
-      display: grid;
-      grid-template-columns: 220px 1fr;
-      gap: var(--sp-6);
-      align-items: start;
-      opacity: 0;
-      transform: translateY(16px);
-      transition: opacity 0.5s ease, transform 0.5s ease;
-    }
-
-    .nearmiss-panel.is-visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    @keyframes borderPulse {
-      0%   { border-color: var(--color-accent); }
-      50%  { border-color: rgba(249, 115, 22, 0.3); }
-      100% { border-color: var(--color-accent); }
-    }
-
-    .nearmiss-panel.is-visible {
-      animation: borderPulse 1.5s ease 1;
-    }
-
-    .nearmiss-left {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-
-    .nearmiss-left > i {
-      font-size: 3.5rem;
-      color: var(--color-accent);
-      margin-bottom: var(--sp-3);
-    }
-
-    .nearmiss-stat {
-      font-family: var(--font-heading);
-      font-size: 1rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.03em;
-      color: var(--color-text);
-      line-height: 1.4;
-    }
-
-    .nearmiss-right__title {
-      font-family: var(--font-heading);
-      font-size: clamp(1rem, 2.5vw, 1.35rem);
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.03em;
-      color: var(--color-text);
-      margin-bottom: var(--sp-2);
-    }
-
-    .nearmiss-right__body {
-      font-size: 0.9rem;
-      color: var(--color-secondary);
-      line-height: 1.75;
-    }
-
-    .nearmiss-right__body p + p { margin-top: var(--sp-2); }
-
-    .nearmiss-right__body ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      margin-top: var(--sp-1);
-      margin-bottom: var(--sp-2);
-    }
-
-    .nearmiss-right__body ul li::before {
-      content: '—';
-      color: var(--color-accent);
-      font-weight: 700;
-      margin-right: 8px;
-    }
-
-    .nearmiss-callout {
-      margin-top: var(--sp-3);
-      padding: var(--sp-2) var(--sp-3);
-      border-left: 3px solid var(--color-accent);
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: var(--color-accent);
-      line-height: 1.5;
-      font-style: italic;
-    }
-
     /* ── Corps Contact Card ── */
     .contact-card {
       max-width: 600px;
@@ -3695,15 +3603,6 @@
         grid-template-columns: 1fr 1fr;
       }
 
-      .nearmiss-panel {
-        grid-template-columns: 1fr;
-        text-align: center;
-      }
-
-      .nearmiss-left {
-        order: 0;
-      }
-
       .rights-header {
         padding: var(--sp-3) var(--sp-4);
       }
@@ -3733,10 +3632,6 @@
         transition: height 0.4s cubic-bezier(0.22, 1, 0.36, 1);
       }
 
-      .nearmiss-panel {
-        padding: var(--sp-4);
-      }
-
       .contact-buttons {
         flex-direction: column;
       }
@@ -3747,7 +3642,7 @@
       }
 
       .report-panel__header {
-        padding: var(--sp-4) var(--sp-3);
+        padding: var(--sp-4) var(--sp-3) var(--sp-3);
       }
 
       .report-panel__body {
@@ -7337,10 +7232,9 @@
 
         <div class="report-panel__header">
           <i class="fa-solid fa-file-medical"></i>
-          <div>
-            <div class="report-panel__title">How to Report an Injury — Know the Process</div>
-            <div class="report-panel__subtitle">Reporting protects you legally, financially, and ensures your corps can prevent the same injury from happening to someone else.</div>
-          </div>
+          <div class="report-panel__title">How to Report an Injury</div>
+          <hr class="report-panel__divider" />
+          <p class="report-panel__subtitle">Reporting protects you legally, financially, and ensures your corps can prevent the same injury from happening to someone else.</p>
         </div>
 
         <div class="report-panel__body">
@@ -7479,33 +7373,7 @@
         </div>
       </div>
 
-      <!-- ── PART 4: Near-Miss Reporting ── -->
-      <div class="nearmiss-panel" id="nearmissPanel">
-
-        <div class="nearmiss-left">
-          <i class="fa-solid fa-triangle-exclamation"></i>
-          <div class="nearmiss-stat">Up to 90% of EMS safety incidents go unreported.</div>
-        </div>
-
-        <div>
-          <div class="nearmiss-right__title">Near-Miss Reporting Saves Careers</div>
-          <div class="nearmiss-right__body">
-            <p>A near-miss is any incident that could have caused injury but did not. The stretcher wheel that almost gave way. The icy step you caught yourself on. The lift that felt wrong but nobody got hurt.</p>
-            <p>Near-miss reporting is one of the most powerful injury prevention tools available to your corps — but only if providers actually use it. Every near-miss that goes unreported is a missed opportunity to fix the condition before someone does get hurt.</p>
-            <p><strong>How to report:</strong></p>
-            <ul>
-              <li>Tell your supervisor immediately after the call</li>
-              <li>Document it using the same process as an injury</li>
-              <li>Many corps have anonymous reporting options — use them if you have concerns about perception</li>
-              <li>There is no such thing as a "too minor" near-miss report</li>
-            </ul>
-          </div>
-          <div class="nearmiss-callout">If something felt wrong — report it. You may be protecting the next crew.</div>
-        </div>
-
-      </div>
-
-      <!-- ── PART 5: Corps Safety Contact Card ── -->
+      <!-- ── PART 4: Corps Safety Contact Card ── -->
       <div class="contact-card" id="contactCard">
         <div class="contact-card__icon"><i class="fa-solid fa-id-card"></i></div>
         <div class="contact-card__title">Corps Safety Officer</div>
@@ -8350,17 +8218,6 @@
         rightsToggle.addEventListener('click', () => {
           rightsPanel.classList.toggle('is-open');
         });
-      }
-
-
-      /* ── Near-Miss Panel: fade-up ── */
-      const nearmissPanel = document.getElementById('nearmissPanel');
-      if (nearmissPanel) {
-        new IntersectionObserver(([entry]) => {
-          if (entry.isIntersecting) {
-            nearmissPanel.classList.add('is-visible');
-          }
-        }, { threshold: 0.15 }).observe(nearmissPanel);
       }
 
 
