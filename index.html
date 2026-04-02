@@ -249,29 +249,80 @@
       position: relative;
       min-height: 100svh;
       display: flex;
-      align-items: flex-end;
-      background-color: #080e1a;
+      align-items: center;
+      justify-content: center;
+      background-color: #060e1a;
       overflow: hidden;
       padding-top: var(--nav-height);
     }
 
-    /* Animated background — slow drifting gradient */
+    /* Animated background — drifting gradient orbs */
     .hero__bg {
       position: absolute;
-      inset: -20%;
+      inset: -30%;
       background:
-        radial-gradient(ellipse 60% 50% at 70% 40%, rgba(249,115,22,0.08) 0%, transparent 60%),
-        radial-gradient(ellipse 50% 60% at 30% 60%, rgba(30,80,140,0.15) 0%, transparent 55%),
-        radial-gradient(ellipse 80% 80% at 50% 50%, #0a1628 0%, #060e1a 100%);
-      animation: heroBgDrift 20s ease-in-out infinite alternate;
+        radial-gradient(circle 600px at 30% 30%, rgba(249,115,22,0.07) 0%, transparent 70%),
+        radial-gradient(circle 500px at 70% 70%, rgba(30,90,160,0.1) 0%, transparent 65%),
+        radial-gradient(circle 400px at 50% 40%, rgba(249,115,22,0.04) 0%, transparent 50%);
+      animation: heroBgDrift 25s ease-in-out infinite alternate;
       pointer-events: none;
+    }
+
+    /* Floating orb accents */
+    .hero__orb {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      filter: blur(80px);
+      z-index: 0;
+    }
+
+    .hero__orb--1 {
+      width: 400px;
+      height: 400px;
+      background: rgba(249, 115, 22, 0.06);
+      top: 10%;
+      right: 15%;
+      animation: orbFloat1 18s ease-in-out infinite alternate;
+    }
+
+    .hero__orb--2 {
+      width: 300px;
+      height: 300px;
+      background: rgba(30, 80, 160, 0.08);
+      bottom: 15%;
+      left: 10%;
+      animation: orbFloat2 22s ease-in-out infinite alternate;
+    }
+
+    .hero__orb--3 {
+      width: 200px;
+      height: 200px;
+      background: rgba(249, 115, 22, 0.04);
+      top: 50%;
+      left: 50%;
+      animation: orbFloat3 15s ease-in-out infinite alternate;
     }
 
     @keyframes heroBgDrift {
       0%   { transform: translate(0, 0) scale(1); }
-      33%  { transform: translate(2%, -1.5%) scale(1.02); }
-      66%  { transform: translate(-1.5%, 1%) scale(1.01); }
-      100% { transform: translate(1%, -0.5%) scale(1.03); }
+      50%  { transform: translate(2%, -2%) scale(1.03); }
+      100% { transform: translate(-1%, 1%) scale(1.01); }
+    }
+
+    @keyframes orbFloat1 {
+      0%   { transform: translate(0, 0); }
+      100% { transform: translate(-40px, 30px); }
+    }
+
+    @keyframes orbFloat2 {
+      0%   { transform: translate(0, 0); }
+      100% { transform: translate(30px, -20px); }
+    }
+
+    @keyframes orbFloat3 {
+      0%   { transform: translate(0, 0); }
+      100% { transform: translate(-20px, -30px); }
     }
 
     /* Grain texture overlay */
@@ -285,23 +336,37 @@
       z-index: 1;
     }
 
-    /* Inner layout — content at bottom, stats on right */
+    /* Centered layout */
     .hero__inner {
       position: relative;
       z-index: 2;
       width: 100%;
-      max-width: 1280px;
+      max-width: 900px;
       margin-inline: auto;
-      padding: var(--sp-16) var(--sp-6) var(--sp-8);
-      display: grid;
-      grid-template-columns: 1fr 320px;
-      gap: var(--sp-8);
-      align-items: end;
+      padding: var(--sp-8) var(--sp-3);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
     }
 
-    /* ---- LEFT: Text at bottom ---- */
     .hero__text {
-      text-align: left;
+      text-align: center;
+    }
+
+    /* Accent line above eyebrow */
+    .hero__accent-line {
+      width: 40px;
+      height: 2px;
+      background: var(--color-accent);
+      margin: 0 auto var(--sp-4);
+      opacity: 0;
+      animation: heroLineGrow 0.6s ease 0.1s forwards;
+    }
+
+    @keyframes heroLineGrow {
+      from { opacity: 0; width: 0; }
+      to   { opacity: 1; width: 40px; }
     }
 
     .hero__eyebrow {
@@ -309,17 +374,17 @@
       font-family: var(--font-heading);
       font-size: 0.68rem;
       font-weight: 700;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: rgba(249, 115, 22, 0.7);
-      margin-bottom: var(--sp-4);
+      color: rgba(249, 115, 22, 0.65);
+      margin-bottom: var(--sp-6);
       opacity: 0;
-      animation: heroFadeIn 0.8s ease 0.2s forwards;
+      animation: heroFadeIn 1s ease 0.3s forwards;
     }
 
     .hero__headline {
       font-family: var(--font-heading);
-      font-size: clamp(3rem, 6.5vw, 5.5rem);
+      font-size: clamp(2.8rem, 6vw, 5rem);
       font-weight: 800;
       line-height: 0.95;
       letter-spacing: -0.01em;
@@ -327,7 +392,7 @@
       color: var(--color-text);
       margin-bottom: var(--sp-4);
       opacity: 0;
-      animation: heroFadeUp 0.8s ease 0.4s forwards;
+      animation: heroFadeUp 0.9s ease 0.5s forwards;
     }
 
     .hero__headline span {
@@ -337,21 +402,24 @@
     .hero__subtitle {
       font-size: 1.05rem;
       font-weight: 400;
-      color: rgba(148, 163, 184, 0.8);
-      max-width: 520px;
-      line-height: 1.7;
-      margin-bottom: var(--sp-6);
+      color: rgba(148, 163, 184, 0.75);
+      max-width: 540px;
+      margin-inline: auto;
+      line-height: 1.75;
+      margin-bottom: var(--sp-8);
       opacity: 0;
-      animation: heroFadeUp 0.8s ease 0.6s forwards;
+      animation: heroFadeUp 0.9s ease 0.7s forwards;
     }
 
     .hero__actions {
       display: flex;
       align-items: center;
+      justify-content: center;
       gap: var(--sp-4);
       flex-wrap: wrap;
+      margin-bottom: var(--sp-12);
       opacity: 0;
-      animation: heroFadeUp 0.8s ease 0.8s forwards;
+      animation: heroFadeUp 0.9s ease 0.9s forwards;
     }
 
     .hero__link {
@@ -380,48 +448,46 @@
     .hero__link:hover { color: var(--color-secondary); }
     .hero__link:hover::after { transform: scaleX(1); }
 
-    /* ---- RIGHT: Stat counters (IOH style) ---- */
+    /* ---- Stats row — horizontal, below CTA ---- */
     .hero__stats {
       display: flex;
-      flex-direction: column;
       gap: 0;
-      align-self: end;
-      margin-bottom: var(--sp-2);
+      width: 100%;
+      max-width: 700px;
+      opacity: 0;
+      animation: heroFadeIn 1s ease 1.2s forwards;
     }
 
     .stat-card {
-      padding: var(--sp-4) 0;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      opacity: 0;
-      animation: heroFadeIn 0.6s ease forwards;
+      flex: 1;
+      text-align: center;
+      padding: var(--sp-4) var(--sp-3);
+      border-left: 1px solid rgba(255, 255, 255, 0.08);
     }
 
-    .stat-card:last-child {
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    .stat-card:first-child {
+      border-left: none;
     }
-
-    .stat-card:nth-child(1) { animation-delay: 0.5s; }
-    .stat-card:nth-child(2) { animation-delay: 0.8s; }
-    .stat-card:nth-child(3) { animation-delay: 1.1s; }
 
     .stat-card__icon { display: none; }
 
-    .stat-card__label {
-      font-family: var(--font-body);
-      font-size: 0.75rem;
-      font-weight: 400;
-      color: rgba(148, 163, 184, 0.6);
-      letter-spacing: 0.04em;
-      margin-bottom: 6px;
-    }
-
     .stat-card__number {
       font-family: var(--font-heading);
-      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-size: clamp(2rem, 4vw, 2.8rem);
       font-weight: 800;
       line-height: 1;
       color: var(--color-text);
       letter-spacing: -0.02em;
+      margin-bottom: 6px;
+    }
+
+    .stat-card__label {
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 400;
+      color: rgba(148, 163, 184, 0.5);
+      letter-spacing: 0.03em;
+      line-height: 1.4;
     }
 
     /* ---- Shared btn styles ---- */
@@ -436,18 +502,19 @@
       text-transform: uppercase;
       padding: 14px var(--sp-4);
       border-radius: 4px;
-      border: 1px solid var(--color-accent);
+      border: 1px solid rgba(255, 255, 255, 0.15);
       cursor: pointer;
-      transition: background var(--ease), color var(--ease), transform var(--ease), box-shadow var(--ease);
+      transition: background var(--ease), color var(--ease), border-color var(--ease), transform var(--ease), box-shadow var(--ease);
     }
 
     .btn--primary {
       background: transparent;
-      color: var(--color-accent);
+      color: var(--color-text);
     }
 
     .btn--primary:hover {
       background: var(--color-accent);
+      border-color: var(--color-accent);
       color: var(--color-bg);
       transform: translateY(-1px);
       box-shadow: 0 8px 32px rgba(249, 115, 22, 0.2);
@@ -469,6 +536,8 @@
       align-items: center;
       gap: 6px;
       transition: opacity 0.4s ease;
+      opacity: 0;
+      animation: heroFadeIn 1s ease 1.6s forwards;
     }
 
     .hero__scroll.is-hidden {
@@ -477,18 +546,18 @@
     }
 
     .hero__scroll-chevron {
-      animation: heroChevron 2s ease-in-out infinite;
-      color: rgba(255, 255, 255, 0.3);
-      font-size: 0.9rem;
+      animation: heroChevron 2.5s ease-in-out infinite;
+      color: rgba(255, 255, 255, 0.2);
+      font-size: 0.85rem;
     }
 
     .hero__scroll-label {
       font-family: var(--font-heading);
-      font-size: 0.6rem;
+      font-size: 0.58rem;
       font-weight: 700;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.2);
+      color: rgba(255, 255, 255, 0.15);
     }
 
     /* ---- Hero keyframes ---- */
@@ -498,41 +567,23 @@
     }
 
     @keyframes heroFadeUp {
-      from { opacity: 0; transform: translateY(16px); }
+      from { opacity: 0; transform: translateY(20px); }
       to   { opacity: 1; transform: translateY(0); }
     }
 
     @keyframes heroChevron {
       0%, 100% { transform: translateY(0); }
-      50%       { transform: translateY(6px); }
+      50%       { transform: translateY(5px); }
     }
 
     /* ---- Hero responsive — tablet ---- */
     @media (max-width: 900px) {
       .hero__inner {
-        grid-template-columns: 1fr;
-        gap: var(--sp-8);
-        padding: var(--sp-12) var(--sp-3) var(--sp-6);
-        align-items: end;
+        padding: var(--sp-8) var(--sp-3);
       }
 
-      .hero__stats {
-        flex-direction: row;
-        gap: 0;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-      }
-
-      .stat-card {
-        flex: 1;
-        border-top: none;
-        border-right: 1px solid rgba(255, 255, 255, 0.1);
-        padding: var(--sp-3) var(--sp-3);
-        text-align: center;
-      }
-
-      .stat-card:last-child {
-        border-bottom: none;
-        border-right: none;
+      .hero__headline {
+        font-size: clamp(2.4rem, 5.5vw, 3.5rem);
       }
     }
 
@@ -540,18 +591,18 @@
     @media (max-width: 540px) {
       .hero__stats {
         flex-direction: column;
-        border-top: none;
+        gap: 0;
+        max-width: 280px;
       }
 
       .stat-card {
-        border-right: none;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        text-align: left;
+        border-left: none;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
         padding: var(--sp-3) 0;
       }
 
-      .stat-card:last-child {
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      .stat-card:first-child {
+        border-top: none;
       }
 
       .hero__actions {
@@ -4033,13 +4084,17 @@
   ============================================================ -->
   <section class="hero" id="home" aria-label="Hero">
 
-    <!-- Animated background -->
+    <!-- Animated background + floating orbs -->
     <div class="hero__bg" aria-hidden="true"></div>
+    <div class="hero__orb hero__orb--1" aria-hidden="true"></div>
+    <div class="hero__orb hero__orb--2" aria-hidden="true"></div>
+    <div class="hero__orb hero__orb--3" aria-hidden="true"></div>
 
     <div class="hero__inner">
 
-      <!-- Left: text content at bottom -->
       <div class="hero__text">
+
+        <div class="hero__accent-line" aria-hidden="true"></div>
 
         <p class="hero__eyebrow">Central Islip–Hauppauge Volunteer Ambulance Corps</p>
 
@@ -4063,22 +4118,22 @@
 
       </div>
 
-      <!-- Right: stat counters (IOH style — stacked with separator lines) -->
+      <!-- Stats row — centered below content -->
       <div class="hero__stats" aria-label="EMS injury statistics">
 
         <div class="stat-card">
-          <p class="stat-card__label">Injuries Per Year</p>
           <div class="stat-card__number" data-count="36000" data-suffix="+">0</div>
+          <p class="stat-card__label">Injuries Per Year</p>
         </div>
 
         <div class="stat-card">
-          <p class="stat-card__label">Higher Injury Rate Than Average</p>
           <div class="stat-card__number" data-count="3" data-suffix="×">0</div>
+          <p class="stat-card__label">Higher Injury Rate</p>
         </div>
 
         <div class="stat-card">
-          <p class="stat-card__label">Of Back Injuries Are Preventable</p>
           <div class="stat-card__number" data-count="50" data-suffix="%+">0</div>
+          <p class="stat-card__label">Preventable</p>
         </div>
 
       </div>
