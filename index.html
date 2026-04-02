@@ -687,23 +687,96 @@
       margin-top: var(--sp-2);
     }
 
-    /* — Horizontal bar chart — */
+    /* ── Shock Stats Banner ── */
+    .shock-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--sp-4);
+      max-width: 1000px;
+      margin-inline: auto;
+      margin-bottom: var(--sp-12);
+    }
+
+    .shock-stat {
+      text-align: center;
+      padding: var(--sp-6) var(--sp-4);
+      background: rgba(249, 115, 22, 0.04);
+      border: 1px solid rgba(249, 115, 22, 0.12);
+      border-radius: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .shock-stat::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--color-accent);
+    }
+
+    .shock-stat__number {
+      font-family: var(--font-heading);
+      font-size: clamp(3rem, 7vw, 4.5rem);
+      font-weight: 800;
+      line-height: 1;
+      color: var(--color-accent);
+      letter-spacing: -0.02em;
+      margin-bottom: var(--sp-2);
+    }
+
+    .shock-stat__label {
+      font-family: var(--font-heading);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-text);
+      margin-bottom: var(--sp-1);
+    }
+
+    .shock-stat__desc {
+      font-size: 0.82rem;
+      color: var(--color-muted);
+      line-height: 1.5;
+      max-width: 220px;
+      margin-inline: auto;
+    }
+
+    /* ── Section Subheader ── */
+    .injuries-section-label {
+      text-align: center;
+      margin-bottom: var(--sp-6);
+    }
+
+    .injuries-section-label__text {
+      font-family: var(--font-heading);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+    }
+
+    /* ── Horizontal bar chart ── */
     .injury-chart {
-      max-width: 860px;
+      max-width: 900px;
       margin-inline: auto;
     }
 
     .chart-row {
       display: grid;
-      grid-template-columns: 210px 1fr 52px;
+      grid-template-columns: 200px 1fr 60px;
       align-items: center;
-      gap: var(--sp-2);
-      padding: 11px var(--sp-2);
-      border-radius: 6px;
+      gap: var(--sp-3);
+      padding: 14px var(--sp-4);
+      border-radius: 8px;
       cursor: pointer;
-      border-left: 3px solid transparent;
+      border-left: 4px solid transparent;
       transition: background 0.25s ease, border-color 0.25s ease;
-      margin-bottom: 3px;
+      margin-bottom: 4px;
       user-select: none;
     }
 
@@ -712,7 +785,7 @@
     }
 
     .chart-row.is-active {
-      background: rgba(249, 115, 22, 0.09);
+      background: rgba(249, 115, 22, 0.08);
       border-left-color: var(--color-accent);
     }
 
@@ -724,8 +797,8 @@
     .chart-label {
       display: flex;
       align-items: center;
-      gap: 10px;
-      font-size: 0.875rem;
+      gap: 12px;
+      font-size: 0.9rem;
       font-weight: 600;
       color: var(--color-text);
       white-space: nowrap;
@@ -733,15 +806,15 @@
 
     .chart-label i {
       color: var(--color-accent);
-      font-size: 0.9rem;
-      width: 16px;
+      font-size: 0.95rem;
+      width: 18px;
       flex-shrink: 0;
     }
 
     .chart-track {
-      height: 13px;
-      background: var(--color-border);
-      border-radius: 0 100px 100px 0;
+      height: 18px;
+      background: rgba(30, 58, 95, 0.5);
+      border-radius: 100px;
       overflow: hidden;
     }
 
@@ -749,22 +822,22 @@
       height: 100%;
       width: 0%;
       background: linear-gradient(90deg, var(--color-accent) 0%, #c2500a 100%);
-      border-radius: 0 100px 100px 0;
-      transition: width 1s cubic-bezier(0.22, 1, 0.36, 1);
+      border-radius: 100px;
+      transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     .chart-pct {
       font-family: var(--font-heading);
-      font-size: 1.05rem;
-      font-weight: 700;
+      font-size: 1.25rem;
+      font-weight: 800;
       color: var(--color-accent);
       text-align: right;
       white-space: nowrap;
     }
 
-    /* — Detail panel — */
+    /* ── Detail panel ── */
     .detail-panel {
-      max-width: 860px;
+      max-width: 900px;
       margin-inline: auto;
       max-height: 0;
       overflow: hidden;
@@ -776,12 +849,11 @@
     }
 
     .detail-panel__inner {
-      background: rgba(15, 32, 64, 0.6);
+      background: var(--color-bg);
       border: 1px solid var(--color-border);
-      border-left: 3px solid var(--color-accent);
-      border-radius: 0 8px 8px 8px;
-      padding: var(--sp-4) var(--sp-6);
-      margin-top: var(--sp-1);
+      border-radius: 10px;
+      padding: var(--sp-5) var(--sp-6);
+      margin-top: var(--sp-3);
       margin-bottom: var(--sp-4);
     }
 
@@ -796,14 +868,14 @@
       letter-spacing: 0.04em;
       text-transform: uppercase;
       color: var(--color-text);
-      margin-bottom: var(--sp-3);
+      margin-bottom: var(--sp-4);
     }
 
     .detail-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: var(--sp-2) var(--sp-6);
-      margin-bottom: var(--sp-3);
+      gap: var(--sp-3) var(--sp-6);
+      margin-bottom: var(--sp-4);
     }
 
     .detail-item__label {
@@ -813,21 +885,21 @@
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--color-accent);
-      margin-bottom: 4px;
+      margin-bottom: 6px;
     }
 
     .detail-item__body {
       font-size: 0.88rem;
       color: var(--color-secondary);
-      line-height: 1.65;
+      line-height: 1.7;
     }
 
     .detail-stat {
-      background: rgba(249, 115, 22, 0.07);
-      border: 1px solid rgba(249, 115, 22, 0.18);
-      border-radius: 6px;
-      padding: 10px var(--sp-3);
-      margin-bottom: var(--sp-2);
+      background: rgba(249, 115, 22, 0.06);
+      border: 1px solid rgba(249, 115, 22, 0.15);
+      border-radius: 8px;
+      padding: 14px var(--sp-4);
+      margin-bottom: var(--sp-3);
       font-size: 0.88rem;
       color: var(--color-secondary);
       line-height: 1.6;
@@ -840,7 +912,7 @@
     .detail-tip {
       display: flex;
       align-items: flex-start;
-      gap: 10px;
+      gap: 12px;
       font-size: 0.88rem;
       color: var(--color-secondary);
       line-height: 1.65;
@@ -848,30 +920,29 @@
 
     .detail-tip i {
       color: var(--color-accent);
-      margin-top: 2px;
+      margin-top: 3px;
       flex-shrink: 0;
     }
 
-    /* — Risk factor cards — */
+    /* ── Risk factor cards ── */
     .risk-cards {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: var(--sp-3);
       max-width: 1160px;
       margin-inline: auto;
-      margin-top: var(--sp-8);
+      margin-top: var(--sp-12);
     }
 
     .risk-card {
-      background: var(--color-surface);
-      border-top: 3px solid var(--color-accent);
-      border-radius: 0 0 8px 8px;
-      padding: var(--sp-4);
+      background: var(--color-bg);
+      border: 1px solid var(--color-border);
+      border-radius: 10px;
+      padding: var(--sp-5) var(--sp-4);
       text-align: center;
       opacity: 0;
       transform: translateY(16px);
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
-      transition: box-shadow 0.25s ease, transform 0.25s ease;
+      transition: opacity 0.35s ease, transform 0.35s ease, border-color 0.2s ease, box-shadow 0.2s ease;
     }
 
     .risk-card.is-visible {
@@ -884,30 +955,30 @@
     .risk-card.is-visible:nth-child(4) { animation-delay: 0.3s; }
 
     .risk-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+      border-color: rgba(249, 115, 22, 0.3);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
     }
 
     .risk-card__icon {
       font-size: 2rem;
       color: var(--color-accent);
-      margin-bottom: var(--sp-2);
+      margin-bottom: var(--sp-3);
     }
 
     .risk-card__title {
       font-family: var(--font-heading);
-      font-size: 1.15rem;
+      font-size: 1.05rem;
       font-weight: 700;
       letter-spacing: 0.03em;
       text-transform: uppercase;
       color: var(--color-text);
-      margin-bottom: var(--sp-1);
+      margin-bottom: var(--sp-2);
     }
 
     .risk-card__body {
-      font-size: 0.875rem;
+      font-size: 0.84rem;
       color: var(--color-muted);
-      line-height: 1.7;
+      line-height: 1.65;
     }
 
     @keyframes riskFadeUp {
@@ -916,9 +987,24 @@
 
     /* Injuries responsive */
     @media (max-width: 900px) {
+      .shock-stats {
+        grid-template-columns: 1fr;
+        gap: var(--sp-3);
+        max-width: 400px;
+      }
+
+      .shock-stat {
+        padding: var(--sp-4) var(--sp-3);
+      }
+
+      .shock-stat__number {
+        font-size: 3rem;
+      }
+
       .chart-row {
-        grid-template-columns: 160px 1fr 44px;
-        gap: var(--sp-1);
+        grid-template-columns: 160px 1fr 50px;
+        gap: var(--sp-2);
+        padding: 12px var(--sp-3);
       }
 
       .detail-grid {
@@ -934,18 +1020,19 @@
       .chart-row {
         grid-template-columns: 1fr auto;
         grid-template-rows: auto auto;
+        padding: 10px var(--sp-2);
       }
 
       .chart-label {
         grid-column: 1;
         white-space: normal;
-        font-size: 0.82rem;
+        font-size: 0.84rem;
       }
 
       .chart-pct {
         grid-column: 2;
         grid-row: 1;
-        font-size: 0.95rem;
+        font-size: 1.05rem;
       }
 
       .chart-track {
@@ -954,7 +1041,7 @@
       }
 
       .detail-panel__inner {
-        padding: var(--sp-3);
+        padding: var(--sp-4) var(--sp-3);
       }
 
       .risk-cards {
@@ -3994,10 +4081,39 @@
         <span class="eyebrow">Section 01</span>
         <h2 class="section__heading">The EMS Injury Landscape</h2>
         <p class="injuries-subhead">
-          Understanding where and how injuries happen is the first step to
-          preventing them. Explore the data below — then click any category
-          to learn more.
+          These are not abstract statistics. This is what happens to
+          real providers — on real calls — every year. Look at the
+          numbers. Then decide if the way you lift, move, and work
+          needs to change.
         </p>
+      </div>
+
+      <!-- ── Shock Stats ── -->
+      <div class="shock-stats" id="shockStats">
+
+        <div class="shock-stat">
+          <div class="shock-stat__number" data-count="36000" data-suffix="+">0</div>
+          <div class="shock-stat__label">EMS Injuries Per Year</div>
+          <p class="shock-stat__desc">Reported workplace injuries among U.S. EMS workers annually.</p>
+        </div>
+
+        <div class="shock-stat">
+          <div class="shock-stat__number" data-count="3" data-suffix="×">0</div>
+          <div class="shock-stat__label">Higher Than Average</div>
+          <p class="shock-stat__desc">EMS providers are injured at 3× the rate of the average American worker.</p>
+        </div>
+
+        <div class="shock-stat">
+          <div class="shock-stat__number" data-count="48" data-suffix="%">0</div>
+          <div class="shock-stat__label">Never Fully Recover</div>
+          <p class="shock-stat__desc">Nearly half of providers with back injuries report chronic pain years later.</p>
+        </div>
+
+      </div>
+
+      <!-- ── Chart Label ── -->
+      <div class="injuries-section-label">
+        <span class="injuries-section-label__text">Where the Injuries Happen — Click Any Category</span>
       </div>
 
       <!-- Part 1: Horizontal bar chart -->
@@ -7619,6 +7735,33 @@
         window.addEventListener('scroll', () => {
           heroScroll.classList.toggle('is-hidden', window.scrollY > window.innerHeight * 0.45);
         }, { passive: true });
+      }
+
+
+      /* ── Shock Stats: animated counters on scroll ────────────── */
+      const shockStats = document.getElementById('shockStats');
+      let shockFired = false;
+
+      if (shockStats) {
+        new IntersectionObserver(([e]) => {
+          if (e.isIntersecting && !shockFired) {
+            shockFired = true;
+            shockStats.querySelectorAll('.shock-stat__number[data-count]').forEach(el => {
+              const target   = parseInt(el.dataset.count, 10);
+              const suffix   = el.dataset.suffix || '';
+              const duration = 2000;
+              const start    = performance.now();
+              function tick(now) {
+                const progress = Math.min((now - start) / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                const value = Math.round(eased * target);
+                el.textContent = (target >= 1000 ? value.toLocaleString() : value) + suffix;
+                if (progress < 1) requestAnimationFrame(tick);
+              }
+              requestAnimationFrame(tick);
+            });
+          }
+        }, { threshold: 0.3 }).observe(shockStats);
       }
 
 
