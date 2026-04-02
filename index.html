@@ -245,70 +245,61 @@
        HERO
     ============================================================ */
 
-    /* 3px orange top accent bar */
-    .hero__topbar {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: var(--color-accent);
-      z-index: 2;
-    }
-
     .hero {
       position: relative;
       min-height: 100svh;
       display: flex;
-      align-items: center;
-      background-color: var(--color-bg);
+      align-items: flex-end;
+      background-color: #080e1a;
       overflow: hidden;
       padding-top: var(--nav-height);
     }
 
-    /* Radial center glow */
-    .hero::before {
-      content: '';
+    /* Animated background — slow drifting gradient */
+    .hero__bg {
       position: absolute;
-      inset: 0;
-      background: radial-gradient(
-        ellipse 80% 70% at 50% 50%,
-        #0f2040 0%,
-        var(--color-bg) 68%
-      );
+      inset: -20%;
+      background:
+        radial-gradient(ellipse 60% 50% at 70% 40%, rgba(249,115,22,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 60% at 30% 60%, rgba(30,80,140,0.15) 0%, transparent 55%),
+        radial-gradient(ellipse 80% 80% at 50% 50%, #0a1628 0%, #060e1a 100%);
+      animation: heroBgDrift 20s ease-in-out infinite alternate;
       pointer-events: none;
     }
 
-    /* Diagonal line texture */
+    @keyframes heroBgDrift {
+      0%   { transform: translate(0, 0) scale(1); }
+      33%  { transform: translate(2%, -1.5%) scale(1.02); }
+      66%  { transform: translate(-1.5%, 1%) scale(1.01); }
+      100% { transform: translate(1%, -0.5%) scale(1.03); }
+    }
+
+    /* Grain texture overlay */
     .hero::after {
       content: '';
       position: absolute;
       inset: 0;
-      background-image: repeating-linear-gradient(
-        45deg,
-        rgba(255, 255, 255, 0.04) 0px,
-        rgba(255, 255, 255, 0.04) 1px,
-        transparent 1px,
-        transparent 14px
-      );
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+      background-size: 200px;
       pointer-events: none;
+      z-index: 1;
     }
 
-    /* Two-column inner wrapper */
+    /* Inner layout — content at bottom, stats on right */
     .hero__inner {
       position: relative;
-      z-index: 1;
+      z-index: 2;
       width: 100%;
-      max-width: 1160px;
+      max-width: 1280px;
       margin-inline: auto;
-      padding: var(--sp-8) var(--sp-3);
+      padding: var(--sp-16) var(--sp-6) var(--sp-8);
       display: grid;
-      grid-template-columns: 60fr 40fr;
+      grid-template-columns: 1fr 320px;
       gap: var(--sp-8);
-      align-items: center;
+      align-items: end;
     }
 
-    /* ---- LEFT: Text content ---- */
+    /* ---- LEFT: Text at bottom ---- */
     .hero__text {
       text-align: left;
     }
@@ -316,27 +307,27 @@
     .hero__eyebrow {
       display: inline-block;
       font-family: var(--font-heading);
-      font-size: 0.72rem;
+      font-size: 0.68rem;
       font-weight: 700;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--color-accent);
-      margin-bottom: var(--sp-3);
-      animation: heroFadeIn 0.5s ease both;
-      animation-delay: 0s;
+      color: rgba(249, 115, 22, 0.7);
+      margin-bottom: var(--sp-4);
+      opacity: 0;
+      animation: heroFadeIn 0.8s ease 0.2s forwards;
     }
 
     .hero__headline {
       font-family: var(--font-heading);
-      font-size: clamp(3.5rem, 7vw, 6rem);
+      font-size: clamp(3rem, 6.5vw, 5.5rem);
       font-weight: 800;
       line-height: 0.95;
-      letter-spacing: 0.02em;
-      text-transform: uppercase;
+      letter-spacing: -0.01em;
+      text-transform: none;
       color: var(--color-text);
-      margin-bottom: var(--sp-3);
-      animation: heroFadeUp 0.6s ease both;
-      animation-delay: 0.2s;
+      margin-bottom: var(--sp-4);
+      opacity: 0;
+      animation: heroFadeUp 0.8s ease 0.4s forwards;
     }
 
     .hero__headline span {
@@ -344,80 +335,93 @@
     }
 
     .hero__subtitle {
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       font-weight: 400;
-      color: var(--color-secondary);
-      max-width: 500px;
-      line-height: 1.75;
+      color: rgba(148, 163, 184, 0.8);
+      max-width: 520px;
+      line-height: 1.7;
       margin-bottom: var(--sp-6);
-      animation: heroFadeUp 0.6s ease both;
-      animation-delay: 0.4s;
+      opacity: 0;
+      animation: heroFadeUp 0.8s ease 0.6s forwards;
     }
 
     .hero__actions {
       display: flex;
       align-items: center;
-      gap: var(--sp-3);
+      gap: var(--sp-4);
       flex-wrap: wrap;
-      animation: heroFadeUp 0.6s ease both;
-      animation-delay: 0.6s;
+      opacity: 0;
+      animation: heroFadeUp 0.8s ease 0.8s forwards;
     }
 
     .hero__link {
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       font-weight: 600;
       color: var(--color-muted);
-      text-decoration: underline;
-      text-underline-offset: 3px;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      position: relative;
       transition: color var(--ease);
     }
 
-    .hero__link:hover {
-      color: var(--color-secondary);
+    .hero__link::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: var(--color-muted);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--ease);
     }
 
-    /* ---- RIGHT: Stat counter cards ---- */
+    .hero__link:hover { color: var(--color-secondary); }
+    .hero__link:hover::after { transform: scaleX(1); }
+
+    /* ---- RIGHT: Stat counters (IOH style) ---- */
     .hero__stats {
       display: flex;
       flex-direction: column;
-      gap: var(--sp-2);
+      gap: 0;
+      align-self: end;
+      margin-bottom: var(--sp-2);
     }
 
     .stat-card {
-      background: var(--color-surface);
-      border-left: 3px solid var(--color-accent);
-      border-radius: 0 8px 8px 0;
-      padding: var(--sp-3) var(--sp-4);
-      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+      padding: var(--sp-4) 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
       opacity: 0;
-      transform: translateX(24px);
-      animation: heroSlideRight 0.5s ease forwards;
+      animation: heroFadeIn 0.6s ease forwards;
     }
 
-    .stat-card:nth-child(1) { animation-delay: 0.3s; }
-    .stat-card:nth-child(2) { animation-delay: 0.6s; }
-    .stat-card:nth-child(3) { animation-delay: 0.9s; }
+    .stat-card:last-child {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
 
-    .stat-card__icon {
-      color: var(--color-accent);
-      font-size: 1.1rem;
+    .stat-card:nth-child(1) { animation-delay: 0.5s; }
+    .stat-card:nth-child(2) { animation-delay: 0.8s; }
+    .stat-card:nth-child(3) { animation-delay: 1.1s; }
+
+    .stat-card__icon { display: none; }
+
+    .stat-card__label {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 400;
+      color: rgba(148, 163, 184, 0.6);
+      letter-spacing: 0.04em;
       margin-bottom: 6px;
     }
 
     .stat-card__number {
       font-family: var(--font-heading);
-      font-size: 2.75rem;
+      font-size: clamp(2.2rem, 4vw, 3.2rem);
       font-weight: 800;
       line-height: 1;
       color: var(--color-text);
-      letter-spacing: -0.01em;
-    }
-
-    .stat-card__label {
-      font-size: 0.85rem;
-      color: var(--color-muted);
-      line-height: 1.5;
-      margin-top: 6px;
+      letter-spacing: -0.02em;
     }
 
     /* ---- Shared btn styles ---- */
@@ -426,28 +430,27 @@
       align-items: center;
       gap: var(--sp-1);
       font-family: var(--font-heading);
-      font-size: 1rem;
+      font-size: 0.88rem;
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       padding: 14px var(--sp-4);
-      border-radius: 6px;
-      border: none;
+      border-radius: 4px;
+      border: 1px solid var(--color-accent);
       cursor: pointer;
-      transition: background var(--ease), transform var(--ease), box-shadow var(--ease);
+      transition: background var(--ease), color var(--ease), transform var(--ease), box-shadow var(--ease);
     }
 
     .btn--primary {
-      background: var(--color-accent);
-      color: #0a1628;
-      box-shadow: 0 0 0 0 rgba(249, 115, 22, 0);
+      background: transparent;
+      color: var(--color-accent);
     }
 
     .btn--primary:hover {
-      background: var(--color-accent-hover);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 32px rgba(249, 115, 22, 0.35);
-      filter: brightness(1.06);
+      background: var(--color-accent);
+      color: var(--color-bg);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 32px rgba(249, 115, 22, 0.2);
     }
 
     .btn--primary:active {
@@ -460,7 +463,7 @@
       bottom: var(--sp-4);
       left: 50%;
       transform: translateX(-50%);
-      z-index: 2;
+      z-index: 3;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -474,19 +477,18 @@
     }
 
     .hero__scroll-chevron {
-      animation: heroChevron 1.8s ease-in-out infinite;
-      color: var(--color-accent);
-      opacity: 0.7;
-      font-size: 1.1rem;
+      animation: heroChevron 2s ease-in-out infinite;
+      color: rgba(255, 255, 255, 0.3);
+      font-size: 0.9rem;
     }
 
     .hero__scroll-label {
       font-family: var(--font-heading);
-      font-size: 0.65rem;
+      font-size: 0.6rem;
       font-weight: 700;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--color-muted);
+      color: rgba(255, 255, 255, 0.2);
     }
 
     /* ---- Hero keyframes ---- */
@@ -496,12 +498,8 @@
     }
 
     @keyframes heroFadeUp {
-      from { opacity: 0; transform: translateY(10px); }
+      from { opacity: 0; transform: translateY(16px); }
       to   { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes heroSlideRight {
-      to { opacity: 1; transform: translateX(0); }
     }
 
     @keyframes heroChevron {
@@ -513,32 +511,63 @@
     @media (max-width: 900px) {
       .hero__inner {
         grid-template-columns: 1fr;
-        gap: var(--sp-6);
-        padding-top: var(--sp-6);
-        padding-bottom: var(--sp-8);
-      }
-
-      .hero__text {
-        text-align: center;
-      }
-
-      .hero__subtitle {
-        margin-inline: auto;
-      }
-
-      .hero__actions {
-        justify-content: center;
+        gap: var(--sp-8);
+        padding: var(--sp-12) var(--sp-3) var(--sp-6);
+        align-items: end;
       }
 
       .hero__stats {
         flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
+        gap: 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
       }
 
       .stat-card {
-        flex: 1 1 calc(50% - var(--sp-1));
-        min-width: 180px;
+        flex: 1;
+        border-top: none;
+        border-right: 1px solid rgba(255, 255, 255, 0.1);
+        padding: var(--sp-3) var(--sp-3);
+        text-align: center;
+      }
+
+      .stat-card:last-child {
+        border-bottom: none;
+        border-right: none;
+      }
+    }
+
+    /* ---- Hero responsive — mobile ---- */
+    @media (max-width: 540px) {
+      .hero__stats {
+        flex-direction: column;
+        border-top: none;
+      }
+
+      .stat-card {
+        border-right: none;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        text-align: left;
+        padding: var(--sp-3) 0;
+      }
+
+      .stat-card:last-child {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .hero__actions {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .btn--primary {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .hero__link {
+        text-align: center;
+      }
+    }
       }
     }
 
@@ -4002,22 +4031,24 @@
   ============================================================ -->
   <section class="hero" id="home" aria-label="Hero">
 
-    <div class="hero__topbar" aria-hidden="true"></div>
+    <!-- Animated background -->
+    <div class="hero__bg" aria-hidden="true"></div>
 
     <div class="hero__inner">
 
-      <!-- Left: text content -->
+      <!-- Left: text content at bottom -->
       <div class="hero__text">
 
         <p class="hero__eyebrow">Central Islip–Hauppauge Volunteer Ambulance Corps</p>
 
         <h1 class="hero__headline">
-          Protect the<br /><span>Protectors.</span>
+          Protecting those<br />who protect <span>us.</span>
         </h1>
 
         <p class="hero__subtitle">
-          EMS workers suffer one of the highest injury rates of any profession.
-          This training resource exists to change that — one crew at a time.
+          Evidence-based injury prevention and orthopedic education
+          built for working EMS providers. Because your career
+          should last as long as your commitment.
         </p>
 
         <div class="hero__actions">
@@ -4030,31 +4061,22 @@
 
       </div>
 
-      <!-- Right: animated stat cards -->
+      <!-- Right: stat counters (IOH style — stacked with separator lines) -->
       <div class="hero__stats" aria-label="EMS injury statistics">
 
         <div class="stat-card">
-          <div class="stat-card__icon" aria-hidden="true">
-            <i class="fa-solid fa-person-falling"></i>
-          </div>
-          <div class="stat-card__number" data-count="30" data-suffix=" per 100">0</div>
-          <p class="stat-card__label">EMS workers injured annually — 6x the national average</p>
+          <p class="stat-card__label">Injuries Per Year</p>
+          <div class="stat-card__number" data-count="36000" data-suffix="+">0</div>
         </div>
 
         <div class="stat-card">
-          <div class="stat-card__icon" aria-hidden="true">
-            <i class="fa-solid fa-bone"></i>
-          </div>
-          <div class="stat-card__number" data-count="35" data-suffix="%">0</div>
-          <p class="stat-card__label">Of all EMS injuries involve the back or spine</p>
+          <p class="stat-card__label">Higher Injury Rate Than Average</p>
+          <div class="stat-card__number" data-count="3" data-suffix="×">0</div>
         </div>
 
         <div class="stat-card">
-          <div class="stat-card__icon" aria-hidden="true">
-            <i class="fa-solid fa-shield-halved"></i>
-          </div>
+          <p class="stat-card__label">Of Back Injuries Are Preventable</p>
           <div class="stat-card__number" data-count="50" data-suffix="%+">0</div>
-          <p class="stat-card__label">Of career-ending EMS injuries are preventable</p>
         </div>
 
       </div>
@@ -7714,9 +7736,9 @@
         function tick(now) {
           const elapsed  = now - start;
           const progress = Math.min(elapsed / duration, 1);
-          // ease-out cubic
           const eased = 1 - Math.pow(1 - progress, 3);
-          el.textContent = Math.round(eased * target) + suffix;
+          const value = Math.round(eased * target);
+          el.textContent = (target >= 1000 ? value.toLocaleString() : value) + suffix;
           if (progress < 1) requestAnimationFrame(tick);
         }
 
