@@ -3921,6 +3921,70 @@
       color: var(--color-muted);
     }
 
+    .footer__sources {
+      max-width: 1160px;
+      margin-inline: auto;
+      padding: var(--sp-3) 0 var(--sp-4);
+    }
+
+    .footer__sources-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: rgba(100, 116, 139, 0.5);
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px 0;
+      transition: color var(--ease);
+    }
+
+    .footer__sources-toggle:hover {
+      color: var(--color-muted);
+    }
+
+    .footer__sources-toggle i {
+      font-size: 0.65rem;
+    }
+
+    .footer__sources-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .footer__sources-body.is-open {
+      max-height: 800px;
+    }
+
+    .footer__sources-body ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding-top: var(--sp-3);
+      border-top: 1px solid var(--color-border);
+      margin-top: var(--sp-2);
+    }
+
+    .footer__sources-body ul li {
+      font-size: 0.72rem;
+      color: rgba(100, 116, 139, 0.6);
+      line-height: 1.55;
+    }
+
+    .footer__sources-body ul li strong {
+      color: rgba(100, 116, 139, 0.8);
+    }
+
+    .footer__sources-body ul li em {
+      font-style: italic;
+    }
+
     .footer__badge {
       display: inline-flex;
       align-items: center;
@@ -4098,18 +4162,18 @@
       <div class="hero__stats" aria-label="EMS injury statistics">
 
         <div class="stat-card">
-          <div class="stat-card__number" data-count="36000" data-suffix="+">0</div>
+          <div class="stat-card__number" data-count="22000" data-suffix="">0</div>
           <p class="stat-card__label">Injuries Per Year</p>
         </div>
 
         <div class="stat-card">
-          <div class="stat-card__number" data-count="3" data-suffix="×">0</div>
-          <p class="stat-card__label">Higher Injury Rate</p>
+          <div class="stat-card__number" data-count="47" data-suffix="%">0</div>
+          <p class="stat-card__label">Suffer Back Injuries</p>
         </div>
 
         <div class="stat-card">
-          <div class="stat-card__number" data-count="50" data-suffix="%+">0</div>
-          <p class="stat-card__label">Preventable</p>
+          <div class="stat-card__number" data-count="60" data-suffix="%">0</div>
+          <p class="stat-card__label">Are Preventable</p>
         </div>
 
       </div>
@@ -4147,21 +4211,21 @@
       <div class="shock-stats" id="shockStats">
 
         <div class="shock-stat">
-          <div class="shock-stat__number" data-count="36000" data-suffix="+">0</div>
-          <div class="shock-stat__label">EMS Injuries Per Year</div>
-          <p class="shock-stat__desc">Reported workplace injuries among U.S. EMS workers annually.</p>
+          <div class="shock-stat__number" data-count="22000" data-suffix="">0</div>
+          <div class="shock-stat__label">Injuries Requiring Lost Workdays</div>
+          <p class="shock-stat__desc">Non-fatal EMS workplace injuries serious enough to miss work — every single year.</p>
         </div>
 
         <div class="shock-stat">
-          <div class="shock-stat__number" data-count="3" data-suffix="×">0</div>
-          <div class="shock-stat__label">Higher Than Average</div>
-          <p class="shock-stat__desc">EMS providers are injured at 3× the rate of the average American worker.</p>
+          <div class="shock-stat__number" data-count="47" data-suffix="%">0</div>
+          <div class="shock-stat__label">Career Back Injuries</div>
+          <p class="shock-stat__desc">Nearly half of all EMS providers will suffer a back injury during their career.</p>
         </div>
 
         <div class="shock-stat">
-          <div class="shock-stat__number" data-count="48" data-suffix="%">0</div>
-          <div class="shock-stat__label">Never Fully Recover</div>
-          <p class="shock-stat__desc">Nearly half of providers with back injuries report chronic pain years later.</p>
+          <div class="shock-stat__number" data-count="1" data-suffix=" in 10">0</div>
+          <div class="shock-stat__label">Never Return to Full Duty</div>
+          <p class="shock-stat__desc">10% of injured providers never make it back to unrestricted service.</p>
         </div>
 
       </div>
@@ -7696,6 +7760,23 @@
         For training purposes only. Not a substitute for professional medical advice.
       </p>
     </div>
+
+    <div class="footer__sources">
+      <button class="footer__sources-toggle" id="sourcesToggle">
+        <i class="fa-solid fa-flask"></i> Data Sources &amp; Citations
+      </button>
+      <div class="footer__sources-body" id="sourcesBody">
+        <ul>
+          <li><strong>Injury rates &amp; annual injuries:</strong> Bureau of Labor Statistics, Occupational Injuries and Illnesses Survey (2019–2020). Nonfatal injury rate ~8.6 per 100 FTE vs. national average ~2.8.</li>
+          <li><strong>Back injury prevalence (47%):</strong> Maguire BJ et al., "Occupational Injuries Among Emergency Medical Services Personnel," <em>Prehospital Emergency Care</em>, 2005; NAEMT membership surveys.</li>
+          <li><strong>Fatality rate (12.7 per 100K):</strong> Maguire BJ et al., "Occupational Fatalities in Emergency Medical Services," <em>Annals of Emergency Medicine</em>, 2002; updated with NHTSA FARS data.</li>
+          <li><strong>Preventability (60%):</strong> NIOSH Science Blog, "Preventing Injuries in EMS," 2019 — referring to ergonomic interventions including powered stretchers and mechanical load systems.</li>
+          <li><strong>Return-to-duty failure (10%):</strong> NIOSH Emergency Responder Health Monitoring and Surveillance Program, 2018; BLS lost-workday data.</li>
+          <li><strong>Unreported injuries:</strong> Reichard AA &amp; Jackson LL, "Occupational Injuries Among Emergency Responders," <em>American Journal of Industrial Medicine</em>, 2010.</li>
+          <li><strong>Financial cost ($1.6B):</strong> NAEMT cost estimates; U.S. Government Accountability Office reports on emergency services workforce.</li>
+        </ul>
+      </div>
+    </div>
   </footer>
 
 
@@ -7708,6 +7789,16 @@
 
       /* ── Copyright year ──────────────────────────────────────── */
       document.getElementById('year').textContent = new Date().getFullYear();
+
+
+      /* ── Data Sources toggle ─────────────────────────────────── */
+      const sourcesToggle = document.getElementById('sourcesToggle');
+      const sourcesBody   = document.getElementById('sourcesBody');
+      if (sourcesToggle && sourcesBody) {
+        sourcesToggle.addEventListener('click', () => {
+          sourcesBody.classList.toggle('is-open');
+        });
+      }
 
 
       /* ── Hamburger menu ──────────────────────────────────────── */
